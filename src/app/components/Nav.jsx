@@ -1,5 +1,7 @@
 'use client';
 import React, { useState } from "react";
+import Image from 'next/image';
+import Logo from '../images/foo-fest-logo.webp';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,8 +17,8 @@ const Navigation = () => {
         href="#"
         className="relative group text-2xl font-light text-white hover:text-gray-500 hidden md:block"
       >
-        FF LOGO
-        <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
+        <Image src={Logo} width={35} alt="logo" />
+
       </a>
 
 
