@@ -18,4 +18,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+
+  h1, h2, h3{
+    font-family: rocky, serif;
+font-style: italic;
+font-weight: 900;
+  }
 }
