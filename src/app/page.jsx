@@ -1,7 +1,14 @@
 import Image from "next/image";
+import React from 'react';
+import Nav from './components/Nav';
+import Hero from "./components/Hero";
+
 
 export default function Home() {
   return (
-    <main></main>
+    <main className="">
+      <Nav />
+      <Hero alt="Photo by Jon Tyson, from Unsplash FREE" />
+    </main>
   );
 }
