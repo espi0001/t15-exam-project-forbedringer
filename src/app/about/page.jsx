@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useState, memo } from 'react';
-import Nav from '../components/Nav';
-import Footer from "../components/Footer";
+// import Nav from '@/components/Nav';
+// import Footer from "@/components/Footer";
 import { 
   Radio, Flag, MapPin, ChevronDown, ChevronUp, Music, Calendar, 
   Globe, CreditCard, Shield 
@@ -51,7 +51,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <main className="relative bg-black text-gray-300">
+    <div className="relative bg-black text-gray-300">
       <Image
         src={AboutHeroImage}
         alt="Hero background for about-page, by Gabriel Benois"
@@ -60,7 +60,7 @@ const AboutPage = () => {
         priority={true}
         className="opacity-50"
       />
-      <Nav />
+      {/* <Nav /> */}
       <div className="min-h-screen text-gray-300 py-12 px-4 relative z-10"> 
         <div className="max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden mt-60">
           <div className="text-center p-8 bg-black">
@@ -129,10 +129,10 @@ const AboutPage = () => {
           ))}
         </div>
       </div>
-      <div className="relative z-30"> 
+      {/* <div className="relative z-30"> 
         <Footer />
-      </div>
-    </main>
+      </div> */}
+    </div>
     );
 }
 

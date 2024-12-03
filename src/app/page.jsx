@@ -1,15 +1,14 @@
 import Image from "next/image";
 import React from "react";
-import Nav from "../components/Nav";
-import Hero from "../components/Hero";
-import Footer from "../components/Footer";
+
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <main className="">
-      <Nav />
+    <div className="">
+
       <Hero alt="Photo by Samu Lopez, from Unsplash FREE" />
-      <Footer />
-    </main>
+
+    </div>
   );
 }
