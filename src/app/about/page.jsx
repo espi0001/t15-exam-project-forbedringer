@@ -18,7 +18,7 @@ const aboutPage = () => {
       <Nav />
       <div className="min-h-screen text-gray-300 py-12 px-4 relative z-10"> 
         <div className="max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden mt-60">
-          <div className="text-center p-8 bg-black">
+          <div className="text-center p-8 bg-black/80">
             <h1 className="text-5xl font-black text-white mb-4">
               FOO FEST
             </h1>
@@ -26,7 +26,7 @@ const aboutPage = () => {
               Where music transcends boundaries
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 p-8 bg-black">
+          <div className="grid md:grid-cols-3 gap-6 p-8 bg-black/80">
             <div className="text-center">
               <Radio className="mx-auto h-16 w-16 text-white" />
               <h3 className="mt-4 text-xl font-bold text-white">Sound Waves</h3>
@@ -51,7 +51,7 @@ const aboutPage = () => {
               </p>
             </div>
           </div>
-          <div className="p-8 bg-black">
+          <div className="p-8 bg-black/80">
             <h2 className="text-2xl font-bold mb-4 text-white">Our Origin</h2>
             <p className="text-gray-300 mb-4">
               Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences.
