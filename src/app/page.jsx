@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="">
       <Nav />
-      <Hero alt="Photo by Jon Tyson, from Unsplash FREE" />
+      <Hero alt="Photo by Gabriel Benois, from Unsplash FREE" />
     </main>
   );
 }

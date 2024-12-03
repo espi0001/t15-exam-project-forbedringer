@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import HeroImage from '../images/jon-tyson-unsplash.jpg';
+import HeroImage from '../images/gabriel-benois-unsplash.jpg';
 
 const Hero = () => {
   return (
