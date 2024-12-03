@@ -5,7 +5,7 @@ import Logo from '../images/foo-fest-logo.webp';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-1000 text-gray-300 p-6 md:p-12 flex flex-col md:flex-row justify-between items-center">
+    <footer className="bg-[rgb(0,4,5)] text-gray-300 p-6 md:p-12 flex flex-col md:flex-row justify-between items-center">
       <div className="flex flex-col items-center md:items-start mb-6 md:mb-0 md:w-1/2">
         <div className="flex items-center mb-4">
           <Image src={Logo} width={35} alt="logo" />
