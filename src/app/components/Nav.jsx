@@ -14,8 +14,8 @@ const Navigation = () => {
     <nav className="absolute top-0 left-0 w-full flex items-center justify-between p-4 z-50">
 
       <a
-        href="#"
-        className="relative group text-2xl font-light text-white hover:text-gray-500 hidden md:block"
+        href="/page"
+        className="relative group text-2xl font-light text-white hover:text-black hidden md:block"
       >
         <Image src={Logo} width={35} alt="logo" />
 
@@ -24,19 +24,19 @@ const Navigation = () => {
 
       <a
         href="#"
-        className="relative group text-2xl font-light text-white hover:text-gray-500"
+        className="relative group text-2xl font-light text-white"
       >
         Tickets
-        <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
       </a>
 
 
       <button
         onClick={toggleMenu}
-        className="relative group text-2xl font-light text-white hover:text-gray-500"
+        className="relative group text-2xl font-light text-white"
       >
         Menu
-        <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
       </button>
 
 
@@ -50,37 +50,37 @@ const Navigation = () => {
               <li>
                 <a
                   href="#"
-                  className="relative group text-white hover:text-gray-600"
+                className="relative group text-white"
                 >
                   Home
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-600 transition-all duration-300 group-hover:w-full"></span>
+                   <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="relative group text-white hover:text-gray-600"
+                  href="/about"
+                 className="relative group text-white"
                 >
                   About
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-600 transition-all duration-300 group-hover:w-full"></span>
+                   <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="relative group text-white hover:text-gray-600"
+               className="relative group text-white"
                 >
                   Services
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-600 transition-all duration-300 group-hover:w-full"></span>
+                   <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="relative group text-white hover:text-gray-600"
+                  className="relative group text-white"
                 >
                   Contact
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-gray-600 transition-all duration-300 group-hover:w-full"></span>
+                 <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
             </ul>
