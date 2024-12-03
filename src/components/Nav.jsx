@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from "react";
 import Image from 'next/image';
-import Logo from '../images/foo-fest-logo.webp';
+import Logo from '../app/images/foo-fest-logo.webp';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

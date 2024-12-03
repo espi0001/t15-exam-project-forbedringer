@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
-import IndexHeroImage from '../images/samu-lopez-unsplash.jpg';
-import IndexTextLogo from '../images/foo-fest-text-logo.webp';
+import IndexHeroImage from '../app/images/samu-lopez-unsplash.jpg';
+import IndexTextLogo from '../app/images/foo-fest-text-logo.webp';
 
 const Hero = () => {
   return (
