@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-[rgb(0,4,5)] text-gray-300 p-6 md:p-12 flex flex-col md:flex-row justify-between items-center">
       <div className="flex flex-col items-center md:items-start mb-6 md:mb-0 md:w-1/2">
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-4 mt-10">
           <Image src={Logo} width={35} alt="logo" />
           <span className="text-xl m-5 font-semibold">FOO FEST</span>
         </div>
@@ -48,7 +48,7 @@ const Footer = () => {
           <button
             type="submit"
             alt="Button to click to subscribe with chosen email"
-            className="px-6 py-2 bg-black text-grey-500 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-800 hover:text-white transition-colors duration-300 ease-in-out"
+            className="px-6 py-2 bg-black text-grey-500 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-red-800 hover:text-white transition-colors duration-300 ease-in-out"
           >
             Subscribe
           </button>
