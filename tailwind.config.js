@@ -9,8 +9,8 @@ module.exports = {
         lg: "48rem",
         xl: "64rem",
         "2xl": "96rem",
-      }
-    }
+      },
+    },
     extend: {
       colors: {
         background: "var(--background)",
