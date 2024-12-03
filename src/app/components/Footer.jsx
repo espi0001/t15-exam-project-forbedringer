@@ -36,7 +36,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div id="Footer" className="flex flex-col items-center md:items-end md:w-1/2">
+      <div id="Footer" className="flex flex-col items-center md:items-end md:w-1/2 mt-16">
         <h4 className="text-lg font-medium mb-4 text-center md:text-left">Subscribe to be the first to know!</h4>
         <form className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
           <input
@@ -48,7 +48,7 @@ const Footer = () => {
           <button
             type="submit"
             alt="Button to click to subscribe with chosen email"
-            className="px-6 py-2 bg-black text-grey-500 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-red-800 hover:text-white transition-colors duration-300 ease-in-out"
+            className="px-6 py-2 bg-red-800 text-grey-500 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-black hover:text-white transition-colors duration-300 ease-in-out"
           >
             Subscribe
           </button>
