@@ -6,7 +6,7 @@
 
  :root {
    --background: #121212;
-   /* --foreground: #ededed; */
+   --foreground: #ededed;
    --padding-x-xs: 64px;
    --padding-x-lg: 80px;
    --padding-x-xl: 112px;
@@ -34,7 +34,7 @@
    h2,
    h3 {
      font-family: rocky, serif;
-     font-style: italic;
+     /* font-style: italic; */
      font-weight: 900;
    }
  }
