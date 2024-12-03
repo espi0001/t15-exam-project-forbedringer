@@ -7,7 +7,7 @@ import {
   Radio, Flag, MapPin, ChevronDown, ChevronUp, Music, Calendar, 
   Globe, CreditCard, Shield 
 } from 'lucide-react';
-import AboutHeroImage from '../images/gabriel-benois-unsplash.jpg';
+import AboutHeroImage from '@/images/gabriel-benois-unsplash.jpg';
 
 const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);

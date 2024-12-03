@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from 'next/image';
-import Logo from '../app/images/foo-fest-logo.webp';
+import Logo from '@/images/foo-fest-logo.webp';
 
 const Footer = () => {
   return (
