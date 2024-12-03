@@ -14,7 +14,7 @@ const Navigation = () => {
     <nav className="absolute top-0 left-0 w-full flex items-center justify-between p-4 z-50">
 
       <a
-        href="/page"
+        href="/"
         className="relative group text-2xl font-light text-white hover:text-black hidden md:block"
       >
         <Image src={Logo} width={35} alt="logo" />
