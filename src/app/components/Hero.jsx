@@ -18,9 +18,9 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <div className="absolute bottom-0 left-0 w-full text-center text-white z-10">
-        <h1 className="text-9xl line font-bold w-full py-4">
-          FOO FEST
-        </h1>
+       <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold w-full py-4">
+  FOO FEST
+</h1>
       </div>
     </div>
   );
