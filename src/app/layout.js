@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import Script from "next/script"; // Tilføj denne import
 import "./globals.css";
 
 import Nav from "@/components/Nav";
