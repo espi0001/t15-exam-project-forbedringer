@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js" strategy="beforeInteractive" />
         <Nav />
         <main>{children}</main>
         <Footer />
