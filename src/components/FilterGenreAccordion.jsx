@@ -5,12 +5,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const FilterGenreAccordion = ({ genres, onFilterChange }) => {
   const [isOpen, setIsOpen] = useState(false); // Styrer, om accordion er åbent
-  const [selectedGenre, setSelectedGenre] = useState("all"); // Styrer det aktive filter
-
-  //   const handleGenreClick = (genre) => {
-  //         setSelectedGenre(genre); // Opdater den aktive kategori
-  //             onFilterChange(genre); // Filtrer produkterne baseret på kategorien
-  //   }
+  const [selectedGenre, setSelectedGenre] = useState("All"); // Styrer det aktive filter
 
   const handleGenreChange = (event) => {
     const selected = event.target.value; // Hent den valgte genre fra radio button

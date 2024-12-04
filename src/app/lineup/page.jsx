@@ -3,13 +3,20 @@ import { useState, useEffect } from "react";
 import FilterGenreAccordion from "@/components/FilterGenreAccordion"; // Importér dit filterkomponent
 
 const Page = () => {
-  const [data, setData] = useState([]); // Ændret til en liste
-  const [filteredData, setFilteredData] = useState([]); // For at gemme de filtrerede bands
-  //   const [filter, setFilter] = useState(""); // Genre filter
+  const [data, setData] = useState([]); // Banddata
+  const [filteredData, setFilteredData] = useState([]); // Filtrering til bands
+  const [schedule, setSchedule] = useState([]); // Schedule data
   const [sort, setSort] = useState(false); // For alphabetic sorting
+  const [selectedDay, setSelectedDay] = useState("All"); // Aktiv dag
+  const [selectedStage, setSelectedStage] = useState("All"); // Aktiv scene
 
   useEffect(() => {
     const fetchData = async () => {
+      // let [bandsResponse, scheduleResponse] = await Promise.all([
+      //     fetch("http://localhost:8080/bands"),
+      //     fetch("http://localhost:8080/schedule"),
+      // ]);
+
       let response = await fetch("http://localhost:8080/bands");
       let result = await response.json();
       console.log("Fetched data:", result); // Debugging log
@@ -21,27 +28,27 @@ const Page = () => {
 
   // Genre filter handler (nu via FilterGenreAccordion-komponenten)
   const handleGenreChange = (genre) => {
-    // Hvis vi vælger "all", skal vi vise alle bands
-    setFilteredData(genre === "all" ? data : data.filter((band) => band.genre?.toLowerCase().includes(genre.toLowerCase())));
+    // Tjekker uden skelnen mellem store og små bogstaver
+    setFilteredData(
+      genre === "All"
+        ? data // Hvis "All" er valgt, vis alle bands
+        : data.filter((band) => band.genre?.toLowerCase().includes(genre.toLowerCase()))
+    );
   };
 
-  // Sorting alphabetically
+  // Sorting alfabetisk
   const sortedBands = sort ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name)) : filteredData;
 
-  //  genrer man kan vælge imellem
+  //  Genre man kan vælge imellem
   const genres = ["All", "Alternative Metal", "Alternative Rock", "Blues", "Classical", "Country", "Electronic", "Folk", "Funk", "Grunge", "Hard Rock", "Hardcore Punk", "Heavy Metal", "Hip Hop", "Jazz", "Latin", "Metal", "Non Music", "Pop", "Rap", "Reggae", "Rock", "Soul", "Stage And Screen", "World"];
-  //   // Ensure data.bands exists before filtering
-  //   const filteredData = data.filter((band) => (filter ? band.genre?.toLowerCase().includes(filter.toLowerCase()) : true));
-  //   // Sorting alphabetically
-  //   const sortedBands = sort ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name)) : filteredData;
 
   return (
-    <div className="mx-[64px] py-[112px]">
-      <h1>Line-up</h1>
+    <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
+      <h1 className="mb-[48px] lg:mb-[80px]">Line-up</h1>
 
-      <section className="flex gap-[64px]">
+      <section className="flex flex-col lg:flex-row gap-[64px]">
         {/* Filter */}
-        <article className="w-1/4">
+        <article className="lg:w-1/4">
           <h5 className="font-bold mb-[24px]">Filters</h5>
 
           <hr />
@@ -51,7 +58,7 @@ const Page = () => {
           <hr />
 
           {/* Brug FilterGenreAccordion til at håndtere genre filtreringen */}
-          <FilterGenreAccordion genres={genres} onFilterChange={handleGenreChange} />
+          <FilterGenreAccordion genres={genres} onFilterChange={handleGenreChange} defaultGenre="All" />
 
           <hr />
 
@@ -59,7 +66,7 @@ const Page = () => {
 
           <hr />
         </article>
-        <div className="w-3/4 flex flex-col">
+        <div className="lg:w-3/4 flex flex-col">
           {/* Sorting button */}
           <button onClick={() => setSort(!sort)} className="border p-2 self-end mb-[24px]">
             {sort ? "Reset Sorting" : "Sort A-Z"}
