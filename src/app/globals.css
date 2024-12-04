@@ -26,22 +26,28 @@
 
  body {
    color: var(--foreground);
-   background: var(--background);
+   /* background: var(--background); */
    font-family: rocky, serif;
    line-height: 1.5;
+ }
 
-   h1,
-   h2,
-   h3 {
-     font-family: rocky, serif;
-     /* font-style: italic; */
-     font-weight: 900;
-   }
+ main {
+   background: var(--background);
+   padding: 112px 0 112px 0;
+ }
+
+ h1,
+ h2,
+ h3 {
+   font-family: rocky, serif;
+   /* font-style: italic; */
+   font-weight: 900;
  }
 
  @layer base {
    h1 {
      @apply text-step_h1;
+     padding-bottom: 80px;
    }
 
    h2 {
