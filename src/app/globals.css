@@ -33,6 +33,7 @@
 
  main {
    background: var(--background);
+   padding: 112px 0 112px 0;
  }
 
  h1,
@@ -46,6 +47,7 @@
  @layer base {
    h1 {
      @apply text-step_h1;
+     padding-bottom: 80px;
    }
 
    h2 {
