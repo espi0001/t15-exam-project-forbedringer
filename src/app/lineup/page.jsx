@@ -36,7 +36,7 @@ const Page = () => {
   //   const sortedBands = sort ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name)) : filteredData;
 
   return (
-    <div className="mx-[64px]">
+    <div className="mx-[64px] py-[112px]">
       <h1>Line-up</h1>
 
       <section className="flex gap-[64px]">

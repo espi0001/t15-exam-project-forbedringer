@@ -1,73 +1,70 @@
- @import url("https://use.typekit.net/isf7gkh.css");
+@import url("https://use.typekit.net/isf7gkh.css");
 
- @tailwind base;
- @tailwind components;
- @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
- :root {
-   --background: #121212;
-   --foreground: #ededed;
-   --padding-x-xs: 64px;
-   --padding-x-lg: 80px;
-   --padding-x-xl: 112px;
-   --padding-x-2xl: 160px;
+:root {
+  --background: #121212;
+  --foreground: #ededed;
+  --padding-x-xs: 64px;
+  --padding-x-lg: 80px;
+  --padding-x-xl: 112px;
+  --padding-x-2xl: 160px;
 
-   --h1-bottom-xs: 12px;
-   --h1-bottom-xl: 24px;
- }
+  --h1-bottom-xs: 12px;
+  --h1-bottom-xl: 24px;
+}
 
-
- /* @media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 } */
 
- body {
-   color: var(--foreground);
-   /* background: var(--background); */
-   font-family: rocky, serif;
-   line-height: 1.5;
- }
+body {
+  color: var(--foreground);
+  /* background: var(--background); */
+  font-family: rocky, serif;
+  line-height: 1.5;
+}
 
- main {
-   background: var(--background);
-   padding: 112px 0 112px 0;
- }
+main {
+  background: var(--background);
+}
 
- h1,
- h2,
- h3 {
-   font-family: rocky, serif;
-   /* font-style: italic; */
-   font-weight: 900;
- }
+h1,
+h2,
+h3 {
+  font-family: rocky, serif;
+  /* font-style: italic; */
+  font-weight: 900;
+}
 
- @layer base {
-   h1 {
-     @apply text-step_h1;
-     padding-bottom: 80px;
-   }
+@layer base {
+  h1 {
+    @apply text-step_h1;
+    padding-bottom: 80px;
+  }
 
-   h2 {
-     @apply text-step_h2;
-   }
+  h2 {
+    @apply text-step_h2;
+  }
 
-   h3 {
-     @apply text-step_h3;
-   }
+  h3 {
+    @apply text-step_h3;
+  }
 
-   h4 {
-     @apply text-step_h4;
-   }
+  h4 {
+    @apply text-step_h4;
+  }
 
-   h5 {
-     @apply text-step_h5;
-   }
+  h5 {
+    @apply text-step_h5;
+  }
 
-   h6 {
-     @apply text-step_h6;
-   }
-
- }
+  h6 {
+    @apply text-step_h6;
+  }
+}
