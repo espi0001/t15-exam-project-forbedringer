@@ -4,27 +4,35 @@ import Image from "next/image";
 import Logo from "@/images/foo-fest-logo.webp";
 import Link from "next/link";
 
-const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import NavigationLink from "./NavigationLink";
 
+const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Styrer, om menuen er åben
+  const [isBurgerActive, setIsBurgerActive] = useState(false); // Styrer burger-menuen
+
+  // Toggler menuens åben/luk status
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setIsBurgerActive(!isBurgerActive); // Skift burger-menuens tilstand
   };
 
   return (
-    <nav className="absolute top-0 left-0 w-full flex items-center justify-between p-4 z-50">
-      <Link href={"/"} className="relative group text-2xl font-light text-white hover:text-black hidden md:block">
-        <Image src={Logo} width={35} alt="logo" />
-      </Link>
+    <nav className="absolute flex justify-between items-center py-[1.5rem] px-[64px] w-full z-50 bg-transparent ">
+      {/* logo */}
+      <div className="hidden md:block">
+        <Link href={"/"} className="text-2xl font-light text-white hover:text-black hidden md:block">
+          <Image src={Logo} width={35} alt="logo" />
+        </Link>
+      </div>
 
-      <Link href={"#"} className="relative group text-2xl font-light text-white">
+      <Link href={"#"} className="text-2xl font-light text-white relative group">
         Tickets
-        <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
       </Link>
 
-      <button onClick={toggleMenu} className="relative group text-2xl font-light text-white">
+      <button onClick={toggleMenu} className="text-2xl font-light text-white relative group">
         Menu
-        <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
       </button>
 
       {isMenuOpen && (
@@ -32,29 +40,16 @@ const Navigation = () => {
           <div onClick={(e) => e.stopPropagation()}>
             <ul className="space-y-3 text-center text-3xl">
               <li>
-                <Link href={"/"} className="relative group text-white">
-                  Home
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                <NavigationLink href={"/"} text={"Home"} />
               </li>
               <li>
-                <Link href={"/lineup"} className="relative group text-white">
-                  Line-Up
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                <NavigationLink href={"/lineup"} text={"Line-Up"} />
               </li>
               <li>
-                <Link href={"/about"} className="relative group text-white">
-                  About
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                <NavigationLink href={"/about"} text={"About"} />
               </li>
-
               <li>
-                <Link href={"#"} className="relative group text-white">
-                  Contact
-                  <span className="absolute left-0 bottom-0 w-0 h-1 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                <NavigationLink href={"#"} text={"Contact"} />
               </li>
             </ul>
           </div>
