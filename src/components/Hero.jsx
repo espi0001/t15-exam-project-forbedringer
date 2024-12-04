@@ -14,20 +14,20 @@ const Hero = () => {
         priority={true}
         className="z-0"
       />
-
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-<div className="absolute bottom-0 left-0 w-full text-center text-white z-10 flex justify-center items-center p-4">
-  <Image
-    src={IndexTextLogo}
-    alt="Text logo for index"
-    width={3000}
-    height={100}
-    priority={true}
-    className="z-10"
-  />
-</div>
-
+      <div className="absolute bottom-0 left-0 w-full text-white z-10 flex flex-col items-start p-4">
+        <Image
+          src={IndexTextLogo}
+          alt="Text logo for index"
+          width={3000}
+          height={100}
+          priority={true}
+          className="z-10"
+        />
+          <p className="text-xl font-medium z-10 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+          MARCH 24-28, 2025
+        </p>
+      </div>
     </div>
   );
 };
