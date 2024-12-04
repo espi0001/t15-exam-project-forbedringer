@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "@/images/foo-fest-logo.webp";
 import Link from "next/link";
+import { IoIosClose } from "react-icons/io";
 
 import NavigationLink from "./NavigationLink";
 
@@ -38,18 +39,21 @@ const Navigation = () => {
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-lg flex justify-center items-center z-50" onClick={() => setIsMenuOpen(false)}>
           <div onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setIsMenuOpen(false)} className="absolute top-4 right-4 text-white ">
+              <IoIosClose size={50} />
+            </button>
             <ul className="space-y-3 text-center text-3xl">
               <li>
-                <NavigationLink href={"/"} text={"Home"} />
+                <NavigationLink href={"/"} text={"Home"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
-                <NavigationLink href={"/lineup"} text={"Line-Up"} />
+                <NavigationLink href={"/lineup"} text={"Line-Up"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
-                <NavigationLink href={"/about"} text={"About"} />
+                <NavigationLink href={"/about"} text={"About"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
-                <NavigationLink href={"#"} text={"Contact"} />
+                <NavigationLink href={"#"} text={"Contact"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
             </ul>
           </div>
