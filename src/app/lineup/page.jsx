@@ -64,8 +64,8 @@ const Page = () => {
     let updatedBands = [...bands];
 
     // Filter by genre if a genre is selected
-    if (filters.genre) {
-      updatedBands = updatedBands.filter((band) => band.genre === filters.genre);
+    if (filters.genre.length > 0) {
+      updatedBands = updatedBands.filter((band) => filters.genre.includes(band.genre));
     }
 
     // Filter by day if a day is selected
@@ -121,14 +121,23 @@ const Page = () => {
             </button>
 
             {isGenreOpen && (
-              <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, genre: e.target.value })} value={filters.genre}>
-                {/* radio buttons for hver genre */}
+              <form
+                className="flex flex-col items-start"
+                onChange={(e) => {
+                  const updatedGenreFilters = e.target.checked
+                    ? [...filters.genre, e.target.value] // Tilføj hvis checked
+                    : filters.genre.filter((genre) => genre !== e.target.value); // Fjern hvis unchecked
+                  setFilters({ ...filters, genre: updatedGenreFilters });
+                }}
+                value={filters.genre}
+              >
+                {/* Checkboxes buttons for hver genre */}
                 {Array.from(new Set(bands.map((band) => band.genre))).map((genre) => (
                   <label key={genre} value={genre} className="flex items-center cursor-pointer my-[8px]">
-                    <input type="radio" name="genre" value={genre} checked={filters.genre === genre} onChange={() => {}} className="hidden" />
-                    <span className={`w-[18px] h-[18px] rounded-full border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.genre === genre ? "bg-white border-white " : "border-white"}`}>
+                    <input type="checkbox" name="genre" value={genre} checked={filters.genre.includes(genre)} onChange={() => {}} className="hidden" />
+                    <span className={`w-[18px] h-[18px] border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.genre.includes(genre) ? "bg-white border-white " : "border-white"}`}>
                       {/* Indre cirkel, når radio button er valgt */}
-                      {filters.genre === genre && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}
+                      {filters.genre.includes(genre) && <span className="w-2.5 h-2.5 bg-black"></span>}
                     </span>
                     <span>{genre}</span>
                   </label>
