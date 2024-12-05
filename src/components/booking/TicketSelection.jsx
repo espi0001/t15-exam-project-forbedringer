@@ -42,7 +42,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           <Input type="number" id="count" min="1" value={bookingData.ticketCount} onChange={(e) => handleCountChange(e.target.value)} className="mt-1" />
         </div>
 
-        <Button onClick={onNext} disabled={!bookingData.ticketType || bookingData.ticketCount < 1} className="w-full">
+        <Button onClick={onNext} disabled={!bookingData.ticketType || bookingData.ticketCount < 1} className="bg-[#7d0200] w-full hover:bg-black">
           Continue to Camping Options
         </Button>
       </CardContent>

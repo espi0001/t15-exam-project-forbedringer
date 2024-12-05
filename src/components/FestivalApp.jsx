@@ -3,14 +3,31 @@ import { useState } from "react";
 import Navigation from "./Navigation";
 import BookingFlow from "./BookingFlow";
 import ScheduleView from "./ScheduleView";
+import Image from "next/image";
+import BookingFlowHero from "@/images/jodie-walton-unsplash.jpg";
 
 export default function FestivalApp() {
   const [activeView, setActiveView] = useState("booking");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <Navigation activeView={activeView} setActiveView={setActiveView} />
-      <main className="max-w-7xl mx-auto p-6">{activeView === "booking" ? <BookingFlow /> : <ScheduleView />}</main>
+    <div className="relative min-h-screen bg-black">
+      {/* Background Image */}
+      <Image
+        src={BookingFlowHero}
+        alt="Hero background for BookingFlow"
+        layout="fill"
+        objectFit="cover"
+        priority={true}
+        className="z-0 absolute inset-0"
+      />
+
+      {/* Overlay Content */}
+      <div className="relative z-10 text-white">
+        <Navigation activeView={activeView} setActiveView={setActiveView} />
+        <main className="max-w-7xl mx-auto p-6">
+          {activeView === "booking" ? <BookingFlow /> : <ScheduleView />}
+        </main>
+      </div>
     </div>
   );
 }
