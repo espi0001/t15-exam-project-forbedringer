@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import Link from "next/link";
 
 const Page = () => {
   const [bands, setBands] = useState([]); // State for bands fetched from the API
@@ -153,7 +154,7 @@ const Page = () => {
           {/* days */}
           <div>
             <button onClick={() => setIsDaysOpen(!isDaysOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
-              All Days {isDaysOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              Days {isDaysOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
 
             {isDaysOpen && (
@@ -177,28 +178,31 @@ const Page = () => {
               </form>
             )}
           </div>
+          <hr />
         </article>
 
         {/* Band List */}
         <article className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Render each band in the filtered list */}
           {filteredBands.map((band) => (
-            <div key={band.slug} className="border rounded p-4">
-              <h2 className="text-xl font-bold">{band.name}</h2>
-              <p className="text-gray-600">{band.genre}</p>
-              <div>
-                {/* Show the band's schedule if available */}
-                {band.schedules.length > 0 ? (
-                  band.schedules.map((schedule, index) => (
-                    <p key={index} className="text-sm text-gray-500">
-                      {schedule.day.toUpperCase()} - {schedule.stage} ({schedule.start} - {schedule.end})
-                    </p>
-                  ))
-                ) : (
-                  // Display message if no schedule is available
-                  <p className="text-sm text-gray-500">No schedule available</p>
-                )}
-              </div>
+            <div className="w-[290px] h-[296px] bg-cover bg-center flex justify-center items-end border border-slate-400" style={{ backgroundImage: `url(${band.logo})` }}>
+              <Link href={"#"} key={band.slug} className="align-middle">
+                <h2 className="text-xl font-bold mb-5">{band.name}</h2>
+                {/* <p className="text-gray-600">{band.genre}</p> */}
+                <div>
+                  {/* Show the band's schedule if available */}
+                  {/* {band.schedules.length > 0 ? (
+                    band.schedules.map((schedule, index) => (
+                      <p key={index} className="text-sm text-gray-500">
+                        {schedule.day.toUpperCase()} - {schedule.stage} ({schedule.start} - {schedule.end})
+                      </p>
+                    ))
+                  ) : (
+               
+                    <p className="text-sm text-gray-500">No schedule available</p>
+                  )} */}
+                </div>
+              </Link>
             </div>
           ))}
         </article>
