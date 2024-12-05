@@ -63,19 +63,19 @@ const Page = () => {
   useEffect(() => {
     let updatedBands = [...bands];
 
+    // Filter by stage if any stage is selected
+    if (filters.stage.length > 0) {
+      updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.stage.includes(schedule.stage)));
+    }
+
     // Filter by genre if a genre is selected
     if (filters.genre.length > 0) {
       updatedBands = updatedBands.filter((band) => filters.genre.includes(band.genre));
     }
 
-    // Filter by day if a day is selected
-    if (filters.day) {
-      updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => schedule.day === filters.day));
-    }
-
-    // Filter by stage if a stage is selected
-    if (filters.stage) {
-      updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => schedule.stage === filters.stage));
+    // Filter by day if any day is selected
+    if (filters.day.length > 0) {
+      updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.day.includes(schedule.day)));
     }
 
     // Update the state with the filtered bands
@@ -97,15 +97,20 @@ const Page = () => {
               Stages {isStagesOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
             {isStagesOpen && (
-              <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, stage: e.target.value })} value={filters.stage}>
-                {/* radio buttons for hver genre */}
+              <form
+                className="flex flex-col items-start"
+                onChange={(e) => {
+                  const updatedStageFilters = e.target.checked
+                    ? [...filters.stage, e.target.value] // Tilføj hvis checked
+                    : filters.stage.filter((stage) => stage !== e.target.value); // Fjern hvis unchecked
+                  setFilters({ ...filters, stage: updatedStageFilters });
+                }}
+                value={filters.stage}
+              >
                 {Object.keys(schedule).map((stage) => (
                   <label key={stage} value={stage} className="flex items-center cursor-pointer my-[8px]">
-                    <input type="checkbox" name="stage" value={stage} checked={filters.stage === stage} onChange={() => {}} className="hidden" />
-                    <span className={`w-[18px] h-[18px] rounded-full border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.stage === stage ? "bg-white border-white " : "border-white"}`}>
-                      {/* Indre cirkel, når radio button er valgt */}
-                      {filters.stage === stage && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}
-                    </span>
+                    <input type="checkbox" name="stage" value={stage} checked={filters.stage.includes(stage)} onChange={() => {}} className="hidden" />
+                    <span className={`w-[18px] h-[18px] border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.stage.includes(stage) ? "bg-white border-white" : "border-white"}`}>{filters.stage.includes(stage) && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}</span>
                     <span>{stage}</span>
                   </label>
                 ))}
@@ -119,7 +124,6 @@ const Page = () => {
             <button onClick={() => setIsGenreOpen(!isGenreOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
               Genre {isGenreOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
-
             {isGenreOpen && (
               <form
                 className="flex flex-col items-start"
@@ -153,16 +157,20 @@ const Page = () => {
             </button>
 
             {isDaysOpen && (
-              <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, day: e.target.value })} value={filters.day}>
-                {/* Predefined list of days */}
-
+              <form
+                className="flex flex-col items-start"
+                onChange={(e) => {
+                  const updatedDayFilters = e.target.checked
+                    ? [...filters.day, e.target.value] // Tilføj hvis checked
+                    : filters.day.filter((day) => day !== e.target.value); // Fjern hvis unchecked
+                  setFilters({ ...filters, day: updatedDayFilters });
+                }}
+                value={filters.day}
+              >
                 {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
                   <label key={day} value={day} className="flex items-center cursor-pointer my-[8px]">
-                    <input type="radio" name="day" value={day} checked={filters.day === day} onChange={() => {}} className="hidden" />
-                    <span className={`w-[18px] h-[18px] rounded-full border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.day === day ? "bg-white border-white " : "border-white"}`}>
-                      {/* Indre cirkel, når radio button er valgt */}
-                      {filters.day === day && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}
-                    </span>
+                    <input type="checkbox" name="day" value={day} checked={filters.day.includes(day)} onChange={() => {}} className="hidden" />
+                    <span className={`w-[18px] h-[18px] border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.day.includes(day) ? "bg-white border-white" : "border-white"}`}>{filters.day.includes(day) && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}</span>
                     <span>{day.charAt(0).toUpperCase() + day.slice(1)}</span>
                   </label>
                 ))}
