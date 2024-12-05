@@ -56,7 +56,6 @@ const AboutPage = () => {
         layout="fill"
         objectFit="cover"
         priority={true}
-        className="opacity-50"
       />
       <div className="min-h-screen text-gray-700 py-12 px-4 relative z-10"> 
         <div className="max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden mt-60">

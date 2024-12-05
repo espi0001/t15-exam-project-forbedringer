@@ -27,7 +27,7 @@ const Contact = () => {
 
   return (
     <main aria-labelledby="page-title">
-      <div className="relative w-full h-screen">
+      <div className="bg-[_255,_255,_255] relative w-full h-screen">
         <Image 
           src={ContactHero} 
           alt="Vibrant music festival crowd with colorful lights and energy" 
@@ -48,7 +48,7 @@ const Contact = () => {
             role="region"
             aria-labelledby="contact-form-title"
           >
-            <div className="bg-black text-white p-8 flex flex-col justify-center">
+            <div className="bg-red-800 text-white p-8 flex flex-col justify-center">
               <h2 id="contact-form-title" className="text-3xl font-bold mb-6">Get in touch!</h2>
               <div className="space-y-4">
                 <div className="flex items-center" aria-label="Email Contact">
