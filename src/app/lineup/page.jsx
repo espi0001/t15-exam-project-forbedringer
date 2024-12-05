@@ -84,23 +84,36 @@ const Page = () => {
   return (
     <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
       <h1 className="mb-[48px] lg:mb-[80px]">Line-up</h1>
+
       <section className="flex flex-col lg:flex-row gap-[64px]">
         {/* Filter Controls */}
         <article className="lg:w-1/4">
           <h5 className="font-bold mb-[24px]">Filters</h5>
           <hr />
-          <p className="text-[1.125rem] my-[20px] font-semibold">Stages</p>
-          {/* Dropdown for filtering by stage */}
-          <select className="border rounded p-2" onChange={(e) => setFilters({ ...filters, stage: e.target.value })} value={filters.stage}>
-            <option value="">All Stages</option>
-            {/* Create a list of stages from the schedule keys */}
-            {Object.keys(schedule).map((stage) => (
-              <option key={stage} value={stage}>
-                {stage}
-              </option>
-            ))}
-          </select>
 
+          <div>
+            <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
+              Stages {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </button>
+
+            {isOpen && (
+              <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, stage: e.target.value })} value={filters.stage}>
+                {/* radio buttons for hver genre */}
+                {Object.keys(schedule).map((stage) => (
+                  <label key={stage} value={stage} className="flex items-center cursor-pointer my-[8px]">
+                    <input type="checkbox" name="stage" value={stage} checked={filters.stage === stage} onChange={() => {}} className="hidden" />
+                    <span className={`w-[18px] h-[18px] rounded-full border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.stage === stage ? "bg-white border-white " : "border-white"}`}>
+                      {/* Indre cirkel, når radio button er valgt */}
+                      {filters.stage === stage && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}
+                    </span>
+                    <span>{stage}</span>
+                  </label>
+                ))}
+              </form>
+            )}
+          </div>
+
+          <hr />
           {/* Dropdown for filtering by genre */}
           <div>
             <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
@@ -123,26 +136,30 @@ const Page = () => {
               </form>
             )}
           </div>
-          <select className="border rounded p-2" onChange={(e) => setFilters({ ...filters, genre: e.target.value })} value={filters.genre}>
-            <option value="">All Genres</option>
-            {/* Create a unique list of genres from the bands and populate the dropdown */}
-            {Array.from(new Set(bands.map((band) => band.genre))).map((genre) => (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            ))}
-          </select>
+          <hr />
+          {/* days */}
+          <div>
+            <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
+              All Days {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </button>
 
-          {/* Dropdown for filtering by day */}
-          <select className="border rounded p-2" onChange={(e) => setFilters({ ...filters, day: e.target.value })} value={filters.day}>
-            <option value="">All Days</option>
-            {/* Predefined list of days */}
-            {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
-              <option key={day} value={day}>
-                {day.charAt(0).toUpperCase() + day.slice(1)}
-              </option>
-            ))}
-          </select>
+            {isOpen && (
+              <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, day: e.target.value })} value={filters.day}>
+                {/* Predefined list of days */}
+
+                {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
+                  <label key={day} value={day} className="flex items-center cursor-pointer my-[8px]">
+                    <input type="radio" name="day" value={day} checked={filters.day === day} onChange={() => {}} className="hidden" />
+                    <span className={`w-[18px] h-[18px] rounded-full border border-1 border-white mr-[18px] flex justify-center items-center cursor-pointer ${filters.day === day ? "bg-white border-white " : "border-white"}`}>
+                      {/* Indre cirkel, når radio button er valgt */}
+                      {filters.day === day && <span className="w-2.5 h-2.5 bg-black rounded-full"></span>}
+                    </span>
+                    <span>{day.charAt(0).toUpperCase() + day.slice(1)}</span>
+                  </label>
+                ))}
+              </form>
+            )}
+          </div>
         </article>
 
         {/* Band List */}
