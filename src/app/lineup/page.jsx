@@ -3,20 +3,12 @@ import { useState, useEffect } from "react";
 import FilterGenreAccordion from "@/components/FilterGenreAccordion"; // Importér dit filterkomponent
 
 const Page = () => {
-  const [data, setData] = useState([]); // Banddata
-  const [filteredData, setFilteredData] = useState([]); // Filtrering til bands
-  const [schedule, setSchedule] = useState([]); // Schedule data
+  const [data, setData] = useState([]); // Ændret til en liste
+  const [filteredData, setFilteredData] = useState([]); // For at gemme de filtrerede bands
   const [sort, setSort] = useState(false); // For alphabetic sorting
-  const [selectedDay, setSelectedDay] = useState("All"); // Aktiv dag
-  const [selectedStage, setSelectedStage] = useState("All"); // Aktiv scene
 
   useEffect(() => {
     const fetchData = async () => {
-      // let [bandsResponse, scheduleResponse] = await Promise.all([
-      //     fetch("http://localhost:8080/bands"),
-      //     fetch("http://localhost:8080/schedule"),
-      // ]);
-
       let response = await fetch("http://localhost:8080/bands");
       let result = await response.json();
       console.log("Fetched data:", result); // Debugging log
