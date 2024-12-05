@@ -32,7 +32,7 @@ export default function ScheduleView() {
   if (!scheduleData) return null;
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto mb-10">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Calendar className="h-6 w-6" />
@@ -40,7 +40,7 @@ export default function ScheduleView() {
         </CardTitle>
         <div className="flex gap-2">
           {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
-            <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
+            <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-[#7d0200] text-white" : "bg-gray-200"}`}>
               {day.toUpperCase()}
             </button>
           ))}

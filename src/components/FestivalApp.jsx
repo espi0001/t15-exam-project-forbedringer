@@ -11,7 +11,7 @@ export default function FestivalApp() {
 
   return (
     <div className="relative min-h-screen bg-black">
-      {/* Background Image */}
+   
       <Image
         src={BookingFlowHero}
         alt="Hero background for BookingFlow"
@@ -21,7 +21,6 @@ export default function FestivalApp() {
         className="z-0 absolute inset-0"
       />
 
-      {/* Overlay Content */}
       <div className="relative z-10 text-white">
         <Navigation activeView={activeView} setActiveView={setActiveView} />
         <main className="max-w-7xl mx-auto p-6">
