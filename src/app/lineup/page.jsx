@@ -3,30 +3,31 @@ import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const Page = () => {
-  // State for bands fetched from the API
-  const [bands, setBands] = useState([]);
-  // State for the schedule fetched from the API
-  const [schedule, setSchedule] = useState({});
-  // State for the filtered list of bands to display
-  const [filteredBands, setFilteredBands] = useState([]);
+  const [bands, setBands] = useState([]); // State for bands fetched from the API
+  const [schedule, setSchedule] = useState({}); // State for the schedule fetched from the API
+  const [filteredBands, setFilteredBands] = useState([]); // State for the filtered list of bands to display
   // State for the current filters (genre, day, stage)
   const [filters, setFilters] = useState({
     genre: "",
     day: "",
     stage: "",
   });
-  const [isOpen, setIsOpen] = useState(false); // Styrer, om accordion er åbent
+
+  // Styrer om accordion er åbent på de forskellige kategorier
+  const [isStagesOpen, setIsStagesOpen] = useState(false);
+  const [isGenreOpen, setIsGenreOpen] = useState(false);
+  const [isDaysOpen, setIsDaysOpen] = useState(false);
 
   // Fetch data from the APIs when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch bands data
-        const bandsResponse = await fetch("https://lively-scrawny-secretary.glitch.me/bands");
+        const bandsResponse = await fetch("http://localhost:8080/bands");
         const bandsData = await bandsResponse.json();
 
         // Fetch schedule data
-        const scheduleResponse = await fetch("https://lively-scrawny-secretary.glitch.me/schedule");
+        const scheduleResponse = await fetch("http://localhost:8080/schedule");
         const scheduleData = await scheduleResponse.json();
 
         // Combine bands data with their schedule information
@@ -92,11 +93,10 @@ const Page = () => {
           <hr />
 
           <div>
-            <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
-              Stages {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            <button onClick={() => setIsStagesOpen(!isStagesOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
+              Stages {isStagesOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
-
-            {isOpen && (
+            {isStagesOpen && (
               <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, stage: e.target.value })} value={filters.stage}>
                 {/* radio buttons for hver genre */}
                 {Object.keys(schedule).map((stage) => (
@@ -116,11 +116,11 @@ const Page = () => {
           <hr />
           {/* Dropdown for filtering by genre */}
           <div>
-            <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
-              Genre {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            <button onClick={() => setIsGenreOpen(!isGenreOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
+              Genre {isGenreOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
 
-            {isOpen && (
+            {isGenreOpen && (
               <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, genre: e.target.value })} value={filters.genre}>
                 {/* radio buttons for hver genre */}
                 {Array.from(new Set(bands.map((band) => band.genre))).map((genre) => (
@@ -139,11 +139,11 @@ const Page = () => {
           <hr />
           {/* days */}
           <div>
-            <button onClick={() => setIsOpen(!isOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
-              All Days {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            <button onClick={() => setIsDaysOpen(!isDaysOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
+              All Days {isDaysOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
 
-            {isOpen && (
+            {isDaysOpen && (
               <form className="flex flex-col items-start" onChange={(e) => setFilters({ ...filters, day: e.target.value })} value={filters.day}>
                 {/* Predefined list of days */}
 
