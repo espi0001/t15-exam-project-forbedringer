@@ -13,6 +13,11 @@ module.exports = {
   		}
   	},
   	extend: {
+		zIndex: {
+        '100': '100',
+        '1000': '1000',
+        '9999': '9999',
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
