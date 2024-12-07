@@ -31,38 +31,115 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
+    <div className=" py-[64px]  lg:py-[112px]">
+      <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] bg-cover bg-center" />
+      <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
+        <article className="lg:w-3/5 grid gap-4">
+          <h1 className="">{band.name}</h1>
+          <div>
+            <h5>Genre</h5>
+            <p className="text-lg mt-2 font-light">{band.genre}</p>
+          </div>
+          <div>
+            <h2 className="">About the Band</h2>
+            <p>{band.bio}</p>
+          </div>
+
+          <div>
+            <h2 className="">Members</h2>
+            {/* Hvis der er flere skal der laves en map */}
+            {/* <p className="flex gap-4">{band.members}</p> */}
+            {/* {band.members.map((bandmembers, index) => (
+              <ul>
+                <li key={index} className="">
+                  {bandmembers}
+                </li>
+              </ul>
+            ))} */}
+            {band.members.length > 0 ? (
+              <div>
+                {band.members.map((bandmembers, index) => (
+                  <ul>
+                    <li key={index} className="">
+                      {bandmembers}
+                    </li>
+                  </ul>
+                ))}
+              </div>
+            ) : (
+              <p className="text-lg">No schedule available for this band.</p>
+            )}
+          </div>
+        </article>
+        <div className="lg:w-2/5 ">
+          <div className="">
+            <h5>Schedule</h5>
+            {bandSchedules.length > 0 ? (
+              <div>
+                {bandSchedules.map((schedule, index) => (
+                  <p key={index} className="p-4 border rounded shadow-sm">
+                    <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} ({schedule.start} - {schedule.end})
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p className="text-lg">No schedule available for this band.</p>
+            )}
+          </div>
+
+          <article className="flex justify-between mt-8">
+            <div>
+              <h5>Stage</h5>
+              {bandSchedules.length > 0 ? (
+                <div>
+                  {bandSchedules.map((schedule, index) => (
+                    <p key={index} className="">
+                      {schedule.stage}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-lg">No schedule available for this band.</p>
+              )}
+            </div>
+            <div>
+              <h5>Day</h5>
+              {bandSchedules.length > 0 ? (
+                <div>
+                  {bandSchedules.map((schedule, index) => (
+                    <p key={index} className="">
+                      {schedule.day}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-lg">No schedule available for this band.</p>
+              )}
+            </div>
+            <div>
+              <h5>Time</h5>
+              {bandSchedules.length > 0 ? (
+                <div>
+                  {bandSchedules.map((schedule, index) => (
+                    <p key={index} className="">
+                      {schedule.start} - {schedule.end}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-lg">No schedule available for this band.</p>
+              )}
+            </div>
+          </article>
+        </div>
+      </section>
       {/* bands header */}
-      <h1 className="mb-[48px] lg:mb-[80px]">{band.name}</h1>
-      <img src={band.logo} alt={`${band.name} logo`} width={200} height={200} />
-      <p className="text-lg mt-2 font-light">{band.genre}</p>
+
+      {/* <img src={band.logo} alt={`${band.name} logo`} width={200} height={200} /> */}
 
       {/* Band Members */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Members</h2>
-        <p>{band.members}</p>
-      </div>
 
-      {/* Band Bio */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">About the Band</h2>
-        <p>{band.bio}</p>
-      </div>
       {/* Band Schedule */}
-      {bandSchedules.length > 0 ? (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Schedule</h2>
-          <ul className="space-y-2">
-            {bandSchedules.map((schedule, index) => (
-              <li key={index} className="p-4 border rounded shadow-sm">
-                <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} ({schedule.start} - {schedule.end})
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p className="text-lg">No schedule available for this band.</p>
-      )}
     </div>
   );
 };
