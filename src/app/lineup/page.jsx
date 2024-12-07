@@ -106,6 +106,7 @@ const Page = () => {
     // mangler events siden
     // about er lidt lang og ikke nødvendigvis "ens" - Måske der skal være en undermenu på den?
     // Hvad mangler vi ellers?
+    // Kan vi have noget loading agtigt som på sebs praktik side? sådan så det er mere spændende at komme ind på siden?
 
     <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
       <h1 className="mb-[48px] lg:mb-[80px]">Line-up</h1>
