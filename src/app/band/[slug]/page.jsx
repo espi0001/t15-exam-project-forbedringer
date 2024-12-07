@@ -31,6 +31,7 @@ const Page = async ({ params }) => {
   }
 
   return (
+    // Mangler en sti sådan så man kan komme tilbage til bandlisten
     <div className=" py-[64px]  lg:py-[112px]">
       <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] bg-cover bg-center" />
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">

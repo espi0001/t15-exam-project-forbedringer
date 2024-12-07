@@ -39,6 +39,7 @@ body {
   line-height: 1.5;
 }
 
+/* Skal der være padding og margin på main i stedet? men der kommer til at drille forsiden? */
 /* main {
   background: var(--background);
 } */

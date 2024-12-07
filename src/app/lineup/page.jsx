@@ -86,6 +86,27 @@ const Page = () => {
   }, [filters, bands]);
 
   return (
+    // mangler nogle effekter på siden + den ser lidt kedelig ud.
+    // skal filtre være komponenter? hvordan ville man gøre det?
+    // Kan man ændre sådan så billedet også bliver et link her på siden ?
+    // Tilføj noget hover på bands grid
+    // Når man har klikket på et bandt og går tilbage, skal filtrene gemmes så de er der når man kommer tilbage
+    // Hvad med der hvor der ikke er noget logo / billede på bands???
+    // Skal der være et filter på band billedet? teksten er ovenpå og ikke læsbar
+
+    // Fonten er ikke så læsbar (kig på sigleview)
+    // Skal der filter på billedet?
+    // skal den se anderledes ud?
+
+    // ANDET
+    // mapper i komponentet? forsår ikke der er så mange komponenter
+    // tjekke styling på alle siderne om de er ens
+    // vi skal bruge config eller sådan noget
+    // billetter skal være på en ny side for sig selv - Skal også se lidt anderledes ud
+    // mangler events siden
+    // about er lidt lang og ikke nødvendigvis "ens" - Måske der skal være en undermenu på den?
+    // Hvad mangler vi ellers?
+
     <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
       <h1 className="mb-[48px] lg:mb-[80px]">Line-up</h1>
 
@@ -186,24 +207,11 @@ const Page = () => {
         {/* Band List */}
         <article className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Render each band in the filtered list */}
+
           {filteredBands.map((band) => (
             <div key={band.slug} className="w-[290px] h-[296px] bg-cover bg-center flex justify-center items-end border border-slate-400" style={{ backgroundImage: `url(${band.logo})` }}>
               <Link href={`/band/${band.slug}`} className="align-middle">
                 <h2 className="text-xl font-bold mb-5">{band.name}</h2>
-                {/* <p className="text-gray-600">{band.genre}</p> */}
-                <div>
-                  {/* Show the band's schedule if available */}
-                  {/* {band.schedules.length > 0 ? (
-                    band.schedules.map((schedule, index) => (
-                      <p key={index} className="text-sm text-gray-500">
-                        {schedule.day.toUpperCase()} - {schedule.stage} ({schedule.start} - {schedule.end})
-                      </p>
-                    ))
-                  ) : (
-               
-                    <p className="text-sm text-gray-500">No schedule available</p>
-                  )} */}
-                </div>
               </Link>
             </div>
           ))}
