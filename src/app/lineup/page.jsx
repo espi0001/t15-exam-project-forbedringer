@@ -1,18 +1,20 @@
+// "use client" markerer, at denne komponent er klient-side renderet
 "use client";
 import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 
 const Page = () => {
-  const [bands, setBands] = useState([]); // State for bands fetched from the API
-  const [schedule, setSchedule] = useState({}); // State for the schedule fetched from the API
-  const [filteredBands, setFilteredBands] = useState([]); // State for the filtered list of bands to display
-  // State for the current filters (genre, day, stage)
+  const [bands, setBands] = useState([]); // State for bands fetched fra API
+
+  // hvorfor er der {} her og ikke []?
+  const [schedule, setSchedule] = useState({}); // State for schedule fetched fra API
+  const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
   const [filters, setFilters] = useState({
     genre: "",
     day: "",
     stage: "",
-  });
+  }); // Filters for genre, day og stage
 
   // Styrer om accordion er åbent på de forskellige kategorier
   const [isStagesOpen, setIsStagesOpen] = useState(false);
@@ -87,12 +89,12 @@ const Page = () => {
     <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
       <h1 className="mb-[48px] lg:mb-[80px]">Line-up</h1>
 
+      {/* Filter Controls */}
       <section className="flex flex-col lg:flex-row gap-[64px]">
-        {/* Filter Controls */}
         <article className="lg:w-1/4">
           <h5 className="font-bold mb-[24px]">Filters</h5>
           <hr />
-
+          {/* accordion for stages */}
           <div>
             <button onClick={() => setIsStagesOpen(!isStagesOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
               Stages {isStagesOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -120,7 +122,7 @@ const Page = () => {
           </div>
 
           <hr />
-          {/* Dropdown for filtering by genre */}
+          {/* Accordion for genre */}
           <div>
             <button onClick={() => setIsGenreOpen(!isGenreOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
               Genre {isGenreOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -151,7 +153,7 @@ const Page = () => {
             )}
           </div>
           <hr />
-          {/* days */}
+          {/* Accordion for days */}
           <div>
             <button onClick={() => setIsDaysOpen(!isDaysOpen)} className="flex w-full justify-between items-center font-semibold my-[20px]">
               Days {isDaysOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -185,8 +187,8 @@ const Page = () => {
         <article className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Render each band in the filtered list */}
           {filteredBands.map((band) => (
-            <div className="w-[290px] h-[296px] bg-cover bg-center flex justify-center items-end border border-slate-400" style={{ backgroundImage: `url(${band.logo})` }}>
-              <Link href={"#"} key={band.slug} className="align-middle">
+            <div key={band.slug} className="w-[290px] h-[296px] bg-cover bg-center flex justify-center items-end border border-slate-400" style={{ backgroundImage: `url(${band.logo})` }}>
+              <Link href={`/band/${band.slug}`} className="align-middle">
                 <h2 className="text-xl font-bold mb-5">{band.name}</h2>
                 {/* <p className="text-gray-600">{band.genre}</p> */}
                 <div>
