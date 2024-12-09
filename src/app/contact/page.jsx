@@ -147,7 +147,7 @@ const Contact = () => {
                     className="w-full bg-black text-white py-3 px-4 rounded-md hover:bg-red-800 transition-colors"
                     aria-label="Send Contact Form"
                   >
-                    Send Message
+                    Send message
                   </button>
                 </div>
               </form>
