@@ -26,7 +26,7 @@ const Navigation = () => {
         </Link>
       </div>
 
-      <Link href={"#"} className="text-2xl font-light text-white relative group">
+      <Link href={"/tickets"} className="text-2xl font-light text-white relative group">
         Tickets
         <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
       </Link>
