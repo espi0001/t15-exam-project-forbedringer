@@ -1,4 +1,3 @@
-// "use client" markerer, at denne komponent er klient-side renderet
 "use client";
 import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
@@ -20,6 +19,13 @@ const Page = () => {
   const [isStagesOpen, setIsStagesOpen] = useState(false);
   const [isGenreOpen, setIsGenreOpen] = useState(false);
   const [isDaysOpen, setIsDaysOpen] = useState(false);
+
+  // Random billeder fra Unsplash
+  const defaultImages = ["/images/nathan-bingle-sN2j2z2Oc7U-unsplash.jpg", "/images/hans-eiskonen-fzEc8omEqfw-unsplash.jpg", "/images/israel-caballero-tlBi_vbVly8-unsplash.jpg", "/images/maeva-vigier-Akitbu5uH7A-unsplash.jpg"];
+
+  const getRandomImage = () => {
+    return defaultImages[Math.floor(Math.random() * defaultImages.length)];
+  };
 
   // Fetch data from the APIs when the component mounts
   useEffect(() => {
@@ -46,8 +52,9 @@ const Page = () => {
               });
             }
           }
-          // Add the schedule information to the band object
-          return { ...band, schedules: bandSchedules };
+          // Add the schedule information and handle default image
+          const bandLogo = !band.logo ? getRandomImage() : band.logo;
+          return { ...band, schedules: bandSchedules, logo: bandLogo };
         });
 
         // Set state with the combined data
@@ -208,11 +215,12 @@ const Page = () => {
         {/* Band List */}
         <article className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Render each band in the filtered list */}
-
           {filteredBands.map((band) => (
-            <div key={band.slug} className="w-[290px] h-[296px] bg-cover bg-center flex justify-center items-end border border-slate-400" style={{ backgroundImage: `url(${band.logo})` }}>
-              <Link href={`/band/${band.slug}`} className="align-middle">
-                <h2 className="text-xl font-bold mb-5">{band.name}</h2>
+            <div key={band.slug} className="relative w-[290px] h-[296px] transition-transform hover:scale-105 group">
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${band.logo})` }} />
+              <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20" />
+              <Link href={`/band/${band.slug}`} className="absolute inset-0 flex items-end p-5">
+                <h2 className="text-xl font-bold text-white">{band.name}</h2>
               </Link>
             </div>
           ))}
