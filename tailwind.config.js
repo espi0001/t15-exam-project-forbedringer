@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       animation: {
-        'slide-up': 'slideUp 3.5s ease-out forwards'
+        'slide-up': 'slideUp 2.5s ease-out forwards'
       },
       zIndex: {
         100: "100",
