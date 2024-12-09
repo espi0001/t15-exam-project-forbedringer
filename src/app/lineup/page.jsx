@@ -218,7 +218,7 @@ const Page = () => {
           {filteredBands.map((band) => (
             <div key={band.slug} className="relative w-[290px] h-[296px] transition-transform hover:scale-105 group">
               <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${band.logo})` }} />
-              <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20" />
+              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-0" />
               <Link href={`/band/${band.slug}`} className="absolute inset-0 flex items-end p-5">
                 <h2 className="text-xl font-bold text-white">{band.name}</h2>
               </Link>
