@@ -76,7 +76,7 @@ const Page = async ({ params }) => {
                 ))}
               </div>
             ) : (
-              <p className="text-lg">No members available for this band.</p>
+              <p className="text-lg">No members are available for this band.</p>
             )}
           </div>
           <div>
