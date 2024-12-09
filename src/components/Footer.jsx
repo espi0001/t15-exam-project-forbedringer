@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/images/foo-fest-logo.webp";
 import NavigationLink from "./NavigationLink";
+import { Button } from "./ui/Button";
 
 const Footer = () => {
   return (
@@ -36,9 +37,9 @@ const Footer = () => {
         <h6 className="mb-4 text-center">Subscribe to be the first to know!</h6>
         <form className="flex gap-4 w-full ">
           <input type="email" placeholder="Enter your email..." alt="Email entering form-field" className="w-full px-4 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-300" />
-          <button type="submit" alt="Button to click to subscribe with chosen email" className="px-6 py-2 bg-red-800 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-black hover:text-white transition-colors duration-300 ease-in-out">
+          <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="secondary" className="focus:ring-2 focus:ring-gray-500">
             Subscribe
-          </button>
+          </Button>
         </form>
       </section>
     </footer>

@@ -13,16 +13,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         // De forskellige knap-varianter, som kan anvendes
-        default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white",
-        secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color",
-        tertiary: "bg-red_color text-white_color hover:bg-primary",
-        outline: "border border-red_color hover:bg-accent",
+        default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white transition-colors duration-300 ease-in-out",
+        secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
+        tertiary: "bg-red_color text-white_color hover:bg-primary transition-colors duration-300 ease-in-out",
+        outline: "border border-red_color hover:bg-accent transition-colors duration-300 ease-in-out",
       },
       size: {
         // De forskellige størrelser, som knappen kan have
         default: "h-9 px-4 py-2", // Standardstørrelse
         sm: "h-8 rounded-md px-3 text-xs", // Lille størrelse
-        lg: "h-10 rounded-md px-8", // Stor størrelse
+        lg: "rounded-md px-6 py-2", // Stor størrelse
       },
     },
     // Standardværdier, hvis ingen varianter angives
