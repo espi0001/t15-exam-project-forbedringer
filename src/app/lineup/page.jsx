@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
+import GSAPTextReveal from "@/components/GSAPTextReveal";
+import gsap from 'gsap';
 
 const Page = () => {
   const [bands, setBands] = useState([]); // State for bands fetched fra API
@@ -116,8 +118,7 @@ const Page = () => {
     // Kan vi have noget loading agtigt som på sebs praktik side? sådan så det er mere spændende at komme ind på siden?
 
     <div className="mx-[20px] py-[64px] lg:mx-[64px] lg:py-[112px]">
-      <h1 className="mb-[48px] lg:mb-[80px]">Lineup</h1>
-
+      <GSAPTextReveal />
       {/* Filter Controls */}
       <section className="flex flex-col lg:flex-row gap-[64px]">
         <article className="lg:w-1/4">
