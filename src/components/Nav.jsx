@@ -50,6 +50,9 @@ const Navigation = () => {
                 <NavigationLink href={"/lineup"} text={"Lineup"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
+                <NavigationLink href={"/events"} text={"Events"} closeMenu={() => setIsMenuOpen(false)} />
+              </li>
+              <li>
                 <NavigationLink href={"/about"} text={"About"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
