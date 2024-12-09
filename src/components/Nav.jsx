@@ -18,7 +18,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="absolute flex justify-between items-center py-[1.5rem] px-[64px] w-full z-100 bg-transparent ">
+    <nav className="absolute flex justify-between items-center py-[1.5rem] px-[20px] lg:px-[64px] w-full z-100 bg-transparent ">
       {/* logo */}
       <div className="hidden md:block">
         <Link href={"/"} className="text-2xl font-light text-white hover:text-black hidden md:block">
