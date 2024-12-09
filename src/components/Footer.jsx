@@ -1,59 +1,47 @@
 "use client";
 import Link from "next/link";
-import Image from 'next/image';
-import Logo from '@/images/foo-fest-logo.webp';
+import Image from "next/image";
+import Logo from "@/images/foo-fest-logo.webp";
+import NavigationLink from "./NavigationLink";
+import { Button } from "./ui/Button";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#121212] text-black p-6 md:p-12 flex flex-col md:flex-row justify-between items-center">
-      <div className="flex flex-col items-center md:items-start mb-6 md:mb-0 md:w-1/2">
-        <div className="flex items-center mb-4 mt-10">
+    //   mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]
+    <footer className="mx-[20px] lg:mx-[64px] py-[64px] flex flex-col lg:flex-row justify-between items-center gap-[40px]">
+      <section className="flex flex-col items-center">
+        <div className="flex items-center gap-1">
           <Image src={Logo} width={35} alt="logo" />
-          <span className="text-white text-xl m-5 font-semibold">FOO FEST</span>
+          <h4 className="text-white text-xl m-5 font-semibold">FOO FEST</h4>
         </div>
 
-        <ul className="flex flex-wrap gap-4 justify-center md:justify-start">
+        <ul className="flex flex-wrap gap-4 justify-center">
           <li>
-            <Link href={"/tickets"} className="text-gray-300 hover:text-white hover:underline underline-offset-2 transition-all duration-200 ease-in-out">
-              Tickets
-            </Link>
+            <NavigationLink href={"/Tickets"} text={"Lineup"} />
           </li>
           <li>
-            <Link href={"/lineup"} className="text-gray-300 hover:text-white hover:underline underline-offset-2 transition-all duration-200 ease-in-out">
-              Program
-            </Link>
+            <NavigationLink href={"/lineup"} text={"Line-up"} />
           </li>
           <li>
-            <Link href={"/about"} className="text-gray-300 hover:text-white hover:underline underline-offset-2 transition-all duration-200 ease-in-out">
-              About
-            </Link>
+            <NavigationLink href={"/about"} text={"About"} />
           </li>
           <li>
-            <Link href={"/contact"} className="text-gray-300 hover:text-white hover:underline underline-offset-2 transition-all duration-200 ease-in-out">
-              Contact
-            </Link>
+            <NavigationLink href={"/contact"} text={"Contact"} />
           </li>
         </ul>
-      </div>
+      </section>
 
-      <div id="Footer" className="flex flex-col items-center md:items-end md:w-1/2 mt-16">
-        <h4 className="text-lg text-white font-medium mb-4 text-center md:text-left">Subscribe to be the first to know!</h4>
-        <form className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-          <input
-            type="email"
-            placeholder="Enter your email..."
-            alt="Email entering form-field"
-            className="w-full px-4 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-300"
-          />
-          <button
-            type="submit"
-            alt="Button to click to subscribe with chosen email"
-            className="px-6 py-2 bg-red-800 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-black hover:text-white transition-colors duration-300 ease-in-out"
-          >
+      <hr className="w-full border-t border-gray-300 my-4 lg:hidden" />
+
+      <section id="Footer" className="flex flex-col items-center">
+        <h6 className="mb-4 text-center">Subscribe to be the first to know!</h6>
+        <form className="flex gap-4 w-full ">
+          <input type="email" placeholder="Enter your email..." alt="Email entering form-field" className="w-full px-4 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-300" />
+          <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="secondary" className="focus:ring-2 focus:ring-gray-500">
             Subscribe
-          </button>
+          </Button>
         </form>
-      </div>
+      </section>
     </footer>
   );
 };
