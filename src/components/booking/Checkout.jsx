@@ -1,31 +1,34 @@
 "use client";
 import { useState } from "react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Alert, AlertDescription } from "../ui/alert";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
+import { Label } from "../ui/Label";
+import { Input } from "../ui/Input";
+import { Button } from "../ui/Button";
+import { Alert, AlertDescription } from "../ui/Alert";
 import { CreditCard } from "lucide-react";
-import { api } from "@/lib/api";
+import { api } from "@/lib/api"; // API-funktioner til backend-kommunikation
 
 export default function Checkout({ bookingData, setReservationId, onNext, onBack }) {
+  // Beregner totalprisen for ordren baseret på brugerens valg
   const calculateTotal = () => {
-    let total = bookingData.ticketCount * (bookingData.ticketType === "vip" ? 1299 : 799);
-    if (bookingData.greenCamping) total += 249;
-    if (bookingData.tentSetup === "2person") total += 299 * Math.ceil(bookingData.ticketCount / 2);
-    if (bookingData.tentSetup === "3person") total += 399 * Math.ceil(bookingData.ticketCount / 3);
-    return total;
+    let total = bookingData.ticketCount * (bookingData.ticketType === "vip" ? 1299 : 799); // Billetpris
+    if (bookingData.greenCamping) total += 249; // Tillæg for green camping
+    if (bookingData.tentSetup === "2person") total += 299 * Math.ceil(bookingData.ticketCount / 2); // 2-personers telt
+    if (bookingData.tentSetup === "3person") total += 399 * Math.ceil(bookingData.ticketCount / 3); // 3-personers telt
+    return total; // Returnerer den samlede pris
   };
 
+  // Håndterer indsendelse af checkout
   const handleSubmit = async () => {
     try {
+      // Reserver campingplads baseret på brugerens valg
       const reservation = await api.reserveSpot(bookingData.campingArea, bookingData.ticketCount);
-      setReservationId(reservation.id);
-      await api.fulfillReservation(reservation.id);
-      onNext();
+      setReservationId(reservation.id); // Gem reservations-ID'et
+      await api.fulfillReservation(reservation.id); // Fuldfør reservationen
+      onNext(); // Gå videre til næste trin
     } catch (error) {
-      console.error("Checkout failed:", error);
+      console.error("Checkout failed:", error); // Log fejl, hvis noget går galt
     }
   };
 
@@ -39,6 +42,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
+          {/* Ordresammendrag */}
           <div className="border-b pb-4">
             <h3 className="font-semibold">Order Summary</h3>
             <p>
@@ -49,6 +53,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
             <p className="text-xl font-bold mt-2">Total: {calculateTotal()},-</p>
           </div>
 
+          {/* Betalingsinformation */}
           <div className="space-y-2">
             <Label htmlFor="cardNumber">Card Number</Label>
             <Input id="cardNumber" type="text" placeholder="**** **** **** ****" />

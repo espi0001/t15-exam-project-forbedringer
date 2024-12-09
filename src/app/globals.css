@@ -32,6 +32,7 @@ body {
   font-family: rocky, serif;
   line-height: 1.5;
 }
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -76,6 +77,11 @@ h3 {
   h6 {
     @apply text-step_h6;
   }
+
+  p {
+    @apply text-step_p;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -103,6 +109,7 @@ h3 {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -135,6 +142,7 @@ h3 {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
