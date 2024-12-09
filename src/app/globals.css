@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --padding-x-xs: 64px;
   --padding-x-lg: 80px;
@@ -138,4 +139,13 @@ h3 {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+/* CUSTOM CLASSES */
+.single-view-schedule-p{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
