@@ -26,15 +26,15 @@ export default function Page() {
         {/* Knapper til at skifte mellem booking og schedule */}
         <div className="space-x-4">
           <Button
-            className="bg-white border border-white hover:bg-[#7d0200] hover:border-[#7d0200] text-black hover:text-white"
+            // className="bg-white border border-white hover:bg-[#7d0200] hover:border-[#7d0200] text-black hover:text-white"
             variant={activeView === "booking" ? "default" : ""} // Marker aktiv visning
             onClick={() => setActiveView("booking")} // Opdaterer aktiv visning til schedule
           >
             Book Tickets
           </Button>
           <Button
-            className="bg-[#7d0200] border border-black hover:border-white text-white"
-            variant={activeView === "schedule" ? "default" : ""} // Marker aktiv visning
+            variant={activeView === "schedule" ? "secondary" : ""}
+            variant="secondary" // Marker aktiv visning
             onClick={() => setActiveView("schedule")} // Opdaterer aktiv visning til schedule
           >
             View Schedule
@@ -43,6 +43,66 @@ export default function Page() {
       </div>
       {/* Sektion til dynamisk rendering af enten BookingFlow eller ScheduleView */}
       <section className="p-6">{activeView === "booking" ? <BookingFlow /> : <ScheduleView />}</section>
+
+      <Button variant="default" size="default">
+        Default Button
+      </Button>
+      <Button variant="default" size="sm">
+        Small Default Button
+      </Button>
+      <Button variant="default" size="lg">
+        Large Default Button
+      </Button>
+
+      <Button variant="secondary" size="default">
+        Secondary Button
+      </Button>
+      <Button variant="secondary" size="sm">
+        Small Secondary Button
+      </Button>
+      <Button variant="secondary" size="lg">
+        Large Secondary Button
+      </Button>
+
+      <Button variant="tertiary" size="default">
+        tertiary Button
+      </Button>
+      <Button variant="tertiary" size="sm">
+        Small tertiary Button
+      </Button>
+      <Button variant="tertiary" size="lg">
+        Large tertiary Button
+      </Button>
+
+      <Button variant="outline" size="default">
+        Outline Button
+      </Button>
+      <Button variant="outline" size="sm">
+        Small Outline Button
+      </Button>
+      <Button variant="outline" size="lg">
+        Large Outline Button
+      </Button>
+
+      <Button variant="ghost" size="default">
+        Ghost Button
+      </Button>
+      <Button variant="ghost" size="sm">
+        Small Ghost Button
+      </Button>
+      <Button variant="ghost" size="lg">
+        Large Ghost Button
+      </Button>
+
+      <Button variant="link" size="default">
+        Link Button
+      </Button>
+      <Button variant="link" size="sm">
+        Small Link Button
+      </Button>
+      <Button variant="link" size="lg">
+        Large Link Button
+      </Button>
     </div>
   );
 }

@@ -107,7 +107,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
               <Button variant="outline" onClick={onBack}>
                 Back {/* Gå tilbage til forrige trin */}
               </Button>
-              <Button onClick={onNext} disabled={!bookingData.campingArea}>
+              <Button variant="tertiary" onClick={onNext} disabled={!bookingData.campingArea}>
                 Continue to Personal Info {/* Fortsæt til næste trin */}
               </Button>
             </div>

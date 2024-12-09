@@ -1,48 +1,53 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva } from "class-variance-authority";
+// Import af nødvendige moduler
+import * as React from "react"; // Importerer React biblioteket
+import { Slot } from "@radix-ui/react-slot"; // Importerer Slot komponent fra Radix UI (bruges til at overføre renderede komponenter som børn)
+import { cva } from "class-variance-authority"; // Importerer cva funktion, som hjælper med at håndtere CSS-klasser baseret på varianter
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"; // Importerer en hjælpefunktion (cn) til at sammensætte klasse-navne
 
+// Definerer en cva-funktion til at oprette forskellige knap-variantstile
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", // Standard klasser for knap-udseende og tilstande
   {
+    // Konfiguration af varianter for knappen (f.eks. farver, størrelse)
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        // De forskellige knap-varianter, som kan anvendes
+        default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white",
+        secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color",
+        tertiary: "bg-red_color text-white_color hover:bg-primary",
+        outline: "border border-red_color hover:bg-accent",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        // De forskellige størrelser, som knappen kan have
+        default: "h-9 px-4 py-2", // Standardstørrelse
+        sm: "h-8 rounded-md px-3 text-xs", // Lille størrelse
+        lg: "h-10 rounded-md px-8", // Stor størrelse
+        icon: "h-9 w-9", // Ikon-størrelse (kun højde og bredde)
       },
     },
+    // Standardværdier, hvis ingen varianter angives
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "default", // Standard-variant er 'default'
+      size: "default", // Standard-størrelse er 'default'
     },
   }
-)
+);
 
+// Knap-komponenten, der accepterer forskellige props for at tilpasse knappen
 const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "button"
-  return (
-    (<Comp
-      className={cn(buttonVariants({ variant, size, className }))}
-      ref={ref}
-      {...props} />)
-  );
-})
-Button.displayName = "Button"
+  // Bestemmer, om knappen skal være et 'button' eller en Slot (brugerdefineret komponent)
+  const Comp = asChild ? Slot : "button";
 
-export { Button, buttonVariants }
+  // Returnerer knappen med de anvendte CSS-klasser og eventuelle andre props
+  return (
+    <Comp
+      className={cn(buttonVariants({ variant, size, className }))} // Anvender cva-funktionen til at generere de rette klasser
+      ref={ref} // Giver ref til komponenten (bruges f.eks. til at få adgang til DOM-elementet)
+      {...props}
+    /> // Overfører øvrige props til knappen (som f.eks. onClick, disabled)
+  );
+});
+Button.displayName = "Button"; // Sætter et navn for komponenten (kan bruges til debugging)
+
+export { Button, buttonVariants }; // Eksporterer knap-komponenten og buttonVariants for at kunne bruges andre steder

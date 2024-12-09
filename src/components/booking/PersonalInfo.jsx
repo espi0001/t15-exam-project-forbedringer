@@ -54,9 +54,11 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
                 <Input
                   id={`email-${index}`} // Unik ID for inputfelt
                   type="email"
+                  name="email"
                   value={bookingData.personalInfo[index]?.email || ""} // Forvalgt værdi
                   onChange={(e) => handleInfoChange(index, "email", e.target.value)} // Opdater e-mail i state
                   className="mt-1"
+                  required
                 />
               </div>
             </div>
@@ -66,12 +68,10 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
         {/* Navigationsknapper */}
         <div className="flex justify-between mt-4">
           <Button variant="outline" onClick={onBack}>
-            {" "}
             {/* Knappen for at gå tilbage */}
             Back
           </Button>
-          <Button onClick={onNext} disabled={!isValid()}>
-            {" "}
+          <Button variant="secondary" onClick={onNext} disabled={!isValid()}>
             {/* Knappen for at gå videre, kun aktiv hvis validering er ok */}
             Continue to Payment
           </Button>
