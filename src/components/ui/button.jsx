@@ -23,7 +23,6 @@ const buttonVariants = cva(
         default: "h-9 px-4 py-2", // Standardstørrelse
         sm: "h-8 rounded-md px-3 text-xs", // Lille størrelse
         lg: "h-10 rounded-md px-8", // Stor størrelse
-        icon: "h-9 w-9", // Ikon-størrelse (kun højde og bredde)
       },
     },
     // Standardværdier, hvis ingen varianter angives
