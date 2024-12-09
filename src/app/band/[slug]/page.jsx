@@ -1,11 +1,20 @@
 import Image from "next/image";
+import placeholderLogo from "@/images/placeholder-image.png";
+
+// Dynamically import local logos
+const importLogo = (logoName) => {
+  try {
+    return require(`@/images/band-logos/${logoName}`);
+  } catch (error) {
+    return placeholderLogo;
+  }
+};
 
 // singleview for a band
 const Page = async ({ params }) => {
   const slug = params.slug; // henter slug fra URL'en
-  //   const [band, setBand] = useState(null);
 
-  //   fetch band data
+  // fetch band data
   const bandResponse = await fetch(`http://localhost:8080/bands/${slug}`);
   const band = await bandResponse.json();
 
@@ -30,56 +39,60 @@ const Page = async ({ params }) => {
     }
   }
 
+  // Attempt to import the logo, fallback to placeholder if not found
+  const bandLogo = importLogo(band.logo);
+
   return (
-    // Mangler en sti sådan så man kan komme tilbage til bandlisten
-    <div className=" py-[64px]  lg:py-[112px]">
-      <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] bg-cover bg-center" />
+    <div className="py-[64px] lg:py-[112px]">
+      <div className="relative">
+        <Image
+          src={bandLogo}
+          alt={`${band.name} logo`}
+          className="w-full h-[300px] lg:h-[400px] object-cover bg-center"
+          width={1200}
+          height={400}
+        />
+        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white lg:text-4xl font-bold">
+          {band.name}
+        </h1>
+      </div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
-          <h1 className="">{band.name}</h1>
-          <div>
-            <h5>Genre</h5>
-            <p className="text-lg mt-2 font-light">{band.genre}</p>
-          </div>
           <div>
             <h2 className="">About the Band</h2>
-            <p>{band.bio}</p>
+            <p className="single-view-schedule-p">{band.bio}</p>
           </div>
 
           <div>
             <h2 className="">Members</h2>
-            {/* Hvis der er flere skal der laves en map */}
-            {/* <p className="flex gap-4">{band.members}</p> */}
-            {/* {band.members.map((bandmembers, index) => (
-              <ul>
-                <li key={index} className="">
-                  {bandmembers}
-                </li>
-              </ul>
-            ))} */}
             {band.members.length > 0 ? (
               <div>
                 {band.members.map((bandmembers, index) => (
-                  <ul>
-                    <li key={index} className="">
+                  <ul key={index}>
+                    <li className="single-view-schedule-p">
                       {bandmembers}
                     </li>
                   </ul>
                 ))}
               </div>
             ) : (
-              <p className="text-lg">No schedule available for this band.</p>
+              <p className="text-lg">No members available for this band.</p>
             )}
           </div>
+          <div>
+            <h5 className="font-bold">Genre</h5>
+            <p className="text-lg font-light single-view-schedule-p">{band.genre}</p>
+          </div>
         </article>
-        <div className="lg:w-2/5 ">
-          <div className="">
-            <h5>Schedule</h5>
+        <div className="lg:w-2/5">
+          <div className="mt-6 sm:mt-8">
+            <h5 className="font-bold mb-2 sm:mb-2">Performs at</h5>
             {bandSchedules.length > 0 ? (
               <div>
                 {bandSchedules.map((schedule, index) => (
-                  <p key={index} className="p-4 border rounded shadow-sm">
-                    <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} ({schedule.start} - {schedule.end})
+                  <p key={index} className="p-4 border rounded shadow-sm single-view-schedule-p">
+                    <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} (
+                    {schedule.start} - {schedule.end})
                   </p>
                 ))}
               </div>
@@ -90,12 +103,12 @@ const Page = async ({ params }) => {
 
           <article className="flex justify-between mt-8">
             <div>
-              <h5>Stage</h5>
+              <h5>Day</h5>
               {bandSchedules.length > 0 ? (
-                <div>
+                <div className="font-extralight">
                   {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="">
-                      {schedule.stage}
+                    <p key={index} className="single-view-schedule-p">
+                      {schedule.day}
                     </p>
                   ))}
                 </div>
@@ -104,12 +117,12 @@ const Page = async ({ params }) => {
               )}
             </div>
             <div>
-              <h5>Day</h5>
+              <h5>Stage</h5>
               {bandSchedules.length > 0 ? (
                 <div>
                   {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="">
-                      {schedule.day}
+                    <p key={index} className="single-view-schedule-p">
+                      {schedule.stage}
                     </p>
                   ))}
                 </div>
@@ -122,7 +135,7 @@ const Page = async ({ params }) => {
               {bandSchedules.length > 0 ? (
                 <div>
                   {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="">
+                    <p key={index} className="single-view-schedule-p">
                       {schedule.start} - {schedule.end}
                     </p>
                   ))}
@@ -134,13 +147,6 @@ const Page = async ({ params }) => {
           </article>
         </div>
       </section>
-      {/* bands header */}
-
-      {/* <img src={band.logo} alt={`${band.name} logo`} width={200} height={200} /> */}
-
-      {/* Band Members */}
-
-      {/* Band Schedule */}
     </div>
   );
 };
