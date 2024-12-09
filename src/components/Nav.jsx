@@ -47,7 +47,7 @@ const Navigation = () => {
                 <NavigationLink href={"/"} text={"Home"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
-                <NavigationLink href={"/lineup"} text={"Line-Up"} closeMenu={() => setIsMenuOpen(false)} />
+                <NavigationLink href={"/lineup"} text={"Lineup"} closeMenu={() => setIsMenuOpen(false)} />
               </li>
               <li>
                 <NavigationLink href={"/about"} text={"About"} closeMenu={() => setIsMenuOpen(false)} />
