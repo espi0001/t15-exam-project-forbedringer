@@ -52,10 +52,10 @@ const Nav = () => {
 
             <div className="flex flex-col justify-between h-full">
               <div>
-                <p className="text-gray-400 uppercase text-sm border-b border-gray-400 pb-4 mb-8">Navigation</p>
+                <p className="text-gray-400 uppercase text-sm border-b border-gray-400 pb-4 mb-8">Menu</p>
                 <div className="flex flex-col gap-3">
                   {menuItems.map((item, index) => (
-                    <motion.div key={index} initial={{ x: -80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative" onMouseEnter={() => setSelectedIndicator(item.href)}>
+                    <motion.div key={index} initial={{ x: 80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative" onMouseEnter={() => setSelectedIndicator(item.href)}>
                       {selectedIndicator === item.href && (
                         <motion.div
                           layoutId="indicator"
