@@ -27,18 +27,18 @@ export default function ScheduleView() {
     fetchSchedule();
   }, []);
 
-  if (loading) return <div className="text-white text-center">Loading schedule...</div>;
-  if (error) return <div className="text-red-500 text-center">{error}</div>;
+  if (loading) return <p className="text-white text-center">Loading schedule...</p>;
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
   if (!scheduleData) return null;
 
   return (
-    <Card className="w-full max-w-4xl mx-auto mb-10">
+    <Card className="w-full max-w-6xl mx-auto mb-10">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        {/* <CardTitle className="flex items-center gap-2">
           <Calendar className="h-6 w-6" />
           Festival Schedule
-        </CardTitle>
-        <div className="flex gap-2">
+        </CardTitle> */}
+        <div className="flex justify-center gap-2">
           {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
             <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-[#7d0200] text-white" : "bg-gray-200"}`}>
               {day.toUpperCase()}
@@ -50,7 +50,7 @@ export default function ScheduleView() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {Object.keys(scheduleData).map((stage) => (
             <div key={stage} className="border rounded-lg p-4">
-              <h3 className="text-lg font-bold mb-4">{stage}</h3>
+              <h5 className="font-bold mb-4">{stage}</h5>
               <div className="space-y-2">
                 {scheduleData[stage][selectedDay]?.map((event, idx) => (
                   <div key={idx} className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red-100" : "bg-gray-100"}`}>
