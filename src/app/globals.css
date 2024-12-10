@@ -30,14 +30,12 @@
 } */
 
 body {
-  font-family: rocky, serif;
-  line-height: 1.5;
-}
-
-body {
   color: var(--foreground);
   background: var(--background);
-  font-family: rocky, serif;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
   line-height: 1.5;
 }
 
@@ -150,10 +148,3 @@ h3 {
 }
 
 
-/* CUSTOM CLASSES */
-.single-view-schedule-p{
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-}
