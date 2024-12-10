@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import GSAPTextReveal from "@/components/GSAPTextReveal";
-import gsap from 'gsap';
+import { api } from "@/lib/api"; // Importer api her
+import gsap from "gsap";
 
 const Page = () => {
   const [bands, setBands] = useState([]); // State for bands fetched fra API
@@ -33,17 +34,11 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch bands data
-        const bandsResponse = await fetch("http://localhost:8080/bands");
-        const bandsData = await bandsResponse.json();
+        const [bandsData, scheduleData] = await Promise.all([api.getBands(), api.getSchedule()]);
 
-        // Fetch schedule data
-        const scheduleResponse = await fetch("http://localhost:8080/schedule");
-        const scheduleData = await scheduleResponse.json();
-
-        // Combine bands data with their schedule information
+        // kombinerer bandsData og scheduleData
         const updatedBands = bandsData.map((band) => {
-          // Find all schedule slots for this band
+          // finder scheduleData for hvert band
           const bandSchedules = [];
           for (const stage in scheduleData) {
             for (const day in scheduleData[stage]) {
@@ -54,14 +49,13 @@ const Page = () => {
               });
             }
           }
-          // Add the schedule information and handle default image
+          // tilføjer logo til bandet
           const bandLogo = !band.logo ? getRandomImage() : band.logo;
           return { ...band, schedules: bandSchedules, logo: bandLogo };
         });
 
-        // Set state with the combined data
         setBands(updatedBands);
-        setFilteredBands(updatedBands); // Initialize filteredBands with all bands
+        setFilteredBands(updatedBands);
         setSchedule(scheduleData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -75,17 +69,17 @@ const Page = () => {
   useEffect(() => {
     let updatedBands = [...bands];
 
-    // Filter by stage if any stage is selected
+    // Stage filter
     if (filters.stage.length > 0) {
       updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.stage.includes(schedule.stage)));
     }
 
-    // Filter by genre if a genre is selected
+    // Genre filter
     if (filters.genre.length > 0) {
       updatedBands = updatedBands.filter((band) => filters.genre.includes(band.genre));
     }
 
-    // Filter by day if any day is selected
+    // Day filter
     if (filters.day.length > 0) {
       updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.day.includes(schedule.day)));
     }
