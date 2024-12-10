@@ -15,18 +15,33 @@ module.exports = {
     extend: {
       keyframes: {
         slideUp: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100%)',
             opacity: '0'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(0)',
             opacity: '1'
+          }
+        },
+        fadeIn: {
+          '0%': { 
+            opacity: '0' 
+          },
+          '100%': { 
+            opacity: '1' 
           }
         }
       },
       animation: {
-        'slide-up': 'slideUp 2.5s ease-out forwards'
+        'slide-up': 'slideUp 2.5s ease-out forwards',
+        'fade-in': 'fadeIn 1s ease-out forwards'
+      },
+      animationDelay: {
+        '200': '200ms',
+        '400': '400ms',
+        '600': '600ms',
+        '800': '800ms',
       },
       zIndex: {
         100: "100",
@@ -41,7 +56,6 @@ module.exports = {
         red_color: "#7d0200",
         'custom-start': '#060100',
         'custom-end': '#121212',
-      
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
