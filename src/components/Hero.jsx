@@ -16,7 +16,8 @@ const Hero = () => {
         </div>
         <div className="absolute bottom-10 left-0 w-full text-white flex flex-col items-start p-4 z-50">
           {/* <h1 className="z-30 [text-shadow:_0_1px_4_rgb(0_0_0_/_100%)] text-9xl">FOO FEST</h1> */}
-          <p className="text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">MARCH 24-28, 2025</p>
+          <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">MARCH 24-28, 2025</p>
+           <p className="ml-14 text-xl font-light sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">REFSHALEØEN, KBH S</p>
         </div>
       </div>
     </div>

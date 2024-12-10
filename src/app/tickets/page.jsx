@@ -3,6 +3,7 @@ import { useState } from "react";
 import BookingFlow from "@/components/BookingFlow";
 import ScheduleView from "@/components/ScheduleView";
 import { Button } from "@/components/ui/Button";
+import ParallaxAboutComponent from "@/components/ParallaxAboutComponent";
 
 export default function Page() {
   // useState til at styre, hvilken visning der er aktiv (booking eller schedule)

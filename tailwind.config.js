@@ -39,6 +39,9 @@ module.exports = {
         text_color: "#FFFFFF",
         white_color: "#FFFFFF",
         red_color: "#7d0200",
+        'custom-start': '#060100',
+        'custom-end': '#121212',
+      
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
