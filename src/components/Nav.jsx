@@ -20,6 +20,8 @@ const Nav = () => {
   const menuItems = [
     { title: "Home", href: "/" },
     { title: "Lineup", href: "/lineup" },
+    { title: "Tickets", href: "/tickets" },
+    { title: "Schedule", href: "/schedule" },
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
   ];
@@ -32,10 +34,10 @@ const Nav = () => {
         </Link>
       </div>
 
-      <Link href="/tickets" className="text-2xl font-light text-white relative group">
+      {/* <Link href="/tickets" className="text-2xl font-light text-white relative group">
         Tickets
         <span className="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
-      </Link>
+      </Link> */}
 
       <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-light text-white relative group">
         Menu
@@ -76,10 +78,10 @@ const Nav = () => {
               </div>
 
               <div className="flex gap-10 text-sm">
-                <Link href="#" className="hover:text-gray-300">
+                <Link href="#" className="hover:text-gray-300 cursor-pointer">
                   Instagram
                 </Link>
-                <Link href="#" className="hover:text-gray-300">
+                <Link href="#" className="hover:text-gray-300 cursor-pointer">
                   Facebook
                 </Link>
               </div>
