@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <div className="">
       <Hero alt="Photo by Samu Lopez, from Unsplash FREE" />
-      <FestivalApp />
     </div>
   );
 }
