@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="relative h-full">
         <Image src={IndexHeroImage} alt="Hero background for index" layout="fill" objectFit="cover" priority={true} className="z-0" />
 
-        <spline-viewer className="absolute z-40" url="https://prod.spline.design/xGywt7pLfv6ZN4uB/scene.splinecode"></spline-viewer>
+        <spline-viewer url="https://prod.spline.design/dlMfl08WooPZ4J3H/scene.splinecode"></spline-viewer>
 
         <div className="absolute inset-0 z-40">
           <Image src={IndexFansHero} alt="Fans Image" width={3000} height={100} priority={true} className="w-full h-full object-cover" />
@@ -17,7 +17,7 @@ const Hero = () => {
         <div className="absolute bottom-10 left-0 w-full text-white flex flex-col items-start p-4 z-50">
           {/* <h1 className="z-30 [text-shadow:_0_1px_4_rgb(0_0_0_/_100%)] text-9xl">FOO FEST</h1> */}
           <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">MARCH 24-28, 2025</p>
-           <p className="ml-14 text-xl font-light sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">REFSHALEØEN, KBH S</p>
+          <p className="ml-14 text-xl font-light sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">REFSHALEØEN, KBH S</p>
         </div>
       </div>
     </div>
