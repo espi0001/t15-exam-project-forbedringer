@@ -34,10 +34,6 @@ const Nav = () => {
         </Link>
       </div>
 
-<<<<<<< HEAD
-      <Link href="/tickets" className="text-2xl font-bold text-white relative group">
-        TICKETS
-=======
       {/* <Link href="/tickets" className="text-2xl font-light text-white relative group">
         Tickets
 >>>>>>> schedule-branch
