@@ -44,28 +44,49 @@ const Nav = () => {
 
       <AnimatePresence mode="wait">
         {isMenuOpen && (
-          <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-black p-16 text-white z-60">
+          <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-[#121212] p-16 text-white z-60">
             <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center">
               <div className="w-8 h-[2px] bg-white rotate-45 absolute" />
               <div className="w-8 h-[2px] bg-white -rotate-45 absolute" />
             </button>
-            <ul className="space-y-3 text-center text-3xl">
-              <li>
-                <NavigationLink href={"/"} text={"Home"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/lineup"} text={"Lineup"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/about"} text={"About"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/contact"} text={"Contact"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
+
+            <div className="flex flex-col justify-between h-full">
+              <div>
+                <p className="text-gray-400 uppercase text-sm border-b border-gray-400 pb-4 mb-8">Navigation</p>
+                <div className="flex flex-col gap-3">
+                  {menuItems.map((item, index) => (
+                    <motion.div key={index} initial={{ x: -80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative" onMouseEnter={() => setSelectedIndicator(item.href)}>
+                      {selectedIndicator === item.href && (
+                        <motion.div
+                          layoutId="indicator"
+                          className="absolute left-[-30px] top-[50%] w-2.5 h-2.5 bg-white rounded-full -translate-y-1/2"
+                          transition={{
+                            type: "spring",
+                            stiffness: 350,
+                            damping: 25,
+                          }}
+                        />
+                      )}
+                      <Link href={item.href} onClick={() => setIsMenuOpen(false)} className="text-5xl font-light hover:text-gray-300 transition-colors">
+                        {item.title}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-10 text-sm">
+                <Link href="#" className="hover:text-gray-300">
+                  Instagram
+                </Link>
+                <Link href="#" className="hover:text-gray-300">
+                  Facebook
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
