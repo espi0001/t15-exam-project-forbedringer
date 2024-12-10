@@ -3,64 +3,92 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "@/images/foo-fest-logo.webp";
 import Link from "next/link";
-import { IoIosClose } from "react-icons/io";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-import NavigationLink from "./NavigationLink";
+const Nav = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
-const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Styrer, om menuen er åben
-  const [isBurgerActive, setIsBurgerActive] = useState(false); // Styrer burger-menuen
-
-  // Toggler menuens åben/luk status
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setIsBurgerActive(!isBurgerActive); // Skift burger-menuens tilstand
+  const menuSlide = {
+    initial: { x: "100%" },
+    enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+    exit: { x: "100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
   };
 
+  const menuItems = [
+    { title: "Home", href: "/" },
+    { title: "Lineup", href: "/lineup" },
+    { title: "About", href: "/about" },
+    { title: "Contact", href: "/contact" },
+  ];
+
   return (
-    <nav className="absolute flex justify-between items-center py-[1.5rem] px-[20px] lg:px-[64px] w-full z-100 bg-transparent ">
-      {/* logo */}
+    <nav className="absolute flex justify-between items-center py-6 px-5 lg:px-16 w-full z-50 bg-transparent">
       <div className="hidden md:block">
-        <Link href={"/"} className="text-2xl font-light text-white hover:text-black hidden md:block">
+        <Link href="/">
           <Image src={Logo} width={35} alt="logo" />
         </Link>
       </div>
 
-      <Link href={"/tickets"} className="text-2xl font-light text-white relative group">
+      <Link href="/tickets" className="text-2xl font-light text-white relative group">
         Tickets
-        <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
       </Link>
 
-      <button onClick={toggleMenu} className="text-2xl font-light text-white relative group">
+      <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-light text-white relative group">
         Menu
-        <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
       </button>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-lg flex justify-center items-center z-50" onClick={() => setIsMenuOpen(false)}>
-          <div onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setIsMenuOpen(false)} className="absolute top-4 right-4 text-white ">
-              <IoIosClose size={50} />
+      <AnimatePresence mode="wait">
+        {isMenuOpen && (
+          <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-black p-16 text-white z-60">
+            <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center">
+              <div className="w-8 h-[2px] bg-white rotate-45 absolute" />
+              <div className="w-8 h-[2px] bg-white -rotate-45 absolute" />
             </button>
-            <ul className="space-y-3 text-center text-3xl">
-              <li>
-                <NavigationLink href={"/"} text={"Home"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/lineup"} text={"Lineup"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/about"} text={"About"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-              <li>
-                <NavigationLink href={"/contact"} text={"Contact"} closeMenu={() => setIsMenuOpen(false)} />
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
+
+            <div className="flex flex-col justify-between h-full">
+              <div>
+                <p className="text-gray-400 uppercase text-sm border-b border-gray-400 pb-4 mb-8">Navigation</p>
+                <div className="flex flex-col gap-3">
+                  {menuItems.map((item, index) => (
+                    <motion.div key={index} initial={{ x: -80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative" onMouseEnter={() => setSelectedIndicator(item.href)}>
+                      {selectedIndicator === item.href && (
+                        <motion.div
+                          layoutId="indicator"
+                          className="absolute left-[-30px] top-[50%] w-2.5 h-2.5 bg-white rounded-full -translate-y-1/2"
+                          transition={{
+                            type: "spring",
+                            stiffness: 350,
+                            damping: 25,
+                          }}
+                        />
+                      )}
+                      <Link href={item.href} onClick={() => setIsMenuOpen(false)} className="text-5xl font-light hover:text-gray-300 transition-colors">
+                        {item.title}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-10 text-sm">
+                <Link href="#" className="hover:text-gray-300">
+                  Instagram
+                </Link>
+                <Link href="#" className="hover:text-gray-300">
+                  Facebook
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
 
-export default Navigation;
+export default Nav;
