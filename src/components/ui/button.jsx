@@ -16,7 +16,7 @@ const buttonVariants = cva(
         default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white transition-colors duration-300 ease-in-out",
         secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
         tertiary: "bg-red_color text-white_color hover:bg-primary transition-colors duration-300 ease-in-out",
-        footer: "bg-white_color border border-white_color text-black hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
+        footer: "bg-black_color border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out",
         outline: "border border-red_color hover:bg-accent transition-colors duration-300 ease-in-out",
       },
       size: {
