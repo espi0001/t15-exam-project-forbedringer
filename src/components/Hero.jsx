@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 
 const Hero = () => {
   useEffect(() => {
-    const tl = gsap.timeline().from(".hero-text div", {
+    const tl = gsap.timeline().from(".hero-text p", {
       xPercent: gsap.utils.wrap([100, -100]),
       stagger: 0.4,
       opacity: 0,
@@ -23,15 +23,15 @@ const Hero = () => {
         <div className="absolute inset-0 z-40">
           <Image src={IndexFansHero} alt="Fans Image" width={3000} height={100} priority={true} className="w-full h-full object-cover" />
         </div>
-        <div className="absolute bottom-10 left-0 w-full text-white flex flex-col items-start p-4 z-50">
+        <div className="absolute bottom-10 w-full text-white flex flex-col items-start p-4 z-50">
           <div className="hero-text overflow-hidden">
-            <div className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</div>
+            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>
           <div className="hero-text overflow-hidden">
-            <div className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 28th</div>
+            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 28th</p>
           </div>
           <div className="hero-text overflow-hidden">
-            <div className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">2025</div>
+            <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">2025</p>
           </div>
         </div>
       </div>
