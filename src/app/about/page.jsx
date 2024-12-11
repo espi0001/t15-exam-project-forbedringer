@@ -43,14 +43,28 @@ const AboutPage = () => {
 
   return (
     <div className="relative text-gray-700">
-      <Image src={AboutHeroImage} alt="Hero background for about-page, by Gabriel Benois" layout="fill" objectFit="cover" priority={true} />
-      <div className="min-h-screen text-gray-700 py-12 px-4 relative z-10">
-        <div className="max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden mt-60">
-          <div className="text-center p-8 bg-white">
+      {/* Hero Image Section */}
+      <div className="relative h-[300px] w-full">
+        <Image 
+          src={AboutHeroImage} 
+          alt="Hero background for about-page, by Gabriel Benois" 
+          layout="fill" 
+          objectFit="cover" 
+          priority={true} 
+          className="absolute inset-0 z-0"
+        />
+        <div className="absolute inset-0 z-10"></div>
+      </div>
+
+      <div className="bg-white py-16">
+        <div className="max-w-4xl mx-auto px-4 space-y-12">
+          <div className="text-center">
             <h1 className="text-5xl font-black text-black mb-4">FOO FEST</h1>
             <p className="text-xl text-gray-700">Where music transcends boundaries</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 p-8 bg-white">
+
+ 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <Radio className="mx-auto h-16 w-16 text-black" />
               <h3 className="mt-4 text-xl font-bold text-black">Sound Waves</h3>
@@ -70,35 +84,36 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="p-8 bg-white">
+          <div>
             <h2 className="text-2xl font-bold mb-4 text-black">Our Origin</h2>
             <p className="text-gray-700 mb-4">Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences.</p>
             <p className="text-gray-700">We craft moments that resonate beyond the festival grounds.</p>
           </div>
-        </div>
 
-        <div className="max-w-5xl mx-auto mt-12 bg-white rounded-xl p-8">
-          <h2 className="text-3xl font-bold mb-6 text-black text-center">Frequently Asked Questions</h2>
-          {faqItems.map((item, index) => (
-            <FAQItem key={index} question={item.question} answer={item.answer} />
-          ))}
-        </div>
-        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-3 gap-6">
-          {[
-            { icon: Music, title: "Lineup", desc: "World-class artists across multiple genres", link: "/lineup" },
-            { icon: Calendar, title: "Schedule", desc: "Detailed performance timings released monthly", link: "#" },
-            { icon: Globe, title: "Sustainability", desc: "Committed to eco-friendly festival practices", link: "#" },
-            { icon: CreditCard, title: "Payments", desc: "Secure online transactions and flexible options", link: "#" },
-            { icon: Shield, title: "Safety", desc: "Comprehensive security and medical support", link: "#" },
-          ].map((info, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl text-center hover:scale-105 transition-transform">
-              <Link className="block" href={info.link}>
-                <info.icon className="mx-auto h-12 w-12 text-black mb-4" />
-                <h3 className="text-xl font-bold text-black mb-2">{info.title}</h3>
-                <p className="text-gray-700">{info.desc}</p>
-              </Link>
-            </div>
-          ))}
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-black text-center">Frequently Asked Questions</h2>
+            {faqItems.map((item, index) => (
+              <FAQItem key={index} question={item.question} answer={item.answer} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: Music, title: "Lineup", desc: "World-class artists across multiple genres", link: "/lineup" },
+              { icon: Calendar, title: "Schedule", desc: "Detailed performance timings released monthly", link: "#" },
+              { icon: Globe, title: "Sustainability", desc: "Committed to eco-friendly festival practices", link: "#" },
+              { icon: CreditCard, title: "Payments", desc: "Secure online transactions and flexible options", link: "#" },
+              { icon: Shield, title: "Safety", desc: "Comprehensive security and medical support", link: "#" },
+            ].map((info, index) => (
+              <div key={index} className="text-center hover:scale-105 transition-transform">
+                <Link className="block" href={info.link}>
+                  <info.icon className="mx-auto h-12 w-12 text-black mb-4" />
+                  <h3 className="text-xl font-bold text-black mb-2">{info.title}</h3>
+                  <p className="text-gray-700">{info.desc}</p>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
