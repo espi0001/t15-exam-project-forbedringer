@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card"; // UI-kom
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter til valg af radio-knapper
 import { Label } from "../ui/Label"; // UI-komponent til tekstlabels
 import { Input } from "../ui/Input"; // UI-komponent til inputfelter
-import { Button } from "../ui/Button"; // UI-komponent til knapper
+import { Button } from "../ui/button"; // UI-komponent til knapper
 import { Music } from "lucide-react"; // Ikonpakke
 
 // Komponent til valg af billet

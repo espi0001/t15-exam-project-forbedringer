@@ -2,7 +2,7 @@
 import { useState } from "react";
 import BookingFlow from "@/components/BookingFlow";
 import ScheduleView from "@/components/ScheduleView";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import ParallaxAboutComponent from "@/components/ParallaxAboutComponent";
 
 export default function Page() {
@@ -21,11 +21,11 @@ export default function Page() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="font-black text-white text-center">Tickets & overview</h1>
+      <div className="flex flex-col justify-center items-center ">
+        <h1 className="font-black text-white text-center">Tickets</h1>
 
         {/* Knapper til at skifte mellem booking og schedule */}
-        <div className="space-x-4">
+        {/* <div className="space-x-4">
           <Button
             variant={activeView === "booking" ? "default" : ""} // Marker aktiv visning
             onClick={() => setActiveView("booking")} // Opdaterer aktiv visning til schedule
@@ -39,10 +39,13 @@ export default function Page() {
           >
             View Schedule
           </Button>
-        </div>
+        </div> */}
       </div>
       {/* Sektion til dynamisk rendering af enten BookingFlow eller ScheduleView */}
-      <section className="p-6">{activeView === "booking" ? <BookingFlow /> : <ScheduleView />}</section>
+      {/* <section className="p-6">{activeView === "booking" ? <BookingFlow /> : <ScheduleView />}</section> */}
+      <section className="p-6">
+        <BookingFlow />
+      </section>
     </div>
   );
 }
