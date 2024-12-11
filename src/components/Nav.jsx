@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Logo from "@/images/foo-fest-logo.webp";
+import Logo from "@/images/foo-fest-isometric-white-logo.svg";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -30,9 +30,9 @@ const Nav = () => {
     <nav className="absolute flex justify-between items-center py-6 px-5 lg:px-16 w-full z-50 bg-transparent">
       <div className="flex gap-6 items-center">
         <Link href="/">
-          <Image src={Logo} width={35} alt="logo" />
+          <Image src={Logo} width={50} alt="logo" />
         </Link>
-        <p className="font-medium text-sm text-black">Refshaleøen, Cph</p>
+        <p className="font-medium text-sm text-white">Refshaleøen, Cph</p>
       </div>
 
       <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-bold text-white relative group">
@@ -42,13 +42,7 @@ const Nav = () => {
 
       <AnimatePresence mode="wait">
         {isMenuOpen && (
-          <motion.div
-            variants={menuSlide}
-            initial="initial"
-            animate="enter"
-            exit="exit"
-            className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white p-16 text-black z-60"
-          >
+          <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white p-16 text-black z-60">
             <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center">
               <div className="w-8 h-[2px] bg-black rotate-45 absolute" />
               <div className="w-8 h-[2px] bg-black -rotate-45 absolute" />
@@ -59,14 +53,7 @@ const Nav = () => {
                 <p className="text-gray-600 uppercase text-sm border-b border-gray-600 pb-4 mb-8">Menu</p>
                 <div className="flex flex-col gap-3">
                   {menuItems.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ x: 80 }}
-                      animate={{ x: 0 }}
-                      transition={{ delay: 0.1 * index }}
-                      className="relative"
-                      onMouseEnter={() => setSelectedIndicator(item.href)}
-                    >
+                    <motion.div key={index} initial={{ x: 80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative" onMouseEnter={() => setSelectedIndicator(item.href)}>
                       {selectedIndicator === item.href && (
                         <motion.div
                           layoutId="indicator"
