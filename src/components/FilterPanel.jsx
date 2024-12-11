@@ -1,4 +1,5 @@
 import { IoIosClose } from "react-icons/io";
+import { Button } from "./ui/Button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
   return (
@@ -101,9 +102,9 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
 
       <hr className="border-gray-300" />
 
-      <button onClick={closeFilter} className="mt-4 w-full bg-black text-white py-2 rounded">
+      <Button variant="outline" onClick={closeFilter} className="mt-4 w-full ">
         Apply Filters
-      </button>
+      </Button>
     </div>
   );
 };

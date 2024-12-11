@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary: "bg-red_color border-red_color text-white_color hover:border hover:border-white_color",
         tertiary: "bg-red_color border-red_color text-white_color hover:bg-black_color",
         footer: "bg-black_color border-black_color text-white_color hover:bg-red_color hover:border-red_color hover:text-white_color",
-        outline: "border-red_color hover:bg-red_color hover:text-white_color",
+        outline: "border-red_color text-black_color hover:bg-red_color hover:text-white_color",
       },
       size: {
         // De forskellige størrelser, som knappen kan have
