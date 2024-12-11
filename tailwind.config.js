@@ -59,7 +59,7 @@ module.exports = {
         text_color: "#fff",
         white_color: "#fff",
         black_color: "#242424",
-        red_color: "#7d0200",
+        red_color: "#ff2800",
         "custom-start": "#060100",
         "custom-end": "#121212",
         card: {
