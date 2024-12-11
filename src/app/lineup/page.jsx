@@ -6,7 +6,6 @@ import Link from "next/link";
 import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/Button";
 import FilterPanel from "@/components/FilterPanel";
-
 import GSAPTextReveal from "@/components/GSAPTextReveal";
 import gsap from "gsap";
 
@@ -104,7 +103,7 @@ const Page = () => {
         }}
         className="w-full h-[250px] py-[64px] lg:py-[112px] bg-center bg-fill bg-cover bg-black bg-opacity-50"
       >
-        <h1 className="font-black text-white text-center">Lineup</h1>
+        <h1 className="font-black text-white text-center anim">Lineup</h1>
       </div>
       {/* <GSAPTextReveal /> */}
       <div className="mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px] flex flex-col gap-4">
