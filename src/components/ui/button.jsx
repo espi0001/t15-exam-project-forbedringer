@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils"; // Importerer en hjælpefunktion (cn) til at s
 
 // Definerer en cva-funktion til at oprette forskellige knap-variantstile
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", // Standard klasser for knap-udseende og tilstande
+  "transition-all duration-500 ease-in-out inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-step_p font-medium border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", // Standard klasser for knap-udseende og tilstande
   {
     // Konfiguration af varianter for knappen (f.eks. farver, størrelse)
     variants: {
       variant: {
         // De forskellige knap-varianter, som kan anvendes
-        default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white transition-colors duration-300 ease-in-out",
-        secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
-        tertiary: "bg-red_color text-white_color hover:bg-primary transition-colors duration-300 ease-in-out",
-        footer: "bg-black_color border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out",
-        outline: "border border-red_color hover:bg-accent transition-colors duration-300 ease-in-out",
+        default: "bg-black_color border-black_color hover:bg-red_color hover:border-red_color text-white_color hover:text-white_color",
+        secondary: "bg-red_color border-red_color text-white_color hover:border hover:border-white_color",
+        tertiary: "bg-red_color border-red_color text-white_color hover:bg-black_color",
+        footer: "bg-black_color border-black_color text-black_color hover:bg-black_color hover:text-white_color",
+        outline: "border-red_color hover:bg-accent",
       },
       size: {
         // De forskellige størrelser, som knappen kan have
