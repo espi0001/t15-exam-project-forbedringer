@@ -11,7 +11,7 @@ export default function AboutSection({ bio }) {
         <p className="text-step_p">{bio}</p>
         {!isExpanded && <div />}
       </div>
-      <button onClick={() => setIsExpanded(!isExpanded)} className="mt-2 text-sm font-medium text-white italic hover:text-gray-300 transition-colors">
+      <button onClick={() => setIsExpanded(!isExpanded)} className="mt-2 text-sm font-medium text-gray-700 italic hover:text-gray-300 transition-colors">
         {isExpanded ? "Show less" : "Show more"}
       </button>
     </div>
