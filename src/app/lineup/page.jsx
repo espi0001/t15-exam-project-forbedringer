@@ -122,11 +122,11 @@ const Page = () => {
           <section>
             {/* a-z knap */}
             <Button
+              variant="outline"
               onClick={() => {
                 const sortedBands = [...filteredBands].sort((a, b) => a.name.localeCompare(b.name));
                 setFilteredBands(sortedBands);
               }}
-              className="bg-black text-white py-2 px-4 rounded"
             >
               Sort A-Z
             </Button>
@@ -152,7 +152,6 @@ const Page = () => {
             </span>
             <Button
               onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
-              className="bg-black text-white py-2 px-4 rounded"
             >
               Load more
             </Button>
