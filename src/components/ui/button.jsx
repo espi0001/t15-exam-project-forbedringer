@@ -16,6 +16,7 @@ const buttonVariants = cva(
         default: "bg-white_color border border-white_color hover:bg-red_color hover:border-red_color text-primary hover:text-white transition-colors duration-300 ease-in-out",
         secondary: "bg-red_color border border-red_color text-white_color hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
         tertiary: "bg-red_color text-white_color hover:bg-primary transition-colors duration-300 ease-in-out",
+        footer: "bg-white_color border border-white_color text-black hover:border hover:border-white_color transition-colors duration-300 ease-in-out",
         outline: "border border-red_color hover:bg-accent transition-colors duration-300 ease-in-out",
       },
       size: {
@@ -23,6 +24,7 @@ const buttonVariants = cva(
         default: "h-9 px-4 py-2", // Standardstørrelse
         sm: "h-8 rounded-full px-3 text-xs", // Lille størrelse
         lg: "rounded-full px-6 py-2", // Stor størrelse
+        xl: "rounded-full px-16 py-4 text-[1.1rem]",
       },
     },
     // Standardværdier, hvis ingen varianter angives
