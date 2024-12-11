@@ -37,7 +37,7 @@ const ParallaxAboutComponent = () => {
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 min-h-screen px-4 md:px-10 bg-gradient-to-b from-custom-start to-custom-end">
-      <div className="md:col-start-1 md:col-end-4 md:row-start-1 md:row-end-3 px-0 py-0 md:py-4 flex flex-col justify-center gap-3">
+      <div className="text-white md:col-start-1 md:col-end-4 md:row-start-1 md:row-end-3 px-0 py-0 md:py-4 flex flex-col justify-center gap-3">
         <p
           ref={textRef1}
           className={`text-3xl md:text-6xl font-bold leading-tight transition-all duration-1000
