@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
 import BookingFlow from "@/components/BookingFlow";
-import ScheduleView from "@/components/ScheduleView";
-import { Button } from "@/components/ui/button";
-import ParallaxAboutComponent from "@/components/ParallaxAboutComponent";
+import AboutHeroImage from "@/images/gabriel-benois-unsplash.jpg";
+import Image from "next/image";
 
 export default function Page() {
   // useState til at styre, hvilken visning der er aktiv (booking eller schedule)
@@ -11,39 +10,16 @@ export default function Page() {
 
   //   mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]
   return (
-    <div
-      // Wrapper div, der tager hele skærmen og viser et baggrundsbillede
-      className="w-full h-screen py-[64px] lg:py-[112px] bg-cover bg-center"
-      style={{
-        backgroundImage: "url('/images/jodie-walton-unsplash.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="flex flex-col justify-center items-center ">
-        <h1 className="font-black text-white text-center">Tickets</h1>
-
-        {/* Knapper til at skifte mellem booking og schedule */}
-        {/* <div className="space-x-4">
-          <Button
-            variant={activeView === "booking" ? "default" : ""} // Marker aktiv visning
-            onClick={() => setActiveView("booking")} // Opdaterer aktiv visning til schedule
-          >
-            Book Tickets
-          </Button>
-          <Button
-            variant={activeView === "schedule" ? "secondary" : ""}
-            variant="secondary" // Marker aktiv visning
-            onClick={() => setActiveView("schedule")} // Opdaterer aktiv visning til schedule
-          >
-            View Schedule
-          </Button>
-        </div> */}
+    <div>
+      <div className="relative h-[300px] w-full flex justify-center items-center">
+        <Image src={AboutHeroImage} alt="Hero background for about-page, by Gabriel Benois" layout="fill" objectFit="cover" priority={true} className="absolute inset-0 z-0" />
+        <div className="absolute inset-0 z-10 self-center">
+          <h1 className="text-white_color text-center">Tickets</h1>
+        </div>
       </div>
-      {/* Sektion til dynamisk rendering af enten BookingFlow eller ScheduleView */}
-      {/* <section className="p-6">{activeView === "booking" ? <BookingFlow /> : <ScheduleView />}</section> */}
+
       <section className="p-6">
+        {/* <h1 className="text-black_color text-center">Tickets</h1> */}
         <BookingFlow />
       </section>
     </div>

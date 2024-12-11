@@ -1,20 +1,20 @@
 "use client";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 import { api } from "@/lib/api";
 // import { useReservationTimer } from "@/hooks/useReservationTimer";
-import TicketSelection from "./booking/TicketSelection"; // Komponent til valg af billetter
-import CampingOptions from "./booking/CampingOptions"; // Komponent til valg af campingmuligheder
-import PersonalInfo from "./booking/PersonalInfo"; // Komponent til indtastning af personlige oplysninger
-import Checkout from "./booking/Checkout"; // Komponent til betaling og checkout
-import Confirmation from "./booking/Confirmation"; // Komponent til visning af bekræftelse
+import TicketSelection from "./booking/TicketSelection"; // Trin 1
+import CampingOptions from "./booking/CampingOptions"; // Trin 2
+import PersonalInfo from "./booking/PersonalInfo"; // Trin 3
+import Checkout from "./booking/Checkout"; // Trin 4
+import Confirmation from "./booking/Confirmation"; // Trin 5
 
 export default function BookingFlow() {
-  // State til at holde styr på det aktuelle trin i bookingprocessen
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1); // Hvilket trin er aktuelt
   // State til at gemme data fra de forskellige trin i bookingprocessen
   const [bookingData, setBookingData] = useState({
-    ticketType: "", // Type af billet
+    ticketType: "", // Type billet
     ticketCount: 1, // Antal billetter
     campingArea: "", // Valgt campingområde
     greenCamping: false, // Indikerer om grøn camping er valgt
@@ -22,26 +22,39 @@ export default function BookingFlow() {
     personalInfo: [], // Liste med personlige oplysninger
   });
 
-  // State til at holde reservationens ID, hvis det genereres
-  const [reservationId, setReservationId] = useState("");
-
   //   const [startTime, setStartTime] = useState(null);
   //   const { timeLeft, isExpired } = useReservationTimer(startTime);
 
-  // Funktion til at håndtere ændring af trin
-  const handleStepChange = async (newStep) => {
-    if (newStep === 2 && step === 1) {
-      // Hvis brugeren går fra trin 1 til trin 2, kunne vi starte en timer (kommenteret ud her)
-      //   setStartTime(Date.now());
+  // State til at holde reservationens ID, hvis det genereres
+  const [reservationId, setReservationId] = useState("");
+
+  // Håndtering af trinændring
+  const handleStepChange = (newStep) => setStep(newStep);
+
+  // Håndtering af formularens indsendelse
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Stop standard indsendelse
+    if (step === 4) {
+      console.log("Booking data submitted:", bookingData); // Her kan du integrere en API-anmodning
+      setStep(5); // Gå til bekræftelse
+    } else {
+      handleStepChange(step + 1);
     }
-    setStep(newStep); // Opdaterer det aktuelle trin
   };
 
+  // Funktion til at håndtere ændring af trin
+  // const handleStepChange = async (newStep) => {
+  //   if (newStep === 2 && step === 1) {
+  //     // Hvis brugeren går fra trin 1 til trin 2, kunne vi starte en timer (kommenteret ud her)
+  //     //   setStartTime(Date.now());
+  //   }
+  //   setStep(newStep); // Opdaterer det aktuelle trin
+  // };
+
   return (
-    <div className="max-w-2xl mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
       {/* Tid tilbage til reservationen vises, hvis en timer blev brugt */}
       {/* {timeLeft && step > 1 && step < 5 && <div className="mb-4 text-white text-center">Time remaining: {Math.ceil(timeLeft / 1000)}s</div>} */}
-
       {/* Trin 1: Valg af billetter */}
       {step === 1 && (
         <TicketSelection
@@ -96,10 +109,10 @@ export default function BookingFlow() {
               personalInfo: [],
             });
             setReservationId(""); // Fjerner reservationens ID
-            setStartTime(null); // Nulstiller timeren (hvis brugt)
+            // setStartTime(null); // Nulstiller timeren (hvis brugt)
           }}
         />
       )}
-    </div>
+    </form>
   );
 }

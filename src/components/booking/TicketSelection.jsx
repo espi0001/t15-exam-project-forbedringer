@@ -9,6 +9,7 @@ import { Button } from "../ui/button"; // UI-komponent til knapper
 import { Music } from "lucide-react"; // Ikonpakke
 
 // Komponent til valg af billet
+// FØR: bookingData, setBookingData, onNext
 export default function TicketSelection({ bookingData, setBookingData, onNext }) {
   // Håndterer ændringer i valgt billettype
   const handleTicketTypeChange = (value) => {
@@ -35,18 +36,22 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
         <RadioGroup
           value={bookingData.ticketType} // Forvalgt værdi baseret på bookingData
           onValueChange={handleTicketTypeChange} // Håndterer ændringer i valgt værdi
-          className="mb-4"
+          className="grid grid-cols-2 gap-6 mb-4"
         >
           {/* Regular Ticket valg */}
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="regular" id="regular" />
-            <Label htmlFor="regular">Regular Ticket (799,-)</Label>
+          <div className={`p-6 border rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "regular" ? "border-black bg-gray-100" : "border-gray-300"}`} onClick={() => handleTicketTypeChange("regular")}>
+            <RadioGroupItem value="regular" id="regular" className="hidden" />
+            {/* 
+            <Label htmlFor="regular">Regular Ticket (799,-)</Label> */}
+            <Label htmlFor="regular">Regular Ticket</Label>
+            <p className="text-sm mt-2">DKK 799 + FEE</p>
           </div>
 
           {/* VIP Ticket valg */}
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="vip" id="vip" />
-            <Label htmlFor="vip">VIP Ticket (1299,-)</Label>
+          <div className={`p-6 border rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "vip" ? "border-black bg-gray-100" : "border-gray-300"}`} onClick={() => handleTicketTypeChange("vip")}>
+            <RadioGroupItem value="vip" id="vip" className="hidden" />
+            <Label htmlFor="vip">VIP Ticket</Label>
+            <p className="text-sm mt-2">DKK 1299 + FEE</p>
           </div>
         </RadioGroup>
 

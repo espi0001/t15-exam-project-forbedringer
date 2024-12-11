@@ -8,7 +8,14 @@ import { cn } from "@/lib/utils";
 
 const labelVariants = cva("step_p font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
 
-const Label = React.forwardRef(({ className, ...props }, ref) => <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />);
+const Label = React.forwardRef(({ className, htmlFor, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    htmlFor={htmlFor} // Sikrer korrekt binding
+    className={cn(labelVariants(), className)}
+    {...props}
+  />
+));
 Label.displayName = LabelPrimitive.Root.displayName;
 
 export { Label };
