@@ -44,7 +44,7 @@ export default function ScheduleView() {
       <CardHeader>
         <div className="font-medium flex justify-center gap-2">
           {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
-            <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-[#7d0200] text-white" : "bg-gray-200"}`}>
+            <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-red_color text-white_color" : "bg-gray-200"}`}>
               {day.toUpperCase()}
             </button>
           ))}
@@ -74,7 +74,7 @@ export default function ScheduleView() {
                         <p className="text-sm">
                           {event.start} - {event.end}
                         </p>
-                        {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red-600 text-sm">CANCELLED</p>}
+                        {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red_color text-step_text_large">CANCELLED</p>}
                       </div>
                     );
                   })}

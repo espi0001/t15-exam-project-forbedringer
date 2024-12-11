@@ -1,8 +1,9 @@
 import { IoIosClose } from "react-icons/io";
+import { Button } from "./ui/Button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
   return (
-    <div className="px-[20px] py-[28px] fixed text-text_color top-0 left-0 h-full w-full md:w-[300px] bg-primary z-50 transition-transform duration-300 overflow-y-auto">
+    <div className="px-[20px] py-[28px] fixed bg-white_color text-black_color top-0 left-0 h-full w-full md:w-[300px] bg-primary z-50 transition-transform duration-300 overflow-y-auto">
       <div className="flex flex-col justify-between items-center mb-[24px]">
         <button onClick={closeFilter} className="self-end text-lg hover:text-red_color">
           <IoIosClose size={50} />
@@ -101,9 +102,9 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
 
       <hr className="border-gray-300" />
 
-      <button onClick={closeFilter} className="mt-4 w-full bg-black text-white py-2 rounded">
+      <Button variant="outline" onClick={closeFilter} className="mt-4 w-full ">
         Apply Filters
-      </button>
+      </Button>
     </div>
   );
 };
