@@ -28,10 +28,11 @@ const Nav = () => {
 
   return (
     <nav className="absolute flex justify-between items-center py-6 px-5 lg:px-16 w-full z-50 bg-transparent">
-      <div className="hidden md:block">
+      <div className="flex gap-6 items-center">
         <Link href="/">
           <Image src={Logo} width={35} alt="logo" />
         </Link>
+        <p className="font-medium text-sm">Refshaleøen, Cph</p>
       </div>
 
       {/* <Link href="/tickets" className="text-2xl font-light text-white relative group">
