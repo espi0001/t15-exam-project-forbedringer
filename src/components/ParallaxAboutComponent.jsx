@@ -60,7 +60,7 @@ const ParallaxAboutComponent = () => {
           </button>
         </Link>
       </div>
-      <div className="md:col-start-2 md:col-end-5 md:row-start-3 md:row-end-5 px-0 py-0 md:py-4 flex flex-col justify-center items-end text-right gap-3">
+      <div className="text-white md:col-start-2 md:col-end-5 md:row-start-3 md:row-end-5 px-0 py-0 md:py-4 flex flex-col justify-center items-end text-right gap-3">
         <p
           ref={textRef2}
           className={`text-3xl md:text-6xl font-bold leading-tight transition-all duration-1000
