@@ -6,6 +6,7 @@ import { Label } from "../ui/Label";
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
 import { User } from "lucide-react";
+import { MdArrowLeft } from "react-icons/md";
 
 export default function PersonalInfo({ bookingData, setBookingData, onNext, onBack }) {
   // Funktion til at opdatere personlige oplysninger for hver billet
@@ -28,7 +29,7 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <User className="h-6 w-6" />
+          <User size={50} />
           Personal Information
         </CardTitle>
       </CardHeader>
@@ -40,26 +41,13 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
             <div className="space-y-4">
               {/* Input for fulde navn */}
               <div>
-                <Label htmlFor={`name-${index}`}>Full Name</Label> {/* Label for navn */}
-                <Input
-                  id={`name-${index}`} // Unik ID for inputfelt
-                  value={bookingData.personalInfo[index]?.name || ""} // Forvalgt værdi
-                  onChange={(e) => handleInfoChange(index, "name", e.target.value)} // Opdater navn i state
-                  className="mt-1"
-                />
+                <Label htmlFor={`name-${index}`}>Full name</Label> {/* Label for navn */}
+                <Input id={`name-${index}`} name={`name-${index}`} value={bookingData.personalInfo[index]?.name || ""} placeholder="Jane Foo" onChange={(e) => handleInfoChange(index, "name", e.target.value)} className="mt-1 placeholder:text-gray-400" />
               </div>
               {/* Input for e-mail */}
               <div>
                 <Label htmlFor={`email-${index}`}>Email</Label> {/* Label for e-mail */}
-                <Input
-                  id={`email-${index}`} // Unik ID for inputfelt
-                  type="email"
-                  name="email"
-                  value={bookingData.personalInfo[index]?.email || ""} // Forvalgt værdi
-                  onChange={(e) => handleInfoChange(index, "email", e.target.value)} // Opdater e-mail i state
-                  className="mt-1"
-                  required
-                />
+                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="foofest@mail.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-gray-400" />
               </div>
             </div>
           </div>
@@ -69,11 +57,12 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
         <div className="flex justify-between mt-4">
           <Button variant="outline" onClick={onBack}>
             {/* Knappen for at gå tilbage */}
-            Back
+            <MdArrowLeft size={20} />
+            Back {/* Gå tilbage til forrige trin */}
           </Button>
-          <Button variant="secondary" onClick={onNext} disabled={!isValid()}>
+          <Button type="submit" variant="tertiary" disabled={!isValid()}>
             {/* Knappen for at gå videre, kun aktiv hvis validering er ok */}
-            Continue to Payment
+            Continue to payment
           </Button>
         </div>
       </CardContent>
