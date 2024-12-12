@@ -33,10 +33,18 @@ export default function BookingFlow() {
 
   // Håndtering af formularens indsendelse
   const handleSubmit = (e) => {
-    e.preventDefault(); // Stop standard indsendelse
-    if (step === 4) {
-      console.log("Booking data submitted:", bookingData); // Her kan du integrere en API-anmodning
-      setStep(5); // Gå til bekræftelse
+    e.preventDefault();
+
+    if (step === 3) {
+      // Valider personalInfo-data
+      if (bookingData.personalInfo.length !== bookingData.ticketCount || !bookingData.personalInfo.every((info) => info.name && info.email)) {
+        alert("Please complete all personal information before proceeding.");
+        return;
+      }
+      handleStepChange(4); // Gå til næste trin
+    } else if (step === 4) {
+      console.log("Booking data submitted:", bookingData);
+      setStep(5);
     } else {
       handleStepChange(step + 1);
     }
@@ -52,7 +60,7 @@ export default function BookingFlow() {
   // };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
       {/* Tid tilbage til reservationen vises, hvis en timer blev brugt */}
       {/* {timeLeft && step > 1 && step < 5 && <div className="mb-4 text-white text-center">Time remaining: {Math.ceil(timeLeft / 1000)}s</div>} */}
       {/* Trin 1: Valg af billetter */}

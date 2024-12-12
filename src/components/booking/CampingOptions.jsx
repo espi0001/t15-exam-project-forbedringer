@@ -8,6 +8,8 @@ import { Checkbox } from "../ui/checkbox"; // Checkbox-komponent
 import { Tent } from "lucide-react"; // Ikon for camping
 import { api } from "@/lib/api"; // API-funktioner
 
+import { MdArrowLeft } from "react-icons/md";
+
 export default function CampingOptions({ bookingData, setBookingData, onNext, onBack }) {
   // Lokal state til at holde ledige campingområder
   const [availableSpots, setAvailableSpots] = useState([]);
@@ -34,13 +36,13 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Tent className="h-6 w-6" />
-          Camping Options
+          <Tent size={50} />
+          Camping options
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mb-6 p-4 border rounded">
         {/* Viser fejlmeddelelse, hvis der opstår en fejl */}
-        {error && <div className="text-red-500 mb-4">{error}</div>}
+        {error && <div className="text-red_color mb-4">{error}</div>}
 
         {/* Viser indlæsningsstatus, indtil data er hentet */}
         {loading ? (
@@ -49,7 +51,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
           <div className="space-y-4">
             {/* Vælg campingområde */}
             <div>
-              <Label>Select Camping Area</Label>
+              <Label>Select camping area</Label>
               <select
                 value={bookingData.campingArea} // Forvalgt værdi fra bookingData
                 onChange={(e) =>
@@ -58,11 +60,11 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                     campingArea: e.target.value, // Opdater campingområde i bookingData
                   })
                 }
-                className="w-full p-2 border rounded mt-1"
+                className="w-full text-step_text_regular p-2 border rounded mt-1 bg-white"
               >
                 <option value="">Select an area</option> {/* Standard valg */}
                 {availableSpots.map((spot) => (
-                  <option key={spot.area} value={spot.area}>
+                  <option key={spot.area} value={spot.area} className="text-step_text_regular bg-white">
                     {spot.area} ({spot.spots} spots available) {/* Viser områder og tilgængelige pladser */}
                   </option>
                 ))}
@@ -81,12 +83,12 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                   })
                 }
               />
-              <Label htmlFor="greenCamping">Green Camping (+249,-)</Label>
+              <Label htmlFor="greenCamping">Green camping (+ 249,-)</Label>
             </div>
 
             {/* Vælg opsætning af telt */}
-            <div>
-              <Label>Tent Setup</Label>
+            <div className="pt-4">
+              <Label>Tent setup</Label>
               <select
                 value={bookingData.tentSetup} // Forvalgt værdi fra bookingData
                 onChange={(e) =>
@@ -95,9 +97,12 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                     tentSetup: e.target.value, // Opdater teltopsætning i bookingData
                   })
                 }
-                className="w-full p-2 border rounded mt-1"
+                className="w-full p-2 text-step_text_regular border rounded mt-1 bg-white_color"
               >
-                <option value="">No tent setup</option> {/* Standard valg */}
+                <option value="" className="bg-white_color">
+                  No tent setup
+                </option>{" "}
+                {/* Standard valg */}
                 <option value="2person">2-Person Tent (299,-)</option>
                 <option value="3person">3-Person Tent (399,-)</option>
               </select>
@@ -105,10 +110,11 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
 
             <div className="flex justify-between mt-4">
               <Button variant="outline" onClick={onBack}>
+                <MdArrowLeft size={20} />
                 Back {/* Gå tilbage til forrige trin */}
               </Button>
               <Button variant="tertiary" onClick={onNext} disabled={!bookingData.campingArea}>
-                Continue to Personal Info {/* Fortsæt til næste trin */}
+                Continue to personal info {/* Fortsæt til næste trin */}
               </Button>
             </div>
           </div>

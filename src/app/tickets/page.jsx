@@ -18,7 +18,7 @@ export default function Page() {
         </div>
       </div>
 
-      <section className="p-6">
+      <section className="mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]">
         {/* <h1 className="text-black_color text-center">Tickets</h1> */}
         <BookingFlow />
       </section>
