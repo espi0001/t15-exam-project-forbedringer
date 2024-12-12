@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
+import { Button } from "@/components/ui/Button";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -123,12 +124,9 @@ const Contact = () => {
                   className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-black"
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-3 px-4 rounded-md hover:bg-red-800 transition-colors"
-              >
-                Send message!
-              </button>
+                 <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="focus:ring-2 focus:ring-black-500">
+            Send
+          </Button>
             </form>
           </div>
         </div>

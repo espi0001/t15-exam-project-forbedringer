@@ -1,5 +1,5 @@
 import Image from "next/image";
-import placeholderLogo from "@/images/placeholder-image.png";
+import placeholderLogo from "@/images/placeholder-image.jpg";
 import AboutSection from "@/app/band/AboutSection";
 
 // Dynamically import local logos
@@ -50,7 +50,7 @@ const Page = async ({ params }) => {
         <Image
           src={bandLogo}
           alt={`${band.name} logo`}
-          className="w-full h-[300px] lg:h-[400px] object-cover bg-center"
+          className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center"
           width={1200}
           height={400}
         />
