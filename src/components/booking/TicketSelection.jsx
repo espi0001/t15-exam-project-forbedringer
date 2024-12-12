@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter
 import { Label } from "../ui/label"; // UI-komponent til tekstlabels
 import { Input } from "../ui/input"; // UI-komponent til inputfelter
 import { Button } from "../ui/button"; // UI-komponent til knapper
-import { Music } from "lucide-react"; // Ikonpakke
+import { IoTicketOutline } from "react-icons/io5";
 
 // Komponent til valg af billet
 export default function TicketSelection({ bookingData, setBookingData, onNext }) {
