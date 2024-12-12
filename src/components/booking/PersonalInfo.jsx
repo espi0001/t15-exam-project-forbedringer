@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
 import { Label } from "../ui/Label";
 import { Input } from "../ui/Input";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import { User } from "lucide-react";
 
 export default function PersonalInfo({ bookingData, setBookingData, onNext, onBack }) {

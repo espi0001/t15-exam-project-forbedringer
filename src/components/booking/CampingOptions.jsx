@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card"; // UI-komponenter til opbygning af kortlayout
 import { Label } from "../ui/Label"; // Komponent til tekstlabels
-import { Button } from "../ui/button"; // Komponent til knapper
+import { Button } from "../ui/Button"; // Komponent til knapper
 import { Checkbox } from "../ui/Checkbox"; // Checkbox-komponent
 import { Tent } from "lucide-react"; // Ikon for camping
 import { api } from "@/lib/api"; // API-funktioner

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
 import { Label } from "../ui/Label";
 import { Input } from "../ui/Input";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import { Alert, AlertDescription } from "../ui/Alert";
 import { CreditCard } from "lucide-react";
 import { api } from "@/lib/api"; // API-funktioner til backend-kommunikation
