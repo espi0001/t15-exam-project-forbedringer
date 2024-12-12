@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card"; // UI-komponenter til opbygning af kortlayout
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-komponenter til opbygning af kortlayout
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter til valg af radio-knapper
 import { Label } from "../ui/label"; // UI-komponent til tekstlabels
 import { Input } from "../ui/input"; // UI-komponent til inputfelter
