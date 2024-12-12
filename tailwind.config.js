@@ -37,10 +37,15 @@ module.exports = {
             opacity: "1",
           },
         },
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        }
       },
       animation: {
         "slide-up": "slideUp 2.5s ease-out forwards",
         "fade-in": "fadeIn 1s ease-out forwards",
+        'infinite-scroll': 'infinite-scroll 15s linear infinite',
       },
       animationDelay: {
         200: "200ms",
@@ -108,13 +113,9 @@ module.exports = {
         step_h4: "clamp(1.5rem, 1.3261rem + 0.8696vw, 2rem)",
         step_h5: "clamp(1.25rem, 1.163rem + 0.4348vw, 1.5rem)",
         step_h6: "clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem)",
-
         step_text_large: "clamp(1.25rem, 1.2065rem + 0.2174vw, 1.375rem)",
-
         step_p: "clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem)",
-
         step_text_regular: "clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem)",
-
         step_text_tiny: "clamp(0.75rem, 0.7065rem + 0.2174vw, 0.875rem)",
       },
       borderRadius: {
