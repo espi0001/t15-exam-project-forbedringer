@@ -5,6 +5,7 @@ import Logo from "@/images/foo-fest-isometric-white-logo.svg";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import DateHover from "./DateHover";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ const Nav = () => {
         <Link href="/">
           <Image src={Logo} width={50} alt="logo" />
         </Link>
-        <p className="font-medium text-sm text-white">Refshaleøen, Cph</p>
+        <DateHover />
       </div>
 
       <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-bold text-white relative group">
