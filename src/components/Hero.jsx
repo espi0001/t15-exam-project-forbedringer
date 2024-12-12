@@ -23,7 +23,7 @@ const Hero = () => {
         <div className="absolute inset-0 z-40">
           <Image src={IndexFansHero} alt="Fans Image" width={3000} height={100} priority={true} className="w-full h-full object-cover" />
         </div>
-        <div className="absolute bottom-10 w-full text-white flex flex-col items-start p-4 z-50">
+        <div className="absolute bottom-10 w-full text-white flex flex-col items-start p-4 z-40">
           <div className="hero-text overflow-hidden">
             <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>
