@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 
 function useInView(options = { threshold: 0.1 }) {
   const [inView, setInView] = useState(false);
