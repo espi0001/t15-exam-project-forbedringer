@@ -3,10 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, memo } from "react";
 import { Radio, Flag, MapPin, ChevronDown, ChevronUp, Music, Calendar, Globe, CreditCard, Shield } from "lucide-react";
-// import AboutHeroImage from "@/images/gabriel-benois-unsplash.jpg";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
-import ContactHero from "@/images/rachel-coyne-unsplash.jpg";
+import ContactHero from "@/images/dominic-hampton-unsplash.avif";
 
 const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
