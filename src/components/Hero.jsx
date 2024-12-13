@@ -53,13 +53,13 @@ const Hero = () => {
     <div className="relative w-full h-screen">
       {/* Loading overlay */}
       <div
-        className="liquid-overlay fixed inset-0 bg-white z-50"
+        className="liquid-overlay fixed inset-0 bg-white_color z-50"
         style={{
           clipPath: "circle(100% at 50% 50%)",
         }}
       >
         {/* Sort tekst på hvid baggrund */}
-        <div className="text-layer-1 absolute bottom-10 w-full text-black flex flex-col items-start p-4">
+        <div className="text-layer-1 absolute bottom-10 w-full text-black_color flex flex-col items-start p-4">
           <div className="hero-text overflow-hidden">
             <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>
@@ -80,7 +80,7 @@ const Hero = () => {
         </div>
 
         {/* Hvid tekst på hero baggrund */}
-        <div className="text-layer-2 absolute bottom-10 w-full text-white flex flex-col items-start p-4 z-40">
+        <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 z-40">
           <div className="hero-text overflow-hidden">
             <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>

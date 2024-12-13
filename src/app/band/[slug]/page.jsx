@@ -47,16 +47,8 @@ const Page = async ({ params }) => {
     <div>
       <div className="relative">
         {/* Adjust Image Container */}
-        <Image
-          src={bandLogo}
-          alt={`${band.name} logo`}
-          className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center"
-          width={1200}
-          height={400}
-        />
-        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white lg:text-4xl font-bold">
-          {band.name}
-        </h1>
+        <Image src={bandLogo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center" width={1200} height={400} />
+        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold">{band.name}</h1>
       </div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
@@ -87,12 +79,8 @@ const Page = async ({ params }) => {
             {bandSchedules.length > 0 ? (
               <div>
                 {bandSchedules.map((schedule, index) => (
-                  <p
-                    key={index}
-                    className="p-4 border rounded shadow-sm single-view-schedule-p"
-                  >
-                    <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} ({schedule.start} -{" "}
-                    {schedule.end})
+                  <p key={index} className="p-4 border rounded shadow-sm single-view-schedule-p">
+                    <strong>{schedule.day.toUpperCase()}</strong>: {schedule.stage} ({schedule.start} - {schedule.end})
                   </p>
                 ))}
               </div>

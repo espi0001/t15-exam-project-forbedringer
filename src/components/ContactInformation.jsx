@@ -6,7 +6,7 @@ const ContactInformation = ({ icon, link, linktext }) => {
       {/* Klon elementet for at tilføje yderligere klasser eller ændringer */}
       {React.cloneElement(icon, { className: "mb-2 h-6 w-6 text-black_color" })}
       {/* <Mail className="mb-2 h-6 w-6 text-black_color" /> */}
-      <Link href={link} className="text-gray-700 text-step_p">
+      <Link href={link} className="text-grey_color text-step_p">
         {linktext}
       </Link>
     </div>

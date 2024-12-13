@@ -9,12 +9,12 @@ const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-gray-300 py-4">
+    <div className="border-b border-grey_color py-4">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left">
-        <span className="text-lg font-semibold text-black">{question}</span>
-        {isOpen ? <ChevronUp className="text-black" /> : <ChevronDown className="text-black" />}
+        <span className="text-lg font-semibold text-black_color">{question}</span>
+        {isOpen ? <ChevronUp className="text-black_color" /> : <ChevronDown className="text-black_color" />}
       </button>
-      {isOpen && <p className="mt-4 text-black">{answer}</p>}
+      {isOpen && <p className="mt-4 text-black_color">{answer}</p>}
     </div>
   );
 });
@@ -42,56 +42,48 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="relative text-gray-700">
+    <div className="relative text-grey_color">
       {/* Hero Image Section */}
       <div className="relative h-[300px] w-full">
-        <Image 
-          src={AboutHeroImage} 
-          alt="Hero background for about-page, by Gabriel Benois" 
-          layout="fill" 
-          objectFit="cover" 
-          priority={true} 
-          className="absolute inset-0 z-0"
-        />
+        <Image src={AboutHeroImage} alt="Hero background for about-page, by Gabriel Benois" layout="fill" objectFit="cover" priority={true} className="absolute inset-0 z-0" />
         <div className="absolute inset-0 z-10"></div>
       </div>
 
-      <div className="bg-white py-16">
+      <div className="bg-white_color py-16">
         <div className="max-w-4xl mx-auto px-4 space-y-12">
           <div className="text-center">
-            <h1 className="text-5xl font-black text-black mb-4">FOO FEST</h1>
-            <p className="text-xl text-gray-700">Where music transcends boundaries</p>
+            <h1 className="text-5xl font-black text-black_color mb-4">FOO FEST</h1>
+            <p className="text-xl text-grey_color">Where music transcends boundaries</p>
           </div>
 
- 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <Radio className="mx-auto h-16 w-16 text-black" />
-              <h3 className="mt-4 text-xl font-bold text-black">Sound Waves</h3>
-              <p className="text-gray-700">Curated musical journeys across genres</p>
+              <Radio className="mx-auto h-16 w-16 text-black_color" />
+              <h3 className="mt-4 text-xl font-bold text-black_color">Sound Waves</h3>
+              <p className="text-grey_color">Curated musical journeys across genres</p>
             </div>
 
             <div className="text-center">
-              <Flag className="mx-auto h-16 w-16 text-black" />
-              <h3 className="mt-4 text-xl font-bold text-black">Experience</h3>
-              <p className="text-gray-700">Immersive festival landscape and community</p>
+              <Flag className="mx-auto h-16 w-16 text-black_color" />
+              <h3 className="mt-4 text-xl font-bold text-black_color">Experience</h3>
+              <p className="text-grey_color">Immersive festival landscape and community</p>
             </div>
 
             <div className="text-center">
-              <MapPin className="mx-auto h-16 w-16 text-black" />
-              <h3 className="mt-4 text-xl font-bold text-black">Location</h3>
-              <p className="text-gray-700">Epic venue bridging urban and natural spaces</p>
+              <MapPin className="mx-auto h-16 w-16 text-black_color" />
+              <h3 className="mt-4 text-xl font-bold text-black_color">Location</h3>
+              <p className="text-grey_color">Epic venue bridging urban and natural spaces</p>
             </div>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-black">Our Origin</h2>
-            <p className="text-gray-700 mb-4">Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences.</p>
-            <p className="text-gray-700">We craft moments that resonate beyond the festival grounds.</p>
+            <h2 className="text-2xl font-bold mb-4 text-black_color">Our Origin</h2>
+            <p className="text-grey_color mb-4">Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences.</p>
+            <p className="text-grey_color">We craft moments that resonate beyond the festival grounds.</p>
           </div>
 
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-black text-center">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold mb-6 text-black_color text-center">Frequently Asked Questions</h2>
             {faqItems.map((item, index) => (
               <FAQItem key={index} question={item.question} answer={item.answer} />
             ))}
@@ -107,9 +99,9 @@ const AboutPage = () => {
             ].map((info, index) => (
               <div key={index} className="text-center hover:scale-105 transition-transform">
                 <Link className="block" href={info.link}>
-                  <info.icon className="mx-auto h-12 w-12 text-black mb-4" />
-                  <h3 className="text-xl font-bold text-black mb-2">{info.title}</h3>
-                  <p className="text-gray-700">{info.desc}</p>
+                  <info.icon className="mx-auto h-12 w-12 text-black_color mb-4" />
+                  <h3 className="text-xl font-bold text-black_color mb-2">{info.title}</h3>
+                  <p className="text-grey_color">{info.desc}</p>
                 </Link>
               </div>
             ))}

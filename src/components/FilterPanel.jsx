@@ -16,7 +16,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Days</p>
-          <button onClick={() => setFilters({ ...filters, day: [] })} className="text-xs text-gray-500 underline">
+          <button onClick={() => setFilters({ ...filters, day: [] })} className="text-xs text-grey_color underline">
             Clear
           </button>
         </div>
@@ -32,7 +32,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedDays = e.target.checked ? [...filters.day, selectedDay] : filters.day.filter((day) => day !== selectedDay);
                   setFilters({ ...filters, day: updatedDays });
                 }}
-                className="form-checkbox text-black border-gray-300 rounded"
+                className="form-checkbox text-black_color border-grey_color rounded"
               />
               <span>{fullDayName}</span>
             </label>
@@ -46,7 +46,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Stages</p>
-          <button onClick={() => setFilters({ ...filters, stage: [] })} className="text-xs text-gray-500 underline">
+          <button onClick={() => setFilters({ ...filters, stage: [] })} className="text-xs text-grey_color underline">
             Clear
           </button>
         </div>
@@ -62,7 +62,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedStages = e.target.checked ? [...filters.stage, selectedStage] : filters.stage.filter((stage) => stage !== selectedStage);
                   setFilters({ ...filters, stage: updatedStages });
                 }}
-                className="form-checkbox text-black border-gray-300 rounded"
+                className="form-checkbox text-black_color border-grey_color rounded"
               />
               <span>{stage}</span>
             </label>
@@ -76,7 +76,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Genre</p>
-          <button onClick={() => setFilters({ ...filters, genre: [] })} className="text-xs text-gray-500 underline">
+          <button onClick={() => setFilters({ ...filters, genre: [] })} className="text-xs text-grey_color underline">
             Clear
           </button>
         </div>
@@ -92,7 +92,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedGenreFilters = e.target.checked ? [...filters.genre, selectedGenre] : filters.genre.filter((g) => g !== selectedGenre);
                   setFilters({ ...filters, genre: updatedGenreFilters });
                 }}
-                className="form-checkbox text-black border-gray-300 rounded"
+                className="form-checkbox text-black_color border-grey_color rounded"
               />
               <span>{genre}</span>
             </label>
@@ -100,7 +100,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
         </form>
       </article>
 
-      <hr className="border-gray-300" />
+      <hr className="border-grey_color" />
 
       <Button variant="outline" onClick={closeFilter} className="mt-4 w-full ">
         Apply Filters
