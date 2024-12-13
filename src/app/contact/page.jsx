@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
