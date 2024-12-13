@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { api } from "@/lib/api";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
-import ContactHero from "@/images/redd-francisco-unsplash-1.png";
+import ContactHero from "@/images/redd-francisco-unsplash-1.avif";
 import { Button } from "@/components/ui/button";
 
 export default function Page() {

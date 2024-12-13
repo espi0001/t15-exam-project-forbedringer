@@ -7,7 +7,7 @@ import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/button";
 import FilterPanel from "@/components/FilterPanel";
 
-import ContactHero from "@/images/danny-howe-unsplash.jpg";
+import ContactHero from "@/images/danny-howe-unsplash.avif";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import HeaderBillede from "@/components/HeaderBillede";
