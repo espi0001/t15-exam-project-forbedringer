@@ -4,7 +4,7 @@ import { IoFilter } from "react-icons/io5";
 
 import Link from "next/link";
 import { api } from "@/lib/api"; // Importer api her
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import FilterPanel from "@/components/FilterPanel";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
