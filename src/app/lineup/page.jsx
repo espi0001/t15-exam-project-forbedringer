@@ -9,7 +9,7 @@ import FilterPanel from "@/components/FilterPanel";
 
 import ContactHero from "@/images/danny-howe-unsplash.avif";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 
