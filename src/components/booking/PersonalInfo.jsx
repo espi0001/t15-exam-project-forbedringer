@@ -47,7 +47,7 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
               {/* Input for e-mail */}
               <div>
                 <Label htmlFor={`email-${index}`}>Email</Label> {/* Label for e-mail */}
-                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="foofest@mail.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-gray-400" />
+                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="janefoo@email.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-gray-400" />
               </div>
             </div>
           </div>

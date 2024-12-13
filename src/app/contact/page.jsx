@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,61 +27,56 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative text-gray-700">
-      <div className="relative h-[300px] w-full">
-        <Image src={ContactHero} alt="Vibrant music festival crowd with colorful lights and energy" layout="fill" objectFit="cover" priority={true} className="absolute inset-0 z-0" />
-        <div className="absolute inset-0 z-10 bg-black/50"></div>
-      </div>
+    <div className="">
+      <HeaderBillede billede={ContactHero} />
 
-      <div className="bg-white py-16">
-        <div className="max-w-4xl mx-auto px-4 space-y-12">
-          <div className="text-center">
-            <h1 className="text-5xl font-black text-black mb-4">Contact us</h1>
-            <p className="text-xl text-gray-700">We’re here to help.</p>
-          </div>
+      <section className="mx-[20px] lg:mx-[64px] p-6 ">
+        <Card className="w-full max-w-6xl mx-auto mb-10">
+          <HeaderText h1="Contact us" text="We’re here to help." />
+          {/* grid grid-cols-1 md:grid-cols-2 gap-8 */}
+          <div className="flex justify-center">
+            {/* <article className="space-y-6 text-center md:text-left">
+              <ContactInformation icon={<Mail />} link="mailto:contact@foofest.com" linktext="contact@foofest.com" />
+              <ContactInformation icon={<Phone />} link="tel:+1234567890" linktext="(+45) 12345678" />
+              <ContactInformation icon={<MapPin />} link="#" linktext="Refshaleøen, CPH S" />
+            </article> */}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6 text-center md:text-left">
-              <div className="flex flex-col items-center md:items-start">
-                <Mail className="mb-2 h-6 w-6 text-black" />
-                <p className="text-gray-700">contact@foofest.com</p>
-              </div>
-              <div className="flex flex-col items-center md:items-start">
-                <Phone className="mb-2 h-6 w-6 text-black" />
-                <p className="text-gray-700">(+45) 12345678</p>
-              </div>
-              <div className="flex flex-col items-center md:items-start">
-                <MapPin className="mb-2 h-6 w-6 text-black" />
-                <p className="text-gray-700">Refshaleøen, CPH S</p>
-              </div>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 w-[560px]">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-black" />
+                <Label htmlFor="name">Full name</Label> {/* Label for navn */}
+                <Input id="name" name="name" placeholder="Jane Foo" required className="mt-1 placeholder:text-grey_color" value={formData.name} onChange={handleChange} />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-black" />
+                <Label htmlFor="email">Full name</Label> {/* Label for navn */}
+                <Input
+                  id="email"
+                  name="email"
+                  placeholder="janefoo@email.com"
+                  required
+                  className="mt-1 placeholder:text-grey_color"
+                  value={formData.email} // Kontrolleret værdi
+                  onChange={handleChange} // Opdater formData
+                />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                  Message
-                </label>
-                <textarea name="message" id="message" rows={4} required value={formData.message} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-black"></textarea>
+                <Label htmlFor="message">Message</Label> {/* Label for navn */}
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={4}
+                  required
+                  className="mt-1 block w-full rounded-md bg-transparent border border-input shadow-sm px-3 py-1 text-black_color"
+                  value={formData.message} // Kontrolleret værdi
+                  onChange={handleChange} // Opdater formData
+                />
               </div>
-              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="focus:ring-2 focus:ring-black-500">
-                Send
+              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="w-full focus:ring-2 focus:ring-black-500">
+                Submit
               </Button>
             </form>
           </div>
-        </div>
-      </div>
+        </Card>
+      </section>
     </div>
   );
 };
