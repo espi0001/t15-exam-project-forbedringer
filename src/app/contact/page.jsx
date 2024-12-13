@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import HeaderBillede from "@/components/HeaderBillede";
+import HeaderText from "@/components/HeaderText";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
