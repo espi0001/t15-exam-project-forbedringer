@@ -2,15 +2,6 @@ import Image from "next/image";
 import placeholderLogo from "@/images/placeholder-image.jpg";
 import AboutSection from "@/app/band/AboutSection";
 
-// Dynamically import local logos
-const importLogo = (logoName) => {
-  try {
-    return require(`@/images/band-logos/${logoName}`);
-  } catch (error) {
-    return placeholderLogo;
-  }
-};
-
 // singleview for a band
 const Page = async ({ params }) => {
   const slug = await params.slug; // henter slug fra URL'en
@@ -40,14 +31,11 @@ const Page = async ({ params }) => {
     }
   }
 
-  // Attempt to import the logo, fallback to placeholder if not found
-  const bandLogo = importLogo(band.logo);
-
   return (
     <div>
-      <div className="relative">
+      <div style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} className="relative w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center">
         {/* Adjust Image Container */}
-        <Image src={bandLogo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center" width={1200} height={400} />
+        {/* <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center" width={1200} height={400} /> */}
         <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold">{band.name}</h1>
       </div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
