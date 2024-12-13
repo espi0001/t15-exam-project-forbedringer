@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { api } from "@/lib/api";
+import HeaderBillede from "@/components/HeaderBillede";
+import HeaderText from "@/components/HeaderText";
+import { Button } from "@/components/ui/Button";
 
 export default function Page() {
   const [scheduleData, setScheduleData] = useState(null);
@@ -45,25 +48,18 @@ export default function Page() {
 
   return (
     <div>
-      <div
-        style={{
-          backgroundImage: "url('/images/jodie-walton-unsplash.jpg')",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: "black",
-        }}
-        className="w-full h-[250px] py-[64px] lg:py-[112px] bg-center bg-fill bg-cover bg-black bg-opacity-50"
-      >
-        <h1 className="font-black text-white text-center">Festival Schedule</h1>
-      </div>
+      <HeaderBillede billede="/images/jodie-walton-unsplash.jpg" />
 
-      <section className="p-6">
+      <section className="mx-[20px] lg:mx-[64px] p-6">
         <Card className="w-full max-w-6xl mx-auto mb-10">
+          <HeaderText h1="Stage Schedule" text="Experience unforgettable performances and immerse yourself in the festival vibe." />
+          {/* className={`${selectedDay === day ? "bg-red_color text-white_color" : "bg-gray-200"}`} */}
           <CardHeader>
-            <div className="font-medium flex justify-center gap-2">
+            <div className="font-medium flex-wrap flex justify-center gap-2">
               {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
-                <button key={day} onClick={() => setSelectedDay(day)} className={`px-3 py-1 rounded ${selectedDay === day ? "bg-[#7d0200] text-white" : "bg-gray-200"}`}>
+                <Button key={day} onClick={() => setSelectedDay(day)} className={`${selectedDay === day ? "bg-red_color border-red_color" : ""}`}>
                   {day.toUpperCase()}
-                </button>
+                </Button>
               ))}
             </div>
           </CardHeader>
@@ -74,8 +70,8 @@ export default function Page() {
                   stage,
                   stageIdx // Tilføj en key for hver stage
                 ) => (
-                  <div key={stageIdx} className="border rounded-lg p-4">
-                    <h5 className="font-bold mb-4">{stage}</h5>
+                  <div key={stageIdx} className="border rounded p-4">
+                    <h4 className="font-bold mb-4">{stage}</h4>
                     <div className="space-y-2">
                       {scheduleData[stage][selectedDay]
                         ?.filter((event) => event.act.toLowerCase() !== "break")
@@ -88,21 +84,21 @@ export default function Page() {
                               className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red-100" : "bg-gray-100"}`}
                             >
                               <p className="font-medium text-step_p">{event.act}</p>
-                              <p className="text-sm">
+                              <p className="text-step_text_tiny">
                                 {event.start} - {event.end}
                               </p>
-                              {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red-600 text-sm">CANCELLED</p>}
+                              {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red_color text-step_text_tiny">CANCELLED</p>}
                             </Link>
                           ) : (
                             <div
                               key={`${stage}-${idx}`} // Unik key også her
-                              className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red-100" : "bg-gray-100"}`}
+                              className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-gray-100"}`}
                             >
-                              <p className="font-medium">{event.act}</p>
-                              <p className="text-sm">
+                              <p className="font-medium text-step_p">{event.act}</p>
+                              <p className="text-step_text_tiny">
                                 {event.start} - {event.end}
                               </p>
-                              {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red-600 text-sm">CANCELLED</p>}
+                              {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red_color text-step_text_tiny">CANCELLED</p>}
                             </div>
                           );
                         })}

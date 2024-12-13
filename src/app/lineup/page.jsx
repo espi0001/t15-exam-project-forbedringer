@@ -4,10 +4,12 @@ import { IoFilter } from "react-icons/io5";
 
 import Link from "next/link";
 import { api } from "@/lib/api"; // Importer api her
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import FilterPanel from "@/components/FilterPanel";
-import GSAPTextReveal from "@/components/GSAPTextReveal";
-import gsap from "gsap";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import HeaderBillede from "@/components/HeaderBillede";
+import HeaderText from "@/components/HeaderText";
 
 const Page = () => {
   const [bands, setBands] = useState([]); // State for bands fetched fra API
@@ -16,6 +18,7 @@ const Page = () => {
   // schedule er sandsynligvis et objekt, hvor hver nøgle repræsenterer en scene (stage), og værdien for hver nøgle er et underobjekt eller et array, der indeholder daglige tidsplaner.
   const [schedule, setSchedule] = useState({}); // State for schedule fetched fra API
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
+  const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
   const [filters, setFilters] = useState({
     genre: "",
     day: "",
@@ -93,71 +96,70 @@ const Page = () => {
     setFilteredBands(updatedBands);
   }, [filters, bands]);
 
+  const toggleSort = () => {
+    if (isSorted) {
+      setFilteredBands([...bands]); // Nulstil til original rækkefølge
+    } else {
+      const sortedBands = [...filteredBands].sort((a, b) => a.name.localeCompare(b.name));
+      setFilteredBands(sortedBands);
+    }
+    setIsSorted(!isSorted); // Skift sorteringsstatus
+  };
+
   return (
-    <div className="">
-      <div
-        style={{
-          backgroundImage: "url('/images/jodie-walton-unsplash.jpg')",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: "black",
-        }}
-        className="w-full h-[250px] py-[64px] lg:py-[112px] bg-center bg-fill bg-cover bg-black bg-opacity-50"
-      >
-        <h1 className="font-black text-white text-center anim">Lineup</h1>
-      </div>
-      {/* <GSAPTextReveal /> */}
-      <div className="mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px] flex flex-col gap-4">
-        <div className="flex justify-between items-center mb-4">
-          <section>
-            {/* Filter Button */}
-            <Button onClick={() => setIsFiltersOpen(true)} className="">
-              <IoFilter />
-              <span>Filters</span>
-            </Button>
+    <div>
+      <HeaderBillede billede="/images/jodie-walton-unsplash.jpg" />
+      {/* mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]  */}
+      <section className="mx-[20px] lg:mx-[64px] p-6 flex flex-col gap-4">
+        <Card>
+          <HeaderText h1="Lineup" text="Get ready for an unforgettable festival experience with 126 incredible bands across multiple stages. Discover your new favorite artists and enjoy a week of diverse music, energy, and pure festival vibes!" />
 
-            {/* FilterPanel Component */}
-            {isFiltersOpen && <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />}
-          </section>
+          <div className="flex justify-between items-center mb-4">
+            <section>
+              {/* Filter Button */}
+              <Button onClick={() => setIsFiltersOpen(true)} size="lg">
+                <IoFilter />
+                <span>Filters</span>
+              </Button>
 
-          <section>
-            {/* a-z knap */}
-            <Button
-              variant="outline"
-              onClick={() => {
-                const sortedBands = [...filteredBands].sort((a, b) => a.name.localeCompare(b.name));
-                setFilteredBands(sortedBands);
-              }}
-            >
-              Sort A-Z
-            </Button>
-          </section>
-        </div>
-        {/* Main Band Grid */}
-        <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
-          {filteredBands.slice(0, visibleCount).map((band) => (
-            <div key={band.slug} className="relative w-full h-[300px] bg-gray-200 rounded overflow-hidden transition-transform hover:scale-105 group">
-              <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo})` }} />
-              <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
-                <Link href={`/band/${band.slug}`} className="absolute text-white text-lg font-bold inset-0 flex items-end p-5">
-                  {band.name}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </section>
-        {visibleCount < filteredBands.length && (
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-gray-500">
-              {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
-            </span>
-            <Button
-              onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
-            >
-              Load more
-            </Button>
+              {/* FilterPanel Component */}
+              {isFiltersOpen && <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />}
+            </section>
+
+            <section>
+              {/* a-z knap */}
+              <Button size="lg" variant="outline" onClick={toggleSort} className={`${isSorted ? "bg-red_color text-white_color" : ""}`}>
+                Sort A-Z {/* Skift tekst baseret på sorteringstilstand */}
+              </Button>
+            </section>
           </div>
-        )}
-      </div>
+          {/* Main Band Grid */}
+          <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
+            {filteredBands.slice(0, visibleCount).map((band) => (
+              <div key={band.slug} className="relative w-full h-[300px] bg-gray-200 rounded overflow-hidden transition-transform hover:scale-105 group">
+                <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo})` }} />
+                <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
+                  <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
+                    {band.name}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </section>
+          {visibleCount < filteredBands.length && (
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-gray-500">
+                {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
+              </span>
+              <Button
+                onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
+              >
+                Load more
+              </Button>
+            </div>
+          )}
+        </Card>
+      </section>
     </div>
   );
 };
