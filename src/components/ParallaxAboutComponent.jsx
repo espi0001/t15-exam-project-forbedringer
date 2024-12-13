@@ -52,7 +52,7 @@ const ParallaxAboutComponent = () => {
           className={`self-start transition-all duration-1000 delay-200
             ${isButton1InView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <Button variant="forsiden" className="">
+          <Button variant="forsiden" size="lg" className="">
             Read more
           </Button>
         </Link>
@@ -71,7 +71,7 @@ const ParallaxAboutComponent = () => {
           className={`self-end transition-all duration-1000 delay-200
             ${isButton2InView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <Button variant="forsiden" className="">
+          <Button variant="forsiden" size="lg" className="">
             Buy tickets
           </Button>
         </Link>
