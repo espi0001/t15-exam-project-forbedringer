@@ -4,7 +4,7 @@ import { IoFilter } from "react-icons/io5";
 
 import Link from "next/link";
 import { api } from "@/lib/api"; // Importer api her
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import FilterPanel from "@/components/FilterPanel";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -136,7 +136,7 @@ const Page = () => {
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
-              <div key={band.slug} className="relative w-full h-[300px] bg-gray-200 rounded overflow-hidden transition-transform hover:scale-105 group">
+              <div key={band.slug} className="relative w-full h-[300px] bg-light_grey_color rounded overflow-hidden transition-transform hover:scale-105 group">
                 <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo})` }} />
                 <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
                   <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
@@ -148,7 +148,7 @@ const Page = () => {
           </section>
           {visibleCount < filteredBands.length && (
             <div className="mt-4 flex items-center justify-between">
-              <span className="text-gray-500">
+              <span className="text-grey_color">
                 {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
               </span>
               <Button

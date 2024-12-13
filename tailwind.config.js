@@ -37,15 +37,15 @@ module.exports = {
             opacity: "1",
           },
         },
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
-        }
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
       },
       animation: {
         "slide-up": "slideUp 2.5s ease-out forwards",
         "fade-in": "fadeIn 1s ease-out forwards",
-        'infinite-scroll': 'infinite-scroll 15s linear infinite',
+        "infinite-scroll": "infinite-scroll 15s linear infinite",
       },
       animationDelay: {
         200: "200ms",
@@ -65,6 +65,8 @@ module.exports = {
         white_color: "#fff",
         black_color: "#242424",
         red_color: "#ff2800",
+        grey_color: "#9CA3AF",
+        light_grey_color: "#F3F4F6",
         "custom-start": "#060100",
         "custom-end": "#121212",
         card: {

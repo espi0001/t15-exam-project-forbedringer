@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { api } from "@/lib/api";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [scheduleData, setScheduleData] = useState(null);
@@ -81,7 +81,7 @@ export default function Page() {
                             <Link
                               key={`${stage}-${idx}`} // Unik key for hvert event med stage og index
                               href={`/band/${slug}`}
-                              className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red-100" : "bg-gray-100"}`}
+                              className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-light_grey_color"}`}
                             >
                               <p className="font-medium text-step_p">{event.act}</p>
                               <p className="text-step_text_tiny">
@@ -92,7 +92,7 @@ export default function Page() {
                           ) : (
                             <div
                               key={`${stage}-${idx}`} // Unik key også her
-                              className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-gray-100"}`}
+                              className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-light_grey_color"}`}
                             >
                               <p className="font-medium text-step_p">{event.act}</p>
                               <p className="text-step_text_tiny">
