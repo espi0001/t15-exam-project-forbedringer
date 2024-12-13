@@ -7,10 +7,16 @@ import { gsap } from "gsap";
 
 const Hero = () => {
   useEffect(() => {
-    const tl = gsap.timeline().from(".hero-text p", {
+    gsap.set(".hero-text p", {
       xPercent: gsap.utils.wrap([100, -100]),
-      stagger: 0.4,
       opacity: 0,
+    });
+
+    gsap.to(".hero-text p", {
+      xPercent: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.4,
       ease: "circ.inOut",
     });
   }, []);
