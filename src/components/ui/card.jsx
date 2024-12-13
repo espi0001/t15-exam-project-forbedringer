@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const Card = React.forwardRef(({ className, ...props }, ref) => <div ref={ref} className={cn("flex flex-col rounded-xl bg-card text-card-foreground", className)} {...props} />);
+const Card = React.forwardRef(({ className, ...props }, ref) => <div ref={ref} className={cn("flex flex-col rounded-xl bg-white_color text-black_color", className)} {...props} />);
 Card.displayName = "Card";
 
 const CardHeader = React.forwardRef(({ className, ...props }, ref) => <div ref={ref} className={cn("flex flex-col justify-center items-center space-y-1.5 pb-6", className)} {...props} />);

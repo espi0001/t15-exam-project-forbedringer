@@ -42,12 +42,12 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
               {/* Input for fulde navn */}
               <div>
                 <Label htmlFor={`name-${index}`}>Full name</Label> {/* Label for navn */}
-                <Input id={`name-${index}`} name={`name-${index}`} value={bookingData.personalInfo[index]?.name || ""} placeholder="Jane Foo" onChange={(e) => handleInfoChange(index, "name", e.target.value)} className="mt-1 placeholder:text-gray-400" />
+                <Input id={`name-${index}`} name={`name-${index}`} value={bookingData.personalInfo[index]?.name || ""} placeholder="Jane Foo" onChange={(e) => handleInfoChange(index, "name", e.target.value)} className="mt-1 placeholder:text-grey_color" />
               </div>
               {/* Input for e-mail */}
               <div>
                 <Label htmlFor={`email-${index}`}>Email</Label> {/* Label for e-mail */}
-                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="janefoo@email.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-gray-400" />
+                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="janefoo@email.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-grey_color" />
               </div>
             </div>
           </div>

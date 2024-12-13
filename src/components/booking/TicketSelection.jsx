@@ -39,7 +39,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           className="flex justify-center items-center grid-cols-2 gap-10 mb-4"
         >
           {/* Regular Ticket valg */}
-          <Label htmlFor="regular" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "regular" ? "border-red_color bg-gray-100" : "border-gray-300"}`}>
+          <Label htmlFor="regular" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "regular" ? "border-red_color bg-light_grey_color" : "border-grey_color"}`}>
             Regular
             <span>
               <p className="font-thin text-step_text_tiny mt-[40px]">799,- + FEE</p>
@@ -49,7 +49,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           <RadioGroupItem value="regular" id="regular" className="hidden" variant="secondary" />
 
           {/* VIP Ticket valg */}
-          <Label htmlFor="vip" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "vip" ? "border-red_color bg-gray-100" : "border-gray-300"}`}>
+          <Label htmlFor="vip" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "vip" ? "border-red_color bg-light_grey_color" : "border-grey_color"}`}>
             VIP
             <span>
               <p className="font-thin text-step_text_tiny mt-[40px]">1299,- + FEE</p>

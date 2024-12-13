@@ -60,11 +60,11 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                     campingArea: e.target.value, // Opdater campingområde i bookingData
                   })
                 }
-                className="w-full text-step_text_regular p-2 border rounded mt-1 bg-white"
+                className="w-full text-step_text_regular p-2 border rounded mt-1 bg-white_color"
               >
                 <option value="">Select an area</option> {/* Standard valg */}
                 {availableSpots.map((spot) => (
-                  <option key={spot.area} value={spot.area} className="text-step_text_regular bg-white">
+                  <option key={spot.area} value={spot.area} className="text-step_text_regular bg-white_color">
                     {spot.area} ({spot.spots} spots available) {/* Viser områder og tilgængelige pladser */}
                   </option>
                 ))}

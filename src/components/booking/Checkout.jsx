@@ -95,17 +95,17 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
           {/* Betalingsinformation */}
           <div className="space-y-2">
             <Label htmlFor="cardNumber">Card number</Label>
-            <Input id="cardNumber" type="text" placeholder="**** **** **** ****" value={paymentData.cardNumber} onChange={(e) => handleInputChange("cardNumber", e.target.value)} />
+            <Input id="cardNumber" type="text" placeholder="**** **** **** ****" value={paymentData.cardNumber} className="mt-1 placeholder:text-grey_color" onChange={(e) => handleInputChange("cardNumber", e.target.value)} />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="expiry">Expiry date</Label>
-              <Input id="expiry" type="text" placeholder="MM/YY" value={paymentData.expiry} onChange={(e) => handleInputChange("expiry", e.target.value)} />
+              <Input id="expiry" type="text" placeholder="MM/YY" value={paymentData.expiry} className="mt-1 placeholder:text-grey_color" onChange={(e) => handleInputChange("expiry", e.target.value)} />
             </div>
             <div>
               <Label htmlFor="cvv">CVV</Label>
-              <Input id="cvv" type="text" placeholder="***" value={paymentData.cvv} onChange={(e) => handleInputChange("cvv", e.target.value)} />
+              <Input id="cvv" type="text" placeholder="***" value={paymentData.cvv} className="mt-1 placeholder:text-grey_color" onChange={(e) => handleInputChange("cvv", e.target.value)} />
             </div>
           </div>
 
