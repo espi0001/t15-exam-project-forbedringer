@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/Input";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { User } from "lucide-react";
 import { MdArrowLeft } from "react-icons/md";
 

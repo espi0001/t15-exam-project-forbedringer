@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/images/foo-fest-isometric-black-logo.svg";
 import NavigationLink from "./NavigationLink";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
