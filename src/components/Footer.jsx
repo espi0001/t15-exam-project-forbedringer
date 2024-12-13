@@ -1,46 +1,91 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from 'next/navigation';
 import Logo from "@/images/foo-fest-isometric-black-logo.svg";
-import NavigationLink from "./NavigationLink";
+import WhiteLogo from "@/images/foo-fest-isometric-white-logo.svg";
+import FooterNavigationLink from "./FooterNavigationLinks";
 import { Button } from "./ui/Button";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isIndexPage = pathname === '/';
+
   return (
-    //   mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]
-    <footer className="mx-[20px] lg:mx-[64px] py-[64px] flex flex-col justify-between gap-[10px] font-medium">
-      <section className="flex lg:flex-col justify-between ml-48 mb-12">
-        <div className="flex items-center gap-1">
-          <Image src={Logo} width={65} alt="logo" />
-          {/* <h4 className="text-white text-xl m-5 font-semibold">FOO FEST</h4> */}
-          <h6 className="mb-4 text-[5rem] font-bold ml-8">Be the first to know!</h6>
+    <footer className={`
+      w-full px-6 sm:px-10 lg:px-16 py-8 sm:py-12 lg:py-16
+      flex flex-col gap-8 
+      font-medium 
+      ${isIndexPage 
+        ? 'text-black bg-white' 
+        : 'text-white bg-black'}
+    `}>
+      <section className="flex flex-col lg:flex-row justify-between lg:items-start gap-8">
+        <div className="flex flex-col items-center lg:items-start gap-4 lg:mr-8">
+          {/* Conditionally render the logo */}
+          <Image 
+            src={isIndexPage ? Logo : WhiteLogo} 
+            width={65} 
+            alt="logo" 
+          />
+          <h6 className={`
+            text-[2rem] sm:text-[3rem] lg:text-[5rem] font-bold text-center lg:text-left
+            ${isIndexPage ? 'text-black' : 'text-white'}
+          `}>
+            Be the first to know!
+          </h6>
         </div>
-        <form className="flex gap-4 w-full">
-          <input type="email" placeholder="Enter your email..." alt="Email entering form-field" className="w-1/4 px-4 py-2 rounded-full border border-black text-black focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-300" />
-          <Button type="submit" size="xl" alt="Button to click to subscribe with chosen email" variant="footer" className="focus:ring-2 focus:ring-black-500">
+        <form className="flex flex-col lg:flex-row gap-4 items-center lg:items-start w-full lg:w-auto lg:mt-28">
+          <input 
+            type="email" 
+            placeholder="Enter your email..." 
+            alt="Email entering form-field" 
+            className={`
+              w-full sm:w-2/3 lg:w-[300px] px-4 py-2 rounded-full border 
+              ${isIndexPage 
+                ? 'border-black text-black focus:ring-gray-500' 
+                : 'border-white text-white focus:ring-gray-300'}
+              focus:outline-none focus:ring-2 transition-all duration-300
+            `}
+          />
+          <Button 
+            type="submit" 
+            size="xl" 
+            alt="Button to click to subscribe with chosen email" 
+            variant="footer" 
+            className={`
+              px-6 py-2 rounded-full
+              ${isIndexPage 
+                ? 'focus:ring-black-500' 
+                : 'focus:ring-white-500'}
+            `}
+          >
             Subscribe
           </Button>
         </form>
       </section>
-
-      <hr className="w-full border-t border-gray-300 my-4" />
-
-      <section id="Footer" className="flex justify-between text-[1rem]">
-        <p className="text-[1rem]">© 2024 Foo Fest</p>
-        <ul className="flex flex-wrap gap-4">
-          <li>
-            <NavigationLink href={"/Tickets"} text={"Tickets"} />
-          </li>
-          <li>
-            <NavigationLink href={"/lineup"} text={"Lineup"} />
-          </li>
-          <li>
-            <NavigationLink href={"/about"} text={"About"} />
-          </li>
-          <li>
-            <NavigationLink href={"/contact"} text={"Contact"} />
-          </li>
-        </ul>
+      <hr className={`w-full border-t ${isIndexPage ? 'border-gray-300' : 'border-gray-700'}`} />
+      <section id="Footer" className="flex flex-col sm:flex-row justify-between items-center w-full gap-4 text-center sm:text-left">
+        <p className="text-sm sm:text-base">© 2024 Foo Fest</p>
+        <ul className="flex flex-wrap justify-center sm:justify-start gap-4">
+  {[
+    { href: "/tickets", text: "Tickets" },
+    { href: "/lineup", text: "Lineup" },
+    { href: "/about", text: "About" },
+    { href: "/contact", text: "Contact" },
+  ].map(({ href, text }) => (
+    <li key={href}>
+      <FooterNavigationLink 
+        href={href} 
+        text={text} 
+        className={`
+          ${isIndexPage ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}
+          transition-colors duration-300
+        `}
+      />
+    </li>
+  ))}
+</ul>
       </section>
     </footer>
   );
