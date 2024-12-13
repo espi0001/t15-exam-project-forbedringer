@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-komponenter til opbygning af kortlayout
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter til valg af radio-knapper
 import { Label } from "../ui/label"; // UI-komponent til tekstlabels
-import { Input } from "../ui/input"; // UI-komponent til inputfelter
-import { Button } from "../ui/button"; // UI-komponent til knapper
+import { Input } from "../ui/Input"; // UI-komponent til inputfelter
+import { Button } from "../ui/Button"; // UI-komponent til knapper
 import { IoTicketOutline } from "react-icons/io5";
 
 // Komponent til valg af billet

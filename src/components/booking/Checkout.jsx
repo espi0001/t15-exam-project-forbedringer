@@ -3,8 +3,8 @@ import { useState } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../ui/Input";
+import { Button } from "../ui/Button";
 import { Alert, AlertDescription } from "../ui/alert";
 import { CreditCard } from "lucide-react";
 import { api } from "@/lib/api"; // API-funktioner til backend-kommunikation
