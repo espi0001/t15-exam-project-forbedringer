@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
