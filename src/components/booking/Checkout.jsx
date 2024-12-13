@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
-import { Input } from "../ui/Input";
+import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Alert, AlertDescription } from "../ui/alert";
 import { CreditCard } from "lucide-react";
