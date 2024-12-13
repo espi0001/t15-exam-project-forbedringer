@@ -39,15 +39,15 @@ const Contact = () => {
       <section className="mx-[20px] lg:mx-[64px] p-6 ">
         <Card className="w-full max-w-6xl mx-auto mb-10">
           <HeaderText h1="Contact us" text="We’re here to help." />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="space-y-6 text-center md:text-left">
+          {/* grid grid-cols-1 md:grid-cols-2 gap-8 */}
+          <div className="flex justify-center">
+            {/* <article className="space-y-6 text-center md:text-left">
               <ContactInformation icon={<Mail />} link="mailto:contact@foofest.com" linktext="contact@foofest.com" />
               <ContactInformation icon={<Phone />} link="tel:+1234567890" linktext="(+45) 12345678" />
               <ContactInformation icon={<MapPin />} link="#" linktext="Refshaleøen, CPH S" />
-            </article>
+            </article> */}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 w-[560px]">
               <div>
                 <Label htmlFor="name">Full name</Label> {/* Label for navn */}
                 <Input id="name" name="name" placeholder="Jane Foo" required className="mt-1 placeholder:text-grey_color" value={formData.name} onChange={handleChange} />
@@ -76,8 +76,8 @@ const Contact = () => {
                   onChange={handleChange} // Opdater formData
                 />
               </div>
-              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="focus:ring-2 focus:ring-black-500">
-                Send
+              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="w-full focus:ring-2 focus:ring-black-500">
+                Submit
               </Button>
             </form>
           </div>
