@@ -7,6 +7,8 @@ import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/button";
 import FilterPanel from "@/components/FilterPanel";
 
+import ContactHero from "@/images/danny-howe-unsplash.jpg";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
@@ -108,7 +110,7 @@ const Page = () => {
 
   return (
     <div>
-      <HeaderBillede billede="/images/jodie-walton-unsplash.jpg" />
+      <HeaderBillede billede={ContactHero} />
       {/* mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]  */}
       <section className="mx-[20px] lg:mx-[64px] p-6 flex flex-col gap-4">
         <Card>

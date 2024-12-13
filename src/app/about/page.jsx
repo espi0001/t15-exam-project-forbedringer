@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, memo } from "react";
 import { Radio, Flag, MapPin, ChevronDown, ChevronUp, Music, Calendar, Globe, CreditCard, Shield } from "lucide-react";
-import AboutHeroImage from "@/images/gabriel-benois-unsplash.jpg";
+// import AboutHeroImage from "@/images/gabriel-benois-unsplash.jpg";
+import HeaderBillede from "@/components/HeaderBillede";
+import HeaderText from "@/components/HeaderText";
+import ContactHero from "@/images/rachel-coyne-unsplash.jpg";
 
 const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,19 +45,13 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="relative text-grey_color">
+    <div className="">
       {/* Hero Image Section */}
-      <div className="relative h-[300px] w-full">
-        <Image src={AboutHeroImage} alt="Hero background for about-page, by Gabriel Benois" layout="fill" objectFit="cover" priority={true} className="absolute inset-0 z-0" />
-        <div className="absolute inset-0 z-10"></div>
-      </div>
+      <HeaderBillede billede={ContactHero} />
 
-      <div className="bg-white_color py-16">
+      <section className="mx-[20px] lg:mx-[64px] p-6">
         <div className="max-w-4xl mx-auto px-4 space-y-12">
-          <div className="text-center">
-            <h1 className="text-5xl font-black text-black_color mb-4">FOO FEST</h1>
-            <p className="text-xl text-grey_color">Where music transcends boundaries</p>
-          </div>
+          <HeaderText h1="FOO FEST" text="Where music transcends boundaries" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
@@ -107,7 +104,7 @@ const AboutPage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
