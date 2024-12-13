@@ -28,7 +28,6 @@ const Hero = () => {
       stagger: 0.4,
       ease: "circ.inOut",
     })
-      // Start liquid animationen tidligere med position parameter
       .to(
         ".liquid-overlay",
         {
@@ -36,8 +35,8 @@ const Hero = () => {
           duration: 0.8,
           ease: "power2.in",
         },
-        "-=0.4"
-      ) // Starter 0.4 sekunder før forrige animation er færdig
+        "-=0.6" // Justeret til at starte lidt tidligere, men ikke så meget at det ødelægger flowet
+      )
       .to(".liquid-overlay", {
         clipPath: `circle(65% at 85% 20%)`,
         duration: 0.3,
