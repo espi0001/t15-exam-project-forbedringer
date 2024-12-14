@@ -2,68 +2,28 @@
 const API_BASE_URL = "http://localhost:8080";
 
 export const api = {
+  // GET metoder
   getAvailableSpots: async () => {
     try {
       console.log("Fetching spots...");
-      const response = await fetch(`${API_BASE_URL}/available-spots`);
-      console.log("Spots response:", response);
+      const response = await fetch(`${API_BASE_URL}/available-spots`, {
+        method: "GET",
+      });
       if (!response.ok) throw new Error("Failed to fetch spots");
-      const data = await response.json();
-      console.log("Spots data:", data);
-      return data;
+      return await response.json();
     } catch (error) {
       console.error("Spots fetch error:", error);
       throw error;
     }
   },
 
-  reserveSpot: async (area, amount) => {
-    try {
-      console.log("Reserving spot...", { area, amount });
-      const response = await fetch(`${API_BASE_URL}/reserve-spot`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ area, amount }),
-      });
-      console.log("Reserve response:", response);
-      if (!response.ok) throw new Error("Failed to reserve spot");
-      const data = await response.json();
-      console.log("Reserve data:", data);
-      return data;
-    } catch (error) {
-      console.error("Reserve error:", error);
-      throw error;
-    }
-  },
-
-  fulfillReservation: async (id) => {
-    try {
-      console.log("Fulfilling reservation...", { id });
-      const response = await fetch(`${API_BASE_URL}/fullfill-reservation`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      console.log("Fulfill response:", response);
-      if (!response.ok) throw new Error("Failed to fulfill reservation");
-      const data = await response.json();
-      console.log("Fulfill data:", data);
-      return data;
-    } catch (error) {
-      console.error("Fulfill error:", error);
-      throw error;
-    }
-  },
-
   getBands: async () => {
     try {
-      console.log("Fetching bands...");
-      const response = await fetch(`${API_BASE_URL}/bands`);
-      console.log("Bands response:", response);
+      const response = await fetch(`${API_BASE_URL}/bands`, {
+        method: "GET",
+      });
       if (!response.ok) throw new Error("Failed to fetch bands");
-      const data = await response.json();
-      console.log("Bands data:", data);
-      return data;
+      return await response.json();
     } catch (error) {
       console.error("Bands fetch error:", error);
       throw error;
@@ -72,13 +32,11 @@ export const api = {
 
   getSchedule: async () => {
     try {
-      console.log("Fetching schedule...");
-      const response = await fetch(`${API_BASE_URL}/schedule`);
-      console.log("Schedule response:", response);
+      const response = await fetch(`${API_BASE_URL}/schedule`, {
+        method: "GET",
+      });
       if (!response.ok) throw new Error("Failed to fetch schedule");
-      const data = await response.json();
-      console.log("Schedule data:", data);
-      return data;
+      return await response.json();
     } catch (error) {
       console.error("Schedule fetch error:", error);
       throw error;
@@ -87,15 +45,59 @@ export const api = {
 
   getEvents: async () => {
     try {
-      console.log("Fetching events...");
-      const response = await fetch(`${API_BASE_URL}/events`);
-      console.log("Events response:", response);
+      const response = await fetch(`${API_BASE_URL}/events`, {
+        method: "GET",
+      });
       if (!response.ok) throw new Error("Failed to fetch events");
-      const data = await response.json();
-      console.log("Events data:", data);
-      return data;
+      return await response.json();
     } catch (error) {
       console.error("Events fetch error:", error);
+      throw error;
+    }
+  },
+
+  // POST metoder - bruges til at oprette nye ressourcer
+  createReservation: async (area, amount) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/reservations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ area, amount }),
+      });
+      if (!response.ok) throw new Error("Failed to create reservation");
+      return await response.json();
+    } catch (error) {
+      console.error("Reservation creation error:", error);
+      throw error;
+    }
+  },
+
+  // PATCH metoder - bruges til at opdatere eksisterende ressourcer delvist
+  updateReservation: async (id, updates) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/reservations/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updates),
+      });
+      if (!response.ok) throw new Error("Failed to update reservation");
+      return await response.json();
+    } catch (error) {
+      console.error("Reservation update error:", error);
+      throw error;
+    }
+  },
+
+  // DELETE metoder - bruges til at slette ressourcer
+  deleteReservation: async (id) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/reservations/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete reservation");
+      return await response.json();
+    } catch (error) {
+      console.error("Reservation deletion error:", error);
       throw error;
     }
   },
