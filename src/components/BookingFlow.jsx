@@ -31,19 +31,37 @@ export default function BookingFlow() {
   const handleStepChange = (newStep) => setStep(newStep);
 
   // Håndtering af formularens indsendelse
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (step === 3) {
-      // Valider personalInfo-data
+      // Eksisterende validering af personal info
       if (bookingData.personalInfo.length !== bookingData.ticketCount || !bookingData.personalInfo.every((info) => info.name && info.email)) {
         alert("Please complete all personal information before proceeding.");
         return;
       }
-      handleStepChange(4); // Gå til næste trin
+      handleStepChange(4);
     } else if (step === 4) {
-      console.log("Booking data submitted:", bookingData);
-      setStep(5);
+      try {
+        // Forsøg at reservere pladserne
+        const reservation = await api.createReservation({
+          area: bookingData.campingArea,
+          amount: bookingData.ticketCount,
+          ticketType: bookingData.ticketType,
+          personalInfo: bookingData.personalInfo,
+          greenCamping: bookingData.greenCamping,
+          tentSetup: bookingData.tentSetup,
+        });
+
+        // Gem reservations ID'et
+        setReservationId(reservation.id);
+
+        // Gå til bekræftelses-steget
+        setStep(5);
+      } catch (error) {
+        console.error("Reservation failed:", error);
+        alert("Failed to complete reservation. Please try again.");
+      }
     } else {
       handleStepChange(step + 1);
     }
