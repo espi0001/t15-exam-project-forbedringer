@@ -65,7 +65,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                 <option value="">Select an area</option> {/* Standard valg */}
                 {availableSpots.map((spot) => (
                   <option key={spot.area} value={spot.area} className="text-step_text_regular bg-white_color">
-                    {spot.area} ({spot.spots} spots available) {/* Viser områder og tilgængelige pladser */}
+                    {spot.area} ({spot.available} spots available) {/* Viser områder og tilgængelige pladser */}
                   </option>
                 ))}
               </select>

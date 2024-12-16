@@ -24,7 +24,8 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
     if (bookingData.greenCamping) total += 249; // Tillæg for green camping
     if (bookingData.tentSetup === "2person") total += 299 * Math.ceil(bookingData.ticketCount / 2); // 2-personers telt
     if (bookingData.tentSetup === "3person") total += 399 * Math.ceil(bookingData.ticketCount / 3); // 3-personers telt
-    return total; // Returnerer den samlede pris
+    total += 99; // Fast booking gebyr
+    return total;
   };
   // Håndterer ændringer i betalingsoplysninger
   const handleInputChange = (field, value) => {
@@ -85,10 +86,11 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
           <div className="border-b pb-4">
             <h4 className="font-semibold">Order summary</h4>
             <p>
-              {bookingData.ticketCount}x {bookingData.ticketType} Tickets
+              {bookingData.ticketCount}x {bookingData.ticketType} Ticket(s)
             </p>
             {bookingData.greenCamping && <p>Green Camping option</p>}
             {bookingData.tentSetup && <p>Tent setup: {bookingData.tentSetup}</p>}
+            <p>Booking fee: 99,-</p>
             <p className="text-xl font-bold mt-2">Total: {calculateTotal()},-</p>
           </div>
 
