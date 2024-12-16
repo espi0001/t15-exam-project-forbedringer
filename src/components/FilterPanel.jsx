@@ -1,5 +1,5 @@
 import { IoIosClose } from "react-icons/io";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
   return (
