@@ -28,7 +28,7 @@ const Nav = () => {
   ];
 
   return (
-    <nav className="absolute flex justify-between items-center py-6 px-5 lg:px-16 w-full z-50 bg-transparent">
+    <nav className="absolute flex justify-between items-center py-py_default px-[20px] lg:px-[64px] w-full z-50 bg-transparent">
       <div className="flex gap-6 items-center">
         <Link href="/">
           <Image src={Logo} width={50} alt="logo" />
