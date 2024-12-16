@@ -15,6 +15,12 @@ import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 
 const Page = () => {
+  const panelSlide = {
+    initial: { x: "-100%" },
+    enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+    exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+  };
+
   const [bands, setBands] = useState([]); // State for bands fetched fra API
 
   // hvorfor er der {} her og ikke []?
@@ -41,18 +47,11 @@ const Page = () => {
     Sunday: "sun",
   };
 
-  const panelSlide = {
-    initial: { x: "-100%" },
-    enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-    exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-  };
-
   // Fetch data from the APIs when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [bandsData, scheduleData] = await Promise.all([api.getBands(), api.getSchedule()]);
-
         // kombinerer bandsData og scheduleData
         const updatedBands = bandsData.map((band) => {
           // finder scheduleData for hvert band
@@ -131,7 +130,6 @@ const Page = () => {
               </Button>
 
               {/* FilterPanel Component */}
-              {isFiltersOpen && <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />}
               <AnimatePresence mode="wait">
                 {isFiltersOpen && (
                   <motion.div
@@ -154,6 +152,7 @@ const Page = () => {
               </Button>
             </section>
           </div>
+
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
