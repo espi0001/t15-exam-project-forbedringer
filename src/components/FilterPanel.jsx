@@ -2,13 +2,15 @@ import { IoCloseOutline } from "react-icons/io5";
 import { Button } from "./ui/button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
+  // Framer Motion animation-variabler
+
   return (
-    <div>
+    <div className="">
       <div className="flex flex-col justify-between items-center mb-[24px]">
         <button onClick={closeFilter} className="self-end text-lg hover:text-red_color transition-base">
           <IoCloseOutline className="w-12 h-12 " />
         </button>
-        <h4 className="self-start">Filters</h4>
+        <h4 className="self-start ">Filters</h4>
       </div>
       <hr />
 
