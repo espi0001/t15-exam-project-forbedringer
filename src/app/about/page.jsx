@@ -12,7 +12,7 @@ const FAQItem = memo(({ question, answer }) => {
   return (
     <div className="border-b border-grey_color py-4">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left">
-        <span className="text-lg font-semibold text-black_color">{question}</span>
+        <span className="text-step_text_large font-semibold text-black_color">{question}</span>
         {isOpen ? <ChevronUp className="text-black_color" /> : <ChevronDown className="text-black_color" />}
       </button>
       {isOpen && <p className="mt-4 text-black_color">{answer}</p>}
@@ -47,57 +47,45 @@ const AboutPage = () => {
       {/* Hero Image Section */}
       <HeaderBillede billede={ContactHero} />
 
-      <section className="mx-[20px] lg:mx-[64px] p-6">
-        <div className="max-w-4xl mx-auto px-4 space-y-12">
-          <HeaderText h1="FOO FEST" text="FAQ, story & where to find us!" />
+      <section className="mx-[20px] lg:mx-[64px] py-[30px] lg:py-[60px]">
+        <HeaderText h1="FOO FEST" text="FAQ, story & where to find us!" />
+        <div className="flex flex-col lg:flex-row gap-6 mb-[40px] lg:mb-[80px]">
+          <article>
+            <h2 className="text-center lg:text-start mb-4 text-black_color">Our Origin</h2>
+            <p>Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences. We craft moments that resonate beyond the festival grounds.</p>
+            <br />
+            <p>Through captivating performances, immersive installations, and a vibrant community, Foo Fest creates an unforgettable atmosphere for music lovers of all ages.</p>
+            <p>Each year, we bring together an eclectic mix of global artists, cutting-edge technology, and sustainable practices to deliver a festival experience that redefines boundaries.</p>
+            <br />
+            <p>At Foo Fest, it’s not just about the music — it’s about creating memories, fostering connections, and celebrating creativity in all its forms.</p>
+            {/* <p className="">Whether you're dancing under the stars, exploring interactive art, or simply soaking in the vibe, Foo Fest is a journey that stays with you long after the last note fades.</p> */}
+          </article>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8995.02701944774!2d12.608297727198243!3d55.69321666128957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465252d6a56b2f2b%3A0xcaa2e01fe561b055!2sRefshale%C3%B8en%2C%20Copenhagen!5e0!3m2!1sen!2sdk!4v1734337472155!5m2!1sen!2sdk" width="1000" height="450" style={{ border: 0 }} loading="lazy" className="max-w-full"></iframe>
+        </div>
 
-          <div className="flex justify-center w-full">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8995.02701944774!2d12.608297727198243!3d55.69321666128957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465252d6a56b2f2b%3A0xcaa2e01fe561b055!2sRefshale%C3%B8en%2C%20Copenhagen!5e0!3m2!1sen!2sdk!4v1734337472155!5m2!1sen!2sdk"
-              width="1000"
-              height="450"
-              style={{ border: 0 }}
-              loading="lazy"
-              className="max-w-full"
-            ></iframe>
-          </div>
+        <div className="max-w-4xl mx-auto mb-[40px] lg:mb-[80px]">
+          <h3 className="font-bold mb-6 text-black_color text-center">Frequently Asked Questions</h3>
+          {faqItems.map((item, index) => (
+            <FAQItem key={index} question={item.question} answer={item.answer} />
+          ))}
+        </div>
 
-          <div>
-            <h2 className="text-2xl font-bold mb-4 text-black_color">Our Origin</h2>
-            <p className="text-grey_color mb-4">Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences. We craft moments that resonate beyond the festival grounds.</p>
-<br />
-<p className="text-grey_color">Through captivating performances, immersive installations, and a vibrant community, Foo Fest creates an unforgettable atmosphere for music lovers of all ages.</p>
-<p className="text-grey_color">Each year, we bring together an eclectic mix of global artists, cutting-edge technology, and sustainable practices to deliver a festival experience that redefines boundaries.</p>
-<br />
-<p className="text-grey_color">At Foo Fest, it’s not just about the music — it’s about creating memories, fostering connections, and celebrating creativity in all its forms.</p>
-<p className="text-grey_color">Whether you're dancing under the stars, exploring interactive art, or simply soaking in the vibe, Foo Fest is a journey that stays with you long after the last note fades.</p>
-
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-bold mb-6 text-black_color text-center">Frequently Asked Questions</h2>
-            {faqItems.map((item, index) => (
-              <FAQItem key={index} question={item.question} answer={item.answer} />
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Music, title: "Lineup", desc: "World-class artists across multiple genres", link: "/lineup" },
-              { icon: Calendar, title: "Schedule", desc: "Detailed performance timings released monthly", link: "#" },
-              { icon: Globe, title: "Sustainability", desc: "Committed to eco-friendly festival practices", link: "#" },
-              { icon: CreditCard, title: "Payments", desc: "Secure online transactions and flexible options", link: "#" },
-              { icon: Shield, title: "Safety", desc: "Comprehensive security and medical support", link: "#" },
-            ].map((info, index) => (
-              <div key={index} className="text-center hover:scale-105 transition-transform">
-                <Link className="block" href={info.link}>
-                  <info.icon className="mx-auto h-12 w-12 text-black_color mb-4" />
-                  <h3 className="text-xl font-bold text-black_color mb-2">{info.title}</h3>
-                  <p className="text-grey_color">{info.desc}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center gap-10">
+          {[
+            { icon: Music, title: "Lineup", desc: "World-class artists across multiple genres", link: "/lineup" },
+            { icon: Calendar, title: "Schedule", desc: "Detailed performance schedule released monthly", link: "/schedule" },
+            { icon: Globe, title: "Sustainability", desc: "Committed to eco-friendly festival practices", link: "#" },
+            { icon: CreditCard, title: "Payments", desc: "Secure online transactions and flexible options", link: "#" },
+            { icon: Shield, title: "Safety", desc: "Comprehensive security and medical support", link: "#" },
+          ].map((info, index) => (
+            <div key={index} className="text-center hover:scale-105 transition-transform">
+              <Link className="block" href={info.link}>
+                <info.icon className="mx-auto h-12 w-12 text-black_color mb-4" />
+                <h3 className="text-xl font-bold text-black_color mb-2">{info.title}</h3>
+                <p className="text-step_text_regular text-grey_color">{info.desc}</p>
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
     </div>
