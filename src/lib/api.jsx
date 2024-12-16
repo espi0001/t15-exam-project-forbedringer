@@ -56,11 +56,10 @@ export const api = {
     }
   },
 
-  // POST metoder - bruges til at oprette nye ressourcer
   createReservation: async (area, amount) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/reservations`, {
-        method: "POST",
+      const response = await fetch(`${API_BASE_URL}/reserve-spot`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ area, amount }),
       });
@@ -72,32 +71,17 @@ export const api = {
     }
   },
 
-  // PATCH metoder - bruges til at opdatere eksisterende ressourcer delvist
-  updateReservation: async (id, updates) => {
+  fulfillReservation: async (id) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/reservations/${id}`, {
-        method: "PATCH",
+      const response = await fetch(`${API_BASE_URL}/fullfill-reservation`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
+        body: JSON.stringify({ id }),
       });
-      if (!response.ok) throw new Error("Failed to update reservation");
+      if (!response.ok) throw new Error("Failed to fulfill reservation");
       return await response.json();
     } catch (error) {
-      console.error("Reservation update error:", error);
-      throw error;
-    }
-  },
-
-  // DELETE metoder - bruges til at slette ressourcer
-  deleteReservation: async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/reservations/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error("Failed to delete reservation");
-      return await response.json();
-    } catch (error) {
-      console.error("Reservation deletion error:", error);
+      console.error("Fulfill reservation error:", error);
       throw error;
     }
   },
