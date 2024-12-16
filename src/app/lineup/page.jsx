@@ -111,8 +111,7 @@ const Page = () => {
   return (
     <div>
       <HeaderBillede billede={ContactHero} />
-      {/* mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]  */}
-      <section className="mx-[20px] lg:mx-[64px] p-6 flex flex-col gap-4">
+      <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg flex flex-col gap-4">
         <Card>
           <HeaderText h1="Lineup" text="Get ready for an unforgettable festival experience with 126 incredible bands across multiple stages. Discover your new favorite artists and enjoy a week of diverse music, energy, and pure festival vibes!" />
 

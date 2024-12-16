@@ -51,7 +51,7 @@ export default function Page() {
     <div>
       <HeaderBillede billede={ContactHero} />
 
-      <section className="mx-[20px] lg:mx-[64px] p-6">
+      <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
         <Card className="w-full max-w-6xl mx-auto mb-10">
           <HeaderText h1="Stage Schedule" text="Experience unforgettable performances and immerse yourself in the festival vibe." />
           {/* className={`${selectedDay === day ? "bg-red_color text-white_color" : "bg-gray-200"}`} */}

@@ -3,16 +3,24 @@ module.exports = {
   darkMode: ["class"],
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    container: {
-      padding: {
-        DEFAULT: "20px",
-        sm: "32px",
-        lg: "48rem",
-        xl: "64rem",
-        "2xl": "96rem",
-      },
-    },
+    // container: {
+    //   padding: {
+    //     DEFAULT: "20px",
+    //     sm: "32px",
+    //     lg: "48rem",
+    //     xl: "64rem",
+    //     "2xl": "96rem",
+    //   },
+    // },
     extend: {
+      margin: {
+        mx_default: "20px",
+        mx_lg: "64px",
+      },
+      padding: {
+        py_default: "30px",
+        py_lg: "60px",
+      },
       utilities: {
         ".transition-base": {
           "@apply transition-all duration-1000 ease-in-out": {},

@@ -9,12 +9,11 @@ export default function Page() {
   // useState til at styre, hvilken visning der er aktiv (booking eller schedule)
   const [activeView, setActiveView] = useState("booking");
 
-  //   mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]
   return (
     <div>
       <HeaderBillede billede={ContactHero} />
 
-      <section className="mx-[20px] lg:mx-[64px] p-6">
+      <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
         <HeaderText h1="Tickets" text="Choose your experience! Standard tickets for full access or VIP for exclusive perks and priority. Get yours now!" />
         {/* <h1 className="text-black_color text-center">Tickets</h1> */}
         <BookingFlow />
