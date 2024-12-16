@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 
 export default function Navigation({ activeView, setActiveView }) {
   return (

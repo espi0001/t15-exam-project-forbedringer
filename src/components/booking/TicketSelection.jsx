@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-kom
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter til valg af radio-knapper
 import { Label } from "../ui/label"; // UI-komponent til tekstlabels
 import { Input } from "../ui/input"; // UI-komponent til inputfelter
-import { Button } from "../ui/button"; // UI-komponent til knapper
+import { Button } from "../ui/Button"; // UI-komponent til knapper
 import { IoTicketOutline } from "react-icons/io5";
 
 // Komponent til valg af billet
