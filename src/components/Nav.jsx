@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import DateHover from "./DateHover";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,15 +39,14 @@ const Nav = () => {
 
       <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-bold text-white_color relative group">
         MENU
-        <span className="absolute left-0 bottom-0 w-0 h-px bg-white_color transition-all duration-300 group-hover:w-full" />
+        <span className="absolute left-0 bottom-0 w-0 h-px bg-white_color transition-base group-hover:w-full" />
       </button>
 
       <AnimatePresence mode="wait">
         {isMenuOpen && (
           <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white_color p-16 text-black_color z-60">
             <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center">
-              <div className="w-8 h-[2px] bg-black_color rotate-45 absolute" />
-              <div className="w-8 h-[2px] bg-black_color -rotate-45 absolute" />
+              <IoCloseOutline className="w-12 h-12 text-black_color hover:text-red_color transition-base" />
             </button>
 
             <div className="flex flex-col justify-between h-full">
@@ -66,7 +66,7 @@ const Nav = () => {
                           }}
                         />
                       )}
-                      <Link href={item.href} onClick={() => setIsMenuOpen(false)} className="text-5xl font-light hover:text-grey_color transition-colors">
+                      <Link href={item.href} onClick={() => setIsMenuOpen(false)} className="text-5xl font-light hover:text-red_color transition-base">
                         {item.title}
                       </Link>
                     </motion.div>
@@ -78,10 +78,10 @@ const Nav = () => {
               <p className="text-grey_color uppercase text-sm border-b border-grey_color pb-4 mt-20">Follow Us</p>
 
               <div className="flex gap-10 text-sm mb-10">
-                <Link href="#" className="hover:text-grey_color cursor-pointer">
+                <Link href="#" className="hover:text-grey_color cursor-pointer transition-base">
                   Instagram
                 </Link>
-                <Link href="#" className="hover:text-grey_color cursor-pointer">
+                <Link href="#" className="hover:text-grey_color cursor-pointer transition-base">
                   Facebook
                 </Link>
               </div>

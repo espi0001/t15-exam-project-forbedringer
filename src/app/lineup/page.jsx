@@ -1,4 +1,5 @@
 "use client";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { IoFilter } from "react-icons/io5";
 
@@ -38,6 +39,12 @@ const Page = () => {
     Friday: "fri",
     Saturday: "sat",
     Sunday: "sun",
+  };
+
+  const panelSlide = {
+    initial: { x: "-100%" },
+    enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+    exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
   };
 
   // Fetch data from the APIs when the component mounts
@@ -125,6 +132,19 @@ const Page = () => {
 
               {/* FilterPanel Component */}
               {isFiltersOpen && <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />}
+              <AnimatePresence mode="wait">
+                {isFiltersOpen && (
+                  <motion.div
+                    variants={panelSlide} // Use the animation variants
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                    className="fixed bg-white top-0 left-0 w-full h-full md:w-[300px] z-50 overflow-y-auto px-[20px] py-[28px]"
+                  >
+                    <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </section>
 
             <section>
