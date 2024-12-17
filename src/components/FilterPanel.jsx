@@ -1,5 +1,5 @@
 import { IoCloseOutline } from "react-icons/io5";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
   // Framer Motion animation-variabler
