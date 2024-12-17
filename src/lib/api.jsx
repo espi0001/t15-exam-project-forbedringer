@@ -1,9 +1,38 @@
 const API_BASE_URL = "https://lively-scrawny-secretary.glitch.me";
 // const API_BASE_URL = "http://localhost:8080";
-const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export const api = {
+  saveBooking: async (bookingData) => {
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          reservation_id: bookingData.reservationId,
+          name: bookingData.name,
+          email: bookingData.email,
+          ticket_type: bookingData.ticketType,
+          camping_area: bookingData.campingArea,
+          tent_setup: bookingData.tentSetup,
+          green_camping: bookingData.greenCamping,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to save booking");
+      return await response.json();
+    } catch (error) {
+      console.error("Save booking error:", error);
+      throw error;
+    }
+  },
+
   // GET metoder
   getAvailableSpots: async () => {
     try {
