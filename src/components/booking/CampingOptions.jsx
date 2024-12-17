@@ -87,7 +87,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
             </div>
 
             {/* Vælg opsætning af telt */}
-            <div className="pt-4">
+            {/* <div className="pt-4">
               <Label>Tent setup</Label>
               <select
                 value={bookingData.tentSetup} // Forvalgt værdi fra bookingData
@@ -101,12 +101,12 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
               >
                 <option value="" className="bg-white_color">
                   No tent setup
-                </option>{" "}
-                {/* Standard valg */}
+                </option>
+             
                 <option value="2person">2-Person Tent (299,-)</option>
                 <option value="3person">3-Person Tent (399,-)</option>
               </select>
-            </div>
+            </div> */}
 
             <div className="flex justify-between mt-4">
               <Button variant="outline" onClick={onBack}>
