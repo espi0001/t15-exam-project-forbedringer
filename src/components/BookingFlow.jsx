@@ -116,7 +116,7 @@ export default function BookingFlow() {
       {/* Trin 5: Bekræftelse */}
       {step === 5 && (
         <Confirmation
-          reservationId={reservationId} // Viser bekræftelses-ID
+          reservationId={bookingData.reservationId} // Viser bekræftelses-ID
           onReset={() => {
             setStep(1);
             setBookingData({

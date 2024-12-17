@@ -20,7 +20,10 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
 
   // Beregner totalprisen for ordren baseret på brugerens valg
   const calculateTotal = () => {
-    let total = bookingData.ticketCount * (bookingData.ticketType === "vip" ? 1299 : 799); // Billetpris
+    const ticketPrice = bookingData.ticketType === "vip" ? 1299 : 799; // Pris for valgt billetype
+    let total = bookingData.ticketCount * ticketPrice;
+    // let total = bookingData.ticketCount * (bookingData.ticketType === "vip" ? 1299 : 799); // Billetpris
+
     if (bookingData.greenCamping) total += 249; // Tillæg for green camping
     if (bookingData.tentSetup === "2person") total += 299 * Math.ceil(bookingData.ticketCount / 2); // 2-personers telt
     if (bookingData.tentSetup === "3person") total += 399 * Math.ceil(bookingData.ticketCount / 3); // 3-personers telt
@@ -81,16 +84,42 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {/* Ordresammendrag */}
           <div className="border-b pb-4">
-            <h4 className="font-semibold">Order summary</h4>
-            <p>
-              {bookingData.ticketCount}x {bookingData.ticketType} Ticket(s)
-            </p>
-            {bookingData.greenCamping && <p>Green Camping option</p>}
-            {bookingData.tentSetup && <p>Tent setup: {bookingData.tentSetup}</p>}
-            <p>Booking fee: 99,-</p>
+            <h4 className="font-semibold pb-2">Order summary</h4>
+
+            <article className="space-y-2">
+              <p>
+                {bookingData.ticketCount}x {bookingData.ticketType} {bookingData.ticketCount > 1 ? "Tickets" : "Ticket"}
+              </p>
+              {bookingData.tentSetup && <p>Tent setup: {bookingData.tentSetup}</p>}
+
+              {/* Green Camping option */}
+              {bookingData.greenCamping && (
+                <p>
+                  Green Camping option
+                  <span className="ml-2">249,-</span>
+                </p>
+              )}
+              {/* Tent setup prisen */}
+              <div>
+                {bookingData.personalInfo.map((info, index) => (
+                  <p key={index} className="">
+                    <span className="font-[500]">Ticket #{index + 1}:</span>{" "}
+                    {info.tentSetup ? (
+                      <>
+                        {" "}
+                        Tent setup: {info.tentSetup} <span className="ml-2 text-">{info.tentSetup === "2person" ? "299,-" : "399,-"}</span>
+                      </>
+                    ) : (
+                      " No tent setup"
+                    )}
+                  </p>
+                ))}
+              </div>
+              <p>Booking fee: 99,-</p>
+            </article>
             <p className="text-xl font-bold mt-2">Total: {calculateTotal()},-</p>
           </div>
 
