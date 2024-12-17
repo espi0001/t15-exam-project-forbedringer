@@ -9,11 +9,11 @@ const Page = async ({ params }) => {
   const slug = await params.slug; // henter slug fra URL'en
 
   // fetch band data
-  const bandResponse = await fetch(`http://localhost:8080/bands/${slug}`);
+  const bandResponse = await fetch(`https://lively-scrawny-secretary.glitch.me/bands/${slug}`);
   const band = await bandResponse.json();
 
   // Fetch schedule data for the band
-  const scheduleResponse = await fetch(`http://localhost:8080/schedule`);
+  const scheduleResponse = await fetch(`https://lively-scrawny-secretary.glitch.me/schedule`);
   const scheduleData = await scheduleResponse.json();
 
   // Find the band's schedule
@@ -36,16 +36,16 @@ const Page = async ({ params }) => {
   return (
     <div>
       <div className="relative w-full h-[300px] lg:h-[400px]">
-  <div 
-    style={{ 
-      backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, 
-      backgroundRepeat: "no-repeat", 
-      backgroundSize: "cover" 
-    }} 
-    className="absolute inset-0 object-cover brightness-50 bg-center"
-  />
-  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
-</div>
+        <div
+          style={{
+            backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+          className="absolute inset-0 object-cover brightness-50 bg-center"
+        />
+        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
+      </div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
           <AboutSection bio={band.bio} />
@@ -65,7 +65,7 @@ const Page = async ({ params }) => {
             )}
           </div>
           <div>
-            <h2 className="font-bold text-step_h5">Genre</h2>
+            <h2 className="text-step_h5">Genre</h2>
             <p className="text-lg font-light text-step_p">{band.genre}</p>
           </div>
         </article>
@@ -84,11 +84,11 @@ const Page = async ({ params }) => {
               <p className="text-lg">No schedule available for this band.</p>
             )}
           </div>
-           <Link href="/schedule">
-  <Button variant="default" size="lg" className="mt-6 mb-10">
-    View full schedule
-  </Button>
-</Link>
+          <Link href="/schedule">
+            <Button variant="default" size="lg" className="mt-6 mb-10">
+              View full schedule
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
