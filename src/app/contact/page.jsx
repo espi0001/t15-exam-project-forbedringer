@@ -48,7 +48,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6 w-[560px]">
               <div>
                 <Label htmlFor="name">Full name</Label> {/* Label for navn */}
-                <Input id="name" name="name" placeholder="Jane Foo" required className="mt-1 placeholder:text-grey_color" value={formData.name} onChange={handleChange} />
+                <Input id="name" name="name" placeholder="Jane Foo" required className="mt-1 placeholder:text-less_black_color" value={formData.name} onChange={handleChange} />
               </div>
               <div>
                 <Label htmlFor="email">Full name</Label> {/* Label for navn */}
@@ -57,7 +57,7 @@ const Contact = () => {
                   name="email"
                   placeholder="janefoo@email.com"
                   required
-                  className="mt-1 placeholder:text-grey_color"
+                  className="mt-1 placeholder:text-black_color"
                   value={formData.email} // Kontrolleret værdi
                   onChange={handleChange} // Opdater formData
                 />

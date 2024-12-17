@@ -138,7 +138,7 @@ const Page = () => {
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
-              <div key={band.slug} className="relative w-full h-[300px] bg-light_grey_color rounded overflow-hidden transition-transform hover:scale-105 group">
+              <div key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
                 <p>{band.logo}</p>
                 <div className="absolute inset-0 bg-center brightness-50 bg-fill" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
                 <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
@@ -152,7 +152,7 @@ const Page = () => {
           </section>
           {visibleCount < filteredBands.length && (
             <div className="mt-4 flex items-center justify-between">
-              <span className="text-grey_color">
+              <span className="text-less_black_color">
                 {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
               </span>
               <Button

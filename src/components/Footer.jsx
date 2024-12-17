@@ -75,7 +75,7 @@ const Footer = () => {
                   href={href}
                   text={text}
                   className={`
-                    ${isIndexPage ? "text-black_color hover:text-grey_color" : "text-white_color hover:text-grey_color"}
+                    ${isIndexPage ? "text-less_black_color hover:text-grey_color" : "text-white_color hover:text-less_black_color"}
                     transition-colors duration-300
                   `}
                 />

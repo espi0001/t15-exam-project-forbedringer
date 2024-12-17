@@ -51,7 +51,7 @@ const Nav = () => {
 
             <div className="flex flex-col justify-between h-full">
               <div>
-                <p className="text-grey_color uppercase text-sm border-b border-grey_color pb-4 mb-8">Menu</p>
+                <p className="text-less_black_color uppercase text-sm border-b border-less_black_color pb-4 mb-8">Menu</p>
                 <div className="flex flex-col gap-3 ">
                   {menuItems.map((item, index) => (
                     <motion.div key={index} initial={{ x: 80 }} animate={{ x: 0 }} transition={{ delay: 0.1 * index }} className="relative " onMouseEnter={() => setSelectedIndicator(item.href)}>
@@ -75,13 +75,13 @@ const Nav = () => {
               </div>
 
               {/* Add a line above Instagram and Facebook links */}
-              <p className="text-grey_color uppercase text-sm border-b border-grey_color pb-4 mt-20">Follow Us</p>
+              <p className="text-less_black_color uppercase text-sm border-b border-less_black_color pb-4 mt-20">Follow Us</p>
 
               <div className="flex gap-10 text-sm mb-10">
-                <Link href="#" className="hover:text-grey_color cursor-pointer transition-base">
+                <Link href="#" className="hover:text-less_black_color cursor-pointer transition-base">
                   Instagram
                 </Link>
-                <Link href="#" className="hover:text-grey_color cursor-pointer transition-base">
+                <Link href="#" className="hover:text-less_black_color cursor-pointer transition-base">
                   Facebook
                 </Link>
               </div>

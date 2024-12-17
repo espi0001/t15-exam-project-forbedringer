@@ -10,7 +10,7 @@ const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-grey_color py-4">
+    <div className="border-b border-less_black_color: py-4">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left">
         <span className="text-step_text_large font-semibold text-black_color">{question}</span>
         {isOpen ? <ChevronUp className="text-black_color" /> : <ChevronDown className="text-black_color" />}
@@ -82,7 +82,7 @@ const AboutPage = () => {
               <Link className="block" href={info.link}>
                 <info.icon className="mx-auto h-12 w-12 text-black_color mb-4" />
                 <h3 className="text-xl font-bold text-black_color mb-2">{info.title}</h3>
-                <p className="text-step_text_regular text-grey_color">{info.desc}</p>
+                <p className="text-step_text_regular text-black_color">{info.desc}</p>
               </Link>
             </div>
           ))}

@@ -73,8 +73,8 @@ module.exports = {
         white_color: "#fff",
         black_color: "#121212",
         red_color: "#ff2800",
-        grey_color: "#9CA3AF",
-        light_grey_color: "#F3F4F6",
+        less_black_color: "#262626",
+        light_black_color: "#F3F4F6",
         "custom-start": "#000",
         "custom-end": "#121212",
         card: {
