@@ -26,14 +26,14 @@ const Footer = () => {
         <section className="flex flex-col lg:flex-row justify-between lg:items-start gap-8">
           <div className="flex flex-col items-center lg:items-start gap-4 lg:mr-8">
             <Image src={isIndexPage ? Logo : WhiteLogo} width={65} alt="logo" />
-            <h6
+            <h2
               className={`
                 text-[2rem] sm:text-[3rem] lg:text-[5rem] font-bold text-center lg:text-left
                 ${isIndexPage ? "text-black_color" : "text-white_color"}
               `}
             >
               Be the first to know!
-            </h6>
+            </h2>
           </div>
           <form className="flex flex-col lg:flex-row gap-4 items-center lg:items-start w-full lg:w-auto lg:mt-28">
             <input
