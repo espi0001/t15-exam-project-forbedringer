@@ -36,7 +36,7 @@ const Hero = () => {
         duration: 0.8,
         ease: "power2.in",
       },
-      "-=0.6" // Adjusted to start a bit earlier, but not so much that it disrupts the flow
+      "-=0.6"
     )
     .to(".liquid-overlay", {
       clipPath: `circle(65% at 85% 20%)`,
@@ -60,15 +60,15 @@ const Hero = () => {
         }}
       >
         {/* Black text on white background */}
-        <div className="text-layer-1 absolute bottom-10 w-full text-black_color flex flex-col items-start p-4">
-          <div className="hero-text overflow-hidden">
-            <h1 className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">FOO FEST</h1>
+        <div className="text-layer-1 absolute bottom-10 w-full text-black_color flex flex-col items-start p-4 space-y-1">
+          <div className="hero-text overflow-hidden leading-none">
+            <h1 className="ml-14 fluid-title font-bold">FOO FEST</h1>
           </div>
-          <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-xl xl:text-8xl">24th ─ 30th</p>
+          <div className="hero-text overflow-hidden leading-none">
+            <p className="ml-14 fluid-text font-medium">24th ─ 30th</p>
           </div>
-          <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-xl xl:text-8xl">March, 2025</p>
+          <div className="hero-text overflow-hidden leading-none">
+            <p className="ml-14 fluid-text font-medium">March, 2025</p>
           </div>
         </div>
       </div>
@@ -95,15 +95,15 @@ const Hero = () => {
         </div>
 
         {/* White text on hero background */}
-        <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 z-40">
-          <div className="hero-text overflow-hidden">
-            <h1 className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">FOO FEST</h1>
+        <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 space-y-1 z-40">
+          <div className="hero-text overflow-hidden leading-none">
+            <h1 className="ml-14 fluid-title font-bold">FOO FEST</h1>
           </div>
-          <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-xl xl:text-8xl">24th ─ 30th</p>
+          <div className="hero-text overflow-hidden leading-none">
+            <p className="ml-14 fluid-text font-bold">24th ─ 30th</p>
           </div>
-          <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-xl xl:text-8xl">March, 2025</p>
+          <div className="hero-text overflow-hidden leading-none">
+            <p className="ml-14 fluid-text font-medium">March, 2025</p>
           </div>
         </div>
       </div>
