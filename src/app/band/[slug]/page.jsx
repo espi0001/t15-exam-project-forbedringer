@@ -1,6 +1,8 @@
 import Image from "next/image";
 import placeholderLogo from "@/images/placeholder-image.jpg";
 import AboutSection from "@/app/band/AboutSection";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // singleview for a band
 const Page = async ({ params }) => {
@@ -33,11 +35,17 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <div style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} className="relative w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center">
-        {/* Adjust Image Container */}
-        {/* <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center" width={1200} height={400} /> */}
-        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold">{band.name}</h1>
-      </div>
+      <div className="relative w-full h-[300px] lg:h-[400px]">
+  <div 
+    style={{ 
+      backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, 
+      backgroundRepeat: "no-repeat", 
+      backgroundSize: "cover" 
+    }} 
+    className="absolute inset-0 object-cover brightness-50 bg-center"
+  />
+  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
+</div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
           <AboutSection bio={band.bio} />
@@ -63,7 +71,7 @@ const Page = async ({ params }) => {
         </article>
         <div className="lg:w-2/5">
           <div className="mt-6 sm:mt-8">
-            <h5 className="font-bold mb-2 sm:mb-2">Performs at</h5>
+            <h3 className="font-bold mb-2 sm:mb-2">Performs at</h3>
             {bandSchedules.length > 0 ? (
               <div>
                 {bandSchedules.map((schedule, index) => (
@@ -76,51 +84,11 @@ const Page = async ({ params }) => {
               <p className="text-lg">No schedule available for this band.</p>
             )}
           </div>
-
-          <article className="flex justify-between mt-8">
-            <div>
-              <h5>Day</h5>
-              {bandSchedules.length > 0 ? (
-                <div className="font-extralight">
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.day}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-            <div>
-              <h5>Stage</h5>
-              {bandSchedules.length > 0 ? (
-                <div>
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.stage}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-            <div>
-              <h5>Time</h5>
-              {bandSchedules.length > 0 ? (
-                <div>
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.start} - {schedule.end}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-          </article>
+           <Link href="/schedule">
+  <Button variant="default" size="lg" className="mt-6 mb-10">
+    View full schedule
+  </Button>
+</Link>
         </div>
       </section>
     </div>
