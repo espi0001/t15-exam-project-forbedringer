@@ -42,7 +42,7 @@ const Page = async ({ params }) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}
-          className="absolute inset-0 object-cover brightness-50 bg-center"
+          className="absolute inset-0 object-cover brightness-50 bg-center bg-less_black_color"
         />
         <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
       </div>
