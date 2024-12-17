@@ -177,10 +177,13 @@ const Page = () => {
           </section>
           {visibleCount < filteredBands.length && (
             <div className="mt-4 flex items-center justify-between">
-              <span className="text-less_black_color">
+              <span className="text-less_black_color text-step_p">
                 {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
               </span>
               <Button
+                variant="default"
+                className="text-white_color"
+                size="lg"
                 onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
               >
                 Load more

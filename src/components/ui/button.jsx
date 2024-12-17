@@ -22,7 +22,7 @@ const buttonVariants = cva(
       },
       size: {
         // De forskellige størrelser, som knappen kan have
-        default: "h-9 px-4 py-2", // Standardstørrelse
+        default: "h-9 px-4 py-2 text-step_text_regular", // Standardstørrelse
         sm: "h-8 rounded-full px-3 text-xs", // Lille størrelse
         lg: "rounded-full px-6 py-2", // Stor størrelse
         xl: "rounded-full px-16 py-4 text-[1.1rem]",
