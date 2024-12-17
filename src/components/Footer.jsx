@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Logo from "@/images/foo-fest-isometric-black-logo.svg";
 import WhiteLogo from "@/images/foo-fest-isometric-white-logo.svg";
 import FooterNavigationLink from "./FooterNavigationLinks";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 
 const Footer = () => {
   const pathname = usePathname();

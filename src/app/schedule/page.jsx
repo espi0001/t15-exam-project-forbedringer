@@ -6,7 +6,7 @@ import { api } from "@/lib/api";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 import ContactHero from "@/images/redd-francisco-unsplash-1.avif";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [scheduleData, setScheduleData] = useState(null);
