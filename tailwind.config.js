@@ -75,8 +75,8 @@ module.exports = {
         red_color: "#ff2800",
         grey_color: "#9CA3AF",
         light_grey_color: "#F3F4F6",
-        "custom-start": "#060100",
-        "custom-end": "#121212",
+        "custom-start": "#242424",
+        "custom-end": "#242424",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
