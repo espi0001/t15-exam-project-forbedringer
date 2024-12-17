@@ -1,6 +1,8 @@
 import Image from "next/image";
 import placeholderLogo from "@/images/placeholder-image.jpg";
 import AboutSection from "@/app/band/AboutSection";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // singleview for a band
 const Page = async ({ params }) => {
@@ -82,6 +84,11 @@ const Page = async ({ params }) => {
               <p className="text-lg">No schedule available for this band.</p>
             )}
           </div>
+           <Link href="/schedule">
+  <Button variant="default" size="lg" className="mt-6 mb-10">
+    View full schedule
+  </Button>
+</Link>
         </div>
       </section>
     </div>
