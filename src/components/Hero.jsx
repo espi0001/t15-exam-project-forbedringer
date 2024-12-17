@@ -4,6 +4,7 @@ import Image from "next/image";
 import IndexHeroImage from "@/images/foo-fest-hero-w-text.png";
 import IndexFansHero from "@/images/fans-for-parallax.png";
 import { gsap } from "gsap";
+import Poster from "@/images/foo-fest-poster.webp"
 
 const Hero = () => {
   useEffect(() => {
@@ -64,7 +65,7 @@ const Hero = () => {
             <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>
           <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 28th</p>
+            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 30th</p>
           </div>
           <div className="hero-text overflow-hidden">
             <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">2025</p>
@@ -85,7 +86,7 @@ const Hero = () => {
             <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">March</p>
           </div>
           <div className="hero-text overflow-hidden">
-            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 28th</p>
+            <p className="ml-14 text-xl font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">24th ─ 30th</p>
           </div>
           <div className="hero-text overflow-hidden">
             <p className="ml-14 text-xl font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-9xl">2025</p>

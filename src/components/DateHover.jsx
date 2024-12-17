@@ -10,7 +10,7 @@ const DateHover = () => {
         Refshaleøen, Cph
       </motion.p>
       <motion.p className="font-medium text-sm text-white_color absolute top-0 left-full whitespace-nowrap" initial={{ x: 0 }} animate={{ x: isHovered ? "-100%" : 0 }} transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}>
-        March 24th-28th, 2025
+        March 24th-30th, 2025
       </motion.p>
     </a>
   );
