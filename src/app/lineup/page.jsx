@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { IoFilter } from "react-icons/io5";
 
 import Link from "next/link";
+import Image from "next/image";
 import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/button";
 import FilterPanel from "@/components/FilterPanel";
@@ -156,14 +157,22 @@ const Page = () => {
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
-              <div key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
-                <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
+              // <div key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
+              //   <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
+              //   <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
+              //     <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
+              //       {band.name}
+              //     </Link>
+              //   </div>
+              // </div>
+              <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
+                <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
                 <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
-                  <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
+                  <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
                     {band.name}
                   </Link>
                 </div>
-              </div>
+              </article>
             ))}
           </section>
           {visibleCount < filteredBands.length && (
