@@ -48,7 +48,7 @@ const Footer = () => {
             type="submit"
             size="xl"
             alt="Button to click to subscribe with chosen email"
-            variant="footer"
+            variant="footer_sort"
             className={`
               px-6 py-2 rounded-full
               ${isIndexPage ? "focus:ring-black-500" : "focus:ring-white-500"}
