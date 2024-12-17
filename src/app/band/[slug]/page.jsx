@@ -69,7 +69,7 @@ const Page = async ({ params }) => {
         </article>
         <div className="lg:w-2/5">
           <div className="mt-6 sm:mt-8">
-            <h5 className="font-bold mb-2 sm:mb-2">Performs at</h5>
+            <h3 className="font-bold mb-2 sm:mb-2">Performs at</h3>
             {bandSchedules.length > 0 ? (
               <div>
                 {bandSchedules.map((schedule, index) => (
@@ -82,51 +82,6 @@ const Page = async ({ params }) => {
               <p className="text-lg">No schedule available for this band.</p>
             )}
           </div>
-
-          <article className="flex justify-between mt-8">
-            <div>
-              <h5>Day</h5>
-              {bandSchedules.length > 0 ? (
-                <div className="font-extralight">
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.day}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-            <div>
-              <h5>Stage</h5>
-              {bandSchedules.length > 0 ? (
-                <div>
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.stage}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-            <div>
-              <h5>Time</h5>
-              {bandSchedules.length > 0 ? (
-                <div>
-                  {bandSchedules.map((schedule, index) => (
-                    <p key={index} className="single-view-schedule-p">
-                      {schedule.start} - {schedule.end}
-                    </p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-lg">No schedule available for this band.</p>
-              )}
-            </div>
-          </article>
         </div>
       </section>
     </div>
