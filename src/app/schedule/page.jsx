@@ -82,7 +82,7 @@ export default function Page() {
                             <Link
                               key={`${stage}-${idx}`} // Unik key for hvert event med stage og index
                               href={`/band/${slug}`}
-                              className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-less_black_color"}`}
+                              className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-light_black_color"}`}
                             >
                               <p className="font-medium text-step_p">{event.act}</p>
                               <p className="text-step_text_tiny">
