@@ -33,11 +33,17 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <div style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} className="relative w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center">
-        {/* Adjust Image Container */}
-        {/* <img src={band.logo} alt={`${band.name} logo`} className="w-full h-[300px] lg:h-[400px] object-cover brightness-50 bg-center" width={1200} height={400} /> */}
-        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold">{band.name}</h1>
-      </div>
+      <div className="relative w-full h-[300px] lg:h-[400px]">
+  <div 
+    style={{ 
+      backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})`, 
+      backgroundRepeat: "no-repeat", 
+      backgroundSize: "cover" 
+    }} 
+    className="absolute inset-0 object-cover brightness-50 bg-center"
+  />
+  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
+</div>
       <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
           <AboutSection bio={band.bio} />
