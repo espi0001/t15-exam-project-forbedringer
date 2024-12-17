@@ -1,4 +1,5 @@
 "use client";
+import { motion, AnimatePresence } from "framer-motion"; // animation
 import { useState, useEffect } from "react";
 import { IoFilter } from "react-icons/io5";
 
@@ -14,6 +15,12 @@ import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 
 const Page = () => {
+  const panelSlide = {
+    initial: { x: "-100%" },
+    enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+    exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+  }; // Filterpanel animation
+
   const [bands, setBands] = useState([]); // State for bands fetched fra API
 
   // hvorfor er der {} her og ikke []?
@@ -45,7 +52,6 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const [bandsData, scheduleData] = await Promise.all([api.getBands(), api.getSchedule()]);
-
         // kombinerer bandsData og scheduleData
         const updatedBands = bandsData.map((band) => {
           // finder scheduleData for hvert band
@@ -111,8 +117,7 @@ const Page = () => {
   return (
     <div>
       <HeaderBillede billede={ContactHero} />
-      {/* mx-[20px] lg:mx-[64px] py-[64px] lg:py-[112px]  */}
-      <section className="mx-[20px] lg:mx-[64px] p-6 flex flex-col gap-4">
+      <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg flex flex-col gap-4">
         <Card>
           <HeaderText h1="Lineup" text="Get ready for an unforgettable festival experience with 126 incredible bands across multiple stages. Discover your new favorite artists and enjoy a week of diverse music, energy, and pure festival vibes!" />
 
@@ -125,7 +130,19 @@ const Page = () => {
               </Button>
 
               {/* FilterPanel Component */}
-              {isFiltersOpen && <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />}
+              <AnimatePresence mode="wait">
+                {isFiltersOpen && (
+                  <motion.div
+                    variants={panelSlide} // Use the animation variants
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                    className="fixed bg-white top-0 left-0 w-full h-full md:w-[300px] z-50 overflow-y-auto px-[20px] py-[28px]"
+                  >
+                    <FilterPanel filters={filters} setFilters={setFilters} schedule={schedule} daysMap={daysMap} bands={bands} closeFilter={() => setIsFiltersOpen(false)} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </section>
 
             <section>
@@ -135,19 +152,18 @@ const Page = () => {
               </Button>
             </section>
           </div>
+
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
               <div key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
-                <p>{band.logo}</p>
-                <div className="absolute inset-0 bg-center brightness-50 bg-fill" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
+                <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
                 <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
                   <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
                     {band.name}
                   </Link>
                 </div>
               </div>
-              // <img src={`/logos/${band.logo}`} alt="nillede" />
             ))}
           </section>
           {visibleCount < filteredBands.length && (

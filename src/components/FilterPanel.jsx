@@ -2,8 +2,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import { Button } from "./ui/button";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
-  // Framer Motion animation-variabler
-
   return (
     <div className="">
       <div className="flex flex-col justify-between items-center mb-[24px]">
@@ -18,7 +16,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Days</p>
-          <button onClick={() => setFilters({ ...filters, day: [] })} className="text-xs text-grey_color underline">
+          <button onClick={() => setFilters({ ...filters, day: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
         </div>
@@ -34,7 +32,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedDays = e.target.checked ? [...filters.day, selectedDay] : filters.day.filter((day) => day !== selectedDay);
                   setFilters({ ...filters, day: updatedDays });
                 }}
-                className="form-checkbox text-black_color border-grey_color rounded"
+                className="form-checkbox text-black_color border-less_black_color rounded"
               />
               <span className="text-step_text_regular">{fullDayName}</span>
             </label>
@@ -48,7 +46,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Stages</p>
-          <button onClick={() => setFilters({ ...filters, stage: [] })} className="text-xs text-grey_color underline">
+          <button onClick={() => setFilters({ ...filters, stage: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
         </div>
@@ -64,7 +62,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedStages = e.target.checked ? [...filters.stage, selectedStage] : filters.stage.filter((stage) => stage !== selectedStage);
                   setFilters({ ...filters, stage: updatedStages });
                 }}
-                className="form-checkbox text-black_color border-grey_color rounded"
+                className="form-checkbox text-black_color border-less_black_color rounded"
               />
               <span className="text-step_text_regular">{stage}</span>
             </label>
@@ -78,7 +76,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Genre</p>
-          <button onClick={() => setFilters({ ...filters, genre: [] })} className="text-xs text-grey_color underline">
+          <button onClick={() => setFilters({ ...filters, genre: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
         </div>
@@ -94,7 +92,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
                   const updatedGenreFilters = e.target.checked ? [...filters.genre, selectedGenre] : filters.genre.filter((g) => g !== selectedGenre);
                   setFilters({ ...filters, genre: updatedGenreFilters });
                 }}
-                className="form-checkbox text-black_color border-grey_color rounded"
+                className="form-checkbox text-black_color border-less_black_color rounded"
               />
               <span className="text-step_text_regular">{genre}</span>
             </label>
@@ -102,7 +100,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
         </form>
       </article>
 
-      <hr className="border-grey_color" />
+      <hr className="border-less_black_color" />
 
       <Button variant="outline" onClick={closeFilter} className="mt-4 w-full ">
         Apply Filters
