@@ -27,7 +27,7 @@ export const metadata = {
 
 const bannerItems = [
   <div key="1" className="text-xl font-bold">FOO FEST</div>,
-  <div key="2" className="text-xl font-bold">MARCH 24th - 28th, 2025</div>,
+  <div key="2" className="text-xl font-bold">MARCH 24th - 30th, 2025</div>,
     <div key="3" className="text-xl font-bold">
     <Image
       src={Logo}
