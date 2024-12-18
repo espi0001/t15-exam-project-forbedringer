@@ -18,7 +18,7 @@ export const api = {
     }));
 
     // POST hver booking til Supabase
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/tickets-booking`, {
+    const response = await fetch(`${SUPABASE_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
