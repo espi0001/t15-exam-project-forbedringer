@@ -1,17 +1,14 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion"; // animation
 import { useState, useEffect } from "react";
-import { IoFilter } from "react-icons/io5";
-
-import Link from "next/link";
-import Image from "next/image";
+import { IoFilter } from "react-icons/io5"; // icon
 import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/button";
-import FilterPanel from "@/components/FilterPanel";
-
-import ContactHero from "@/images/danny-howe-unsplash.avif";
-
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
+import Image from "next/image";
+import FilterPanel from "@/components/FilterPanel";
+import ContactHero from "@/images/danny-howe-unsplash.avif";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 
@@ -21,11 +18,7 @@ const Page = () => {
     enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
     exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
   }; // Filterpanel animation
-
   const [bands, setBands] = useState([]); // State for bands fetched fra API
-
-  // hvorfor er der {} her og ikke []?
-  // schedule er sandsynligvis et objekt, hvor hver nøgle repræsenterer en scene (stage), og værdien for hver nøgle er et underobjekt eller et array, der indeholder daglige tidsplaner.
   const [schedule, setSchedule] = useState({}); // State for schedule fetched fra API
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
   const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
@@ -157,14 +150,6 @@ const Page = () => {
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
-              // <div key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
-              //   <div className="absolute inset-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(${band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`})` }} />
-              //   <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
-              //     <Link href={`/band/${band.slug}`} className="absolute text-white_color text-lg font-bold inset-0 flex items-end p-5">
-              //       {band.name}
-              //     </Link>
-              //   </div>
-              // </div>
               <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
                 <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
                 <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
