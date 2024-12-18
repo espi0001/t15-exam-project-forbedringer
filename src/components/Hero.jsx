@@ -83,16 +83,6 @@ const Hero = () => {
           priority={true} 
           className="z-0" 
         />
-        <div className="absolute inset-0 z-40">
-          <Image 
-            src={IndexFansHero} 
-            alt="Fans Image" 
-            width={3000} 
-            height={100} 
-            priority={true} 
-            className="w-full h-full object-cover" 
-          />
-        </div>
 
         {/* White text on hero background */}
         <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 space-y-1 z-40">
