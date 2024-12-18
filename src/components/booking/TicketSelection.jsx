@@ -79,7 +79,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           onClick={onNext} // Kalder onNext for at gå videre til næste trin
           disabled={!bookingData.ticketType || bookingData.ticketCount < 1} // Deaktiver knappen, hvis der ikke er valgt billettype eller antal er mindre end 1
           variant="tertiary"
-          className="w-full"
+          className="w-full text-white"
         >
           Continue to camping options
         </Button>

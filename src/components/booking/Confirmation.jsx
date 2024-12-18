@@ -18,7 +18,7 @@ export default function Confirmation({ reservationId, onReset }) {
             Reservation ID: <span className="font-bold">{reservationId}</span>
           </p>
           <p>We've sent the confirmation details to your email.</p>
-          <Button onClick={onReset}>Book more tickets</Button>
+          <Button className="text-white" onClick={onReset}>Book more tickets</Button>
         </div>
       </CardContent>
     </Card>
