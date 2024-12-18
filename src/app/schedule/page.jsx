@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { api } from "@/lib/api";
@@ -8,6 +7,11 @@ import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 import ContactHero from "@/images/redd-francisco-unsplash-1.avif";
 import { Button } from "@/components/ui/button";
+
+export const metadata = {
+  title: "Foo Fest | Schedule",
+  description: "Check out the schedule for Foo Fest 2025 and plan your experience.",
+};
 
 export default function Page() {
   const [scheduleData, setScheduleData] = useState(null);
@@ -50,11 +54,6 @@ export default function Page() {
 
   return (
     <div>
-      <Head>
-        <title>Foo Fest | Schedule</title>
-        <meta name="description" content="Check out the schedule for Foo Fest 2025 and plan your experience." />
-      </Head>
-
       <HeaderBillede billede={ContactHero} />
 
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">

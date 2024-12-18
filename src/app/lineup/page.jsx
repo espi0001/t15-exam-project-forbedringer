@@ -1,7 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion"; // animation
 import { useState, useEffect } from "react";
-import Head from "next/head";
 import { IoFilter } from "react-icons/io5"; // icon
 import { api } from "@/lib/api"; // Importer api her
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,11 @@ import FilterPanel from "@/components/FilterPanel";
 import ContactHero from "@/images/danny-howe-unsplash.avif";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
+
+export const metadata = {
+  title: "Foo Fest | Lineup",
+  description: "Explore the amazing lineup for Foo Fest 2025.",
+};
 
 const Page = () => {
   const panelSlide = {
@@ -111,10 +115,6 @@ const Page = () => {
 
   return (
     <div>
-      <Head>
-        <title>Foo Fest | Lineup</title>
-        <meta name="description" content="Explore the amazing lineup for Foo Fest 2025." />
-      </Head>
       <HeaderBillede billede={ContactHero} />
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg flex flex-col gap-4">
         <Card>

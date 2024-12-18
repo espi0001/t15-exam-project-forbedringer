@@ -17,14 +17,6 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
     setBookingData({ ...bookingData, personalInfo: newInfo });
   };
 
-  //FØR   const handleInfoChange = (index, field, value) => {
-  // const handleInfoChange = (index, value) => {
-  //   const newInfo = [...bookingData.personalInfo]; // Kopier den eksisterende personalInfo-array
-  //   if (!newInfo[index]) newInfo[index] = {}; // Initialiser objektet, hvis det ikke findes
-  //   newInfo[index].tentSetup = value; // Opdater det specifikke felt (name eller email)
-  //   setBookingData({ ...bookingData, personalInfo: newInfo }); // Gem opdateringen i bookingData
-  // };
-
   // Validerer, om alle krævede oplysninger er udfyldt
   const isValid = () => {
     return (
@@ -36,7 +28,7 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-step_h4 lg:text-step_h2">
           <User size={50} />
           Personal Information
         </CardTitle>

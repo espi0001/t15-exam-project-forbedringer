@@ -96,7 +96,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-step_h4 lg:text-step_h2">
           <CreditCard size={50} />
           Checkout
         </CardTitle>
@@ -105,7 +105,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
         <div className="space-y-6">
           {/* Ordresammendrag */}
           <div className="border-b pb-4">
-            <h4 className="font-semibold pb-2">Order summary</h4>
+            <h3 className="font-semibold pb-2 text-step_h5 lg:text-step_h4">Order summary</h3>
 
             <article className="space-y-2">
               <p>

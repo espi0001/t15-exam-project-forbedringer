@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Head from "next/head";
 import ContactHero from "@/images/jodie-walton-unsplash-1.avif";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +8,10 @@ import { Card } from "@/components/ui/card";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 
+export const metadata = {
+  title: "Foo Fest | Contact",
+  description: "Get in touch with Foo Fest for any inquiries or support.",
+};
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,11 +35,6 @@ const Contact = () => {
 
   return (
     <div className="">
-      <Head>
-        <title>Foo Fest | Contact</title>
-        <meta name="description" content="Get in touch with Foo Fest for any inquiries or support." />
-      </Head>
-
       <HeaderBillede billede={ContactHero} />
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
         <Card className="w-full max-w-6xl mx-auto mb-10">

@@ -6,7 +6,7 @@ export default function Confirmation({ reservationId, onReset }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-center text-green-600 flex items-center justify-center gap-2">
+        <CardTitle className="text-center text-green-600 flex items-center gap-2 text-step_h4 lg:text-step_h2">
           <CheckCircle2 size={50} />
           Thank you for your purchase!
         </CardTitle>
@@ -18,7 +18,9 @@ export default function Confirmation({ reservationId, onReset }) {
             Reservation ID: <span className="font-bold">{reservationId}</span>
           </p>
           <p>We've sent the confirmation details to your email.</p>
-          <Button className="text-white" onClick={onReset}>Book more tickets</Button>
+          <Button className="text-white" onClick={onReset}>
+            Book more tickets
+          </Button>
         </div>
       </CardContent>
     </Card>

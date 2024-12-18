@@ -35,7 +35,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-step_h4 lg:text-step_h2">
           <Tent size={50} />
           Camping options
         </CardTitle>
