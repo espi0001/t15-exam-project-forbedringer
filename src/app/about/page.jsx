@@ -5,6 +5,7 @@ import { Radio, Flag, MapPin, ChevronDown, ChevronUp, Music, Calendar, Globe, Cr
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
 import ContactHero from "@/images/dominic-hampton-unsplash.avif";
+import Head from "next/head";
 
 const FAQItem = memo(({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +45,10 @@ const AboutPage = () => {
 
   return (
     <div className="">
+      <Head>
+        <title>Foo Fest | About</title>
+        <meta name="description" content="Learn more about Foo Fest, its mission, and its story." />
+      </Head>
       {/* Hero Image Section */}
       <HeaderBillede billede={ContactHero} />
 

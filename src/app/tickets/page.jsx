@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Head from "next/head";
 import BookingFlow from "@/components/BookingFlow";
 import ContactHero from "@/images/andre-benz-unsplash.jpg";
 import HeaderBillede from "@/components/HeaderBillede";
@@ -11,6 +12,10 @@ export default function Page() {
 
   return (
     <div>
+      <Head>
+        <title>Foo Fest | Tickets</title>
+        <meta name="description" content="Buy your tickets for Foo Fest 2025 now!" />
+      </Head>
       <HeaderBillede billede={ContactHero} />
 
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">

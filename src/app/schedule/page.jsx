@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { api } from "@/lib/api";
@@ -49,12 +50,16 @@ export default function Page() {
 
   return (
     <div>
+      <Head>
+        <title>Foo Fest | Schedule</title>
+        <meta name="description" content="Check out the schedule for Foo Fest 2025 and plan your experience." />
+      </Head>
+
       <HeaderBillede billede={ContactHero} />
 
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
         <Card className="w-full max-w-6xl mx-auto mb-6">
           <HeaderText h1="Stage Schedule" text="Here's the schedule of the FOO FEST stages Midgard, Vanaheim & Jotunheim." />
-          {/* className={`${selectedDay === day ? "bg-red_color text-white_color" : "bg-gray-200"}`} */}
           <CardHeader>
             <div className="text-white font-medium flex-wrap flex justify-center gap-2">
               {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
@@ -72,7 +77,7 @@ export default function Page() {
                   stageIdx // Tilføj en key for hver stage
                 ) => (
                   <div key={stageIdx} className="border rounded p-4">
-                    <h4 className="font-bold mb-4">{stage}</h4>
+                    <h2 className="text-step_h4 font-bold mb-4">{stage}</h2>
                     <div className="space-y-2">
                       {scheduleData[stage][selectedDay]
                         ?.filter((event) => event.act.toLowerCase() !== "break")

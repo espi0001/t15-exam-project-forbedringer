@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import Head from "next/head";
 import ContactHero from "@/images/jodie-walton-unsplash-1.avif";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,26 +32,23 @@ const Contact = () => {
 
   return (
     <div className="">
-      <HeaderBillede billede={ContactHero} />
+      <Head>
+        <title>Foo Fest | Contact</title>
+        <meta name="description" content="Get in touch with Foo Fest for any inquiries or support." />
+      </Head>
 
+      <HeaderBillede billede={ContactHero} />
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
         <Card className="w-full max-w-6xl mx-auto mb-10">
           <HeaderText h1="Contact us" text="We’re here to help." />
-          {/* grid grid-cols-1 md:grid-cols-2 gap-8 */}
           <div className="flex justify-center">
-            {/* <article className="space-y-6 text-center md:text-left">
-              <ContactInformation icon={<Mail />} link="mailto:contact@foofest.com" linktext="contact@foofest.com" />
-              <ContactInformation icon={<Phone />} link="tel:+1234567890" linktext="(+45) 12345678" />
-              <ContactInformation icon={<MapPin />} link="#" linktext="Refshaleøen, CPH S" />
-            </article> */}
-
             <form onSubmit={handleSubmit} className="space-y-6 w-[560px]">
               <div>
                 <Label htmlFor="name">Full name</Label> {/* Label for navn */}
                 <Input id="name" name="name" placeholder="Jane Foo" required className="mt-1 placeholder:text-less_black_color" value={formData.name} onChange={handleChange} />
               </div>
               <div>
-                <Label htmlFor="email">Full name</Label> {/* Label for navn */}
+                <Label htmlFor="email">Email</Label> {/* Label for email */}
                 <Input
                   id="email"
                   name="email"
