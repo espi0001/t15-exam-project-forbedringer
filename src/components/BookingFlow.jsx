@@ -29,7 +29,7 @@ export default function BookingFlow() {
   // Timer logic
   useEffect(() => {
     let intervalId;
-    const RESERVATION_TIME = 15 * 60; // 15 minutes in seconds
+    const RESERVATION_TIME = 5 * 60; // 15 minutes in seconds
 
     if (startTime && step > 1 && step < 5) {
       intervalId = setInterval(() => {
