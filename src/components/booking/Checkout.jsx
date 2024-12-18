@@ -45,7 +45,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
 
   // Håndterer indsendelse af checkout
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Stopper standardformularens indsendelse
+    e.preventDefault();
 
     if (!isPaymentValid()) {
       alert("Please provide valid payment details.");
@@ -53,13 +53,30 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
     }
 
     try {
-      // Reserver campingplads baseret på brugerens valg
-      const reservation = await api.reserveSpot(bookingData.campingArea, bookingData.ticketCount);
-      setReservationId(reservation.id); // Gem reservations-ID'et
-      await api.fulfillReservation(reservation.id); // Fuldfør reservationen
-      onNext(); // Gå videre til næste trin
+      // First, reserve spot via Glitch
+      const reservation = await api.createReservation(bookingData.campingArea, bookingData.ticketCount);
+
+      if (!reservation || !reservation.id) {
+        throw new Error("Invalid reservation response");
+      }
+
+      setReservationId(reservation.id);
+
+      // Then save to Supabase
+      await api.saveBooking({
+        reservationId: reservation.id,
+        personalInfo: bookingData.personalInfo,
+        ticketType: bookingData.ticketType,
+        campingArea: bookingData.campingArea,
+        greenCamping: bookingData.greenCamping,
+        tentSetup: bookingData.tentSetup,
+        ticketCount: bookingData.ticketCount,
+      });
+
+      onNext();
     } catch (error) {
-      console.error("Checkout failed:", error); // Log fejl, hvis noget går galt
+      console.error("Checkout failed:", error);
+      alert("There was an error processing your order. Please try again.");
     }
   };
   // Håndterer indsendelse af checkout
@@ -149,7 +166,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
               <MdArrowLeft size={20} />
               Back
             </Button>
-            <Button type="submit" variant="tertiary" disabled={!isPaymentValid()}>
+            <Button type="submit" variant="tertiary" disabled={!isPaymentValid()} onClick={handleSubmit}>
               Complete purchase
             </Button>
           </div>
