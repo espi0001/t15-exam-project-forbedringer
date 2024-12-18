@@ -113,7 +113,7 @@ export default function CampingOptions({ bookingData, setBookingData, onNext, on
                 <MdArrowLeft size={20} />
                 Back {/* Gå tilbage til forrige trin */}
               </Button>
-              <Button variant="tertiary" onClick={onNext} disabled={!bookingData.campingArea}>
+              <Button className="text-white" variant="tertiary" onClick={onNext} disabled={!bookingData.campingArea}>
                 Continue to personal info {/* Fortsæt til næste trin */}
               </Button>
             </div>

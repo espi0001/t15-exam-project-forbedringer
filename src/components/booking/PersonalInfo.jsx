@@ -81,7 +81,7 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
             <MdArrowLeft size={20} />
             Back {/* Gå tilbage til forrige trin */}
           </Button>
-          <Button type="submit" variant="tertiary" disabled={!isValid()}>
+          <Button className="text-white" type="submit" variant="tertiary" disabled={!isValid()}>
             {/* Knappen for at gå videre, kun aktiv hvis validering er ok */}
             Continue to payment
           </Button>

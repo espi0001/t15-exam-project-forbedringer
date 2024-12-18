@@ -167,7 +167,7 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
               <MdArrowLeft size={20} />
               Back
             </Button>
-            <Button type="submit" variant="tertiary" disabled={!isPaymentValid()} onClick={handleSubmit}>
+            <Button className="text-white" type="submit" variant="tertiary" disabled={!isPaymentValid()} onClick={handleSubmit}>
               Complete purchase
             </Button>
           </div>
