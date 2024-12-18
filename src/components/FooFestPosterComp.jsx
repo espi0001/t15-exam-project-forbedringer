@@ -48,7 +48,7 @@ const FooFestPosterComp = () => {
     />
   </div>
  <Link href="/schedule">
-  <Button variant="forsiden" size="lg" className="mt-6 mb-10">
+  <Button variant="forsiden" size="lg" className="mt-10 mb-10">
     View full schedule
   </Button>
 </Link>

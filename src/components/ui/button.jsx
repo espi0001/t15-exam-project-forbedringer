@@ -14,7 +14,7 @@ const buttonVariants = cva(
       variant: {
         // De forskellige knap-varianter, som kan anvendes
         default: "bg-black_color border-black_color hover:bg-red_color hover:border-red_color text-white_color hover:text-white_color",
-        tertiary: "bg-red_color border-red_color text-white_color hover:bg-black_color hover:border-black_color",
+        tertiary: "bg-red_color border-red_color text-white_color hover:bg-black_color hover:border-black_color hover:text-white_color",
         forsiden: "bg-white_color border-white_color text-black_color hover:bg-red_color hover:text-white_color hover:border-red_color",
         // footer_hvid: "border-red_color text-black_color hover:bg-red_color hover:border-red_color hover:text-white_color",
         footer_sort: "bg-black_color border-white_color text-white_color hover:bg-red_color hover:border-red_color hover:text-white_color",

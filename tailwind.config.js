@@ -3,16 +3,7 @@ module.exports = {
   darkMode: ["class"],
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    // container: {
-    //   padding: {
-    //     DEFAULT: "20px",
-    //     sm: "32px",
-    //     lg: "48rem",
-    //     xl: "64rem",
-    //     "2xl": "96rem",
-    //   },
-    // },
-    extend: {
+    extend: { /* mellemrum, gap & spacing */
       margin: {
         mx_default: "20px",
         mx_lg: "64px",
@@ -21,11 +12,11 @@ module.exports = {
         py_default: "30px",
         py_lg: "60px",
       },
-      utilities: {
+      utilities: { /* GSAP & Framer animationer, kendetegnet ved transform & keyframes */
         ".transition-base": {
           "@apply transition-all duration-1000 ease-in-out": {},
         },
-      },
+      }, 
       keyframes: {
         slideUp: {
           "0%": {
@@ -60,13 +51,13 @@ module.exports = {
         400: "400ms",
         600: "600ms",
         800: "800ms",
-      },
+      }, /* nye variabler til z-index */
       zIndex: {
         100: "100",
         1000: "1000",
         9999: "9999",
       },
-      colors: {
+      colors: { /* colors er specielt brugt i buttons og genbrugte componenter */
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         text_color: "#fff",
@@ -115,7 +106,7 @@ module.exports = {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
-      },
+      }, /* font clamps & steps */
       fontSize: {
         step_h1: "clamp(2.5rem, 2.1522rem + 1.7391vw, 3.5rem)",
         step_h2: "clamp(2.25rem, 1.9891rem + 1.3043vw, 3rem)",
@@ -127,7 +118,7 @@ module.exports = {
         step_p: "clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem)",
         step_text_regular: "clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem)",
         step_text_tiny: "clamp(0.75rem, 0.7065rem + 0.2174vw, 0.875rem)",
-      },
+      }, /* border */
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -52,11 +52,11 @@ export default function Page() {
       <HeaderBillede billede={ContactHero} />
 
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
-        <Card className="w-full max-w-6xl mx-auto mb-10">
-          <HeaderText h1="Stage Schedule" text="Experience unforgettable performances and immerse yourself in the festival vibe." />
+        <Card className="w-full max-w-6xl mx-auto mb-6">
+          <HeaderText h1="Stage Schedule" text="Here's the schedule of the FOO FEST stages Midgard, Vanaheim & Jotunheim." />
           {/* className={`${selectedDay === day ? "bg-red_color text-white_color" : "bg-gray-200"}`} */}
           <CardHeader>
-            <div className="font-medium flex-wrap flex justify-center gap-2">
+            <div className="text-white font-medium flex-wrap flex justify-center gap-2">
               {["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((day) => (
                 <Button key={day} onClick={() => setSelectedDay(day)} className={`${selectedDay === day ? "bg-red_color border-red_color" : ""}`}>
                   {day.toUpperCase()}
