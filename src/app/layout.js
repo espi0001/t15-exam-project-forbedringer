@@ -1,5 +1,4 @@
 import localFont from "next/font/local";
-import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -50,7 +49,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/foo-fest-isometric-black-logo.svg" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js" strategy="beforeInteractive" />
         <Nav />
         <AnimatePresence mode="wait">
           <main>{children}</main>
