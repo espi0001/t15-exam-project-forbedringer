@@ -4,6 +4,11 @@ import AboutSection from "@/app/band/AboutSection";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Foo Fest | Band",
+  description: "Learn more about the band, members and schedule time.",
+};
+
 // singleview for a band
 const Page = async ({ params }) => {
   const slug = await params.slug; // henter slug fra URL'en
