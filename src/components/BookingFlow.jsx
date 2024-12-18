@@ -95,7 +95,7 @@ export default function BookingFlow() {
       {/* Tid tilbage til reservationen vises, hvis en timer blev brugt */}
       {timeLeft !== null && step > 1 && step < 5 && !isExpired && (
         <div className="mb-4 text-white text-center">
-          <BookingTimer initialMinutes={15} timeRemaining={timeLeft} isExpired={isExpired} />
+          <BookingTimer initialMinutes={5} timeRemaining={timeLeft} isExpired={isExpired} />
         </div>
       )}
 
