@@ -52,32 +52,33 @@ export default function Checkout({ bookingData, setReservationId, onNext, onBack
       return;
     }
 
-    try {
-      // First, reserve spot via Glitch
-      const reservation = await api.createReservation(bookingData.campingArea, bookingData.ticketCount);
+    // Først, reserver plads via Glitch
+    const reservation = await api.createReservation(bookingData.campingArea, bookingData.ticketCount);
 
-      if (!reservation || !reservation.id) {
-        throw new Error("Invalid reservation response");
-      }
-
-      setReservationId(reservation.id);
-
-      // Then save to Supabase
-      await api.saveBooking({
-        reservationId: reservation.id,
-        personalInfo: bookingData.personalInfo,
-        ticketType: bookingData.ticketType,
-        campingArea: bookingData.campingArea,
-        greenCamping: bookingData.greenCamping,
-        tentSetup: bookingData.tentSetup,
-        ticketCount: bookingData.ticketCount,
-      });
-
-      onNext();
-    } catch (error) {
-      console.error("Checkout failed:", error);
-      alert("There was an error processing your order. Please try again.");
+    if (!reservation || !reservation.id) {
+      console.log("No reservation ID received");
+      return;
     }
+
+    setReservationId(reservation.id);
+
+    // Så gem data i Supabase
+    const bookingSaved = await api.saveBooking({
+      reservationId: reservation.id,
+      personalInfo: bookingData.personalInfo,
+      ticketType: bookingData.ticketType,
+      campingArea: bookingData.campingArea,
+      greenCamping: bookingData.greenCamping,
+      tentSetup: bookingData.tentSetup,
+      ticketCount: bookingData.ticketCount,
+    });
+
+    if (!bookingSaved) {
+      alert("Der opstod en fejl ved gem af booking. Prøv venligst igen.");
+      return;
+    }
+
+    onNext();
   };
   // Håndterer indsendelse af checkout
   // const handleSubmit = async () => {

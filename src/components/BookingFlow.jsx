@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 import { api } from "@/lib/api";
+// import { useReservationTimer } from "@/hooks/useReservationTimer";
 import TicketSelection from "./booking/TicketSelection"; // Trin 1
 import CampingOptions from "./booking/CampingOptions"; // Trin 2
 import PersonalInfo from "./booking/PersonalInfo"; // Trin 3
@@ -83,20 +84,7 @@ export default function BookingFlow() {
       }
       handleStepChange(4);
     } else if (step === 4) {
-      try {
-        // Lav reservation med kun area og amount
-        const reservation = await api.createReservation(bookingData.campingArea, bookingData.ticketCount);
-
-        // Hvis reservationen lykkedes, fuldfør den med det samme
-        if (reservation.id) {
-          await api.fulfillReservation(reservation.id);
-          setReservationId(reservation.id);
-          setStep(5);
-        }
-      } catch (error) {
-        console.error("Reservation failed:", error);
-        alert("Failed to complete reservation. Please try again.");
-      }
+      handleStepChange(5); // Lad Checkout.jsx håndtere reservationen
     } else {
       handleStepChange(step + 1);
     }
@@ -107,11 +95,7 @@ export default function BookingFlow() {
       {/* Tid tilbage til reservationen vises, hvis en timer blev brugt */}
       {timeLeft !== null && step > 1 && step < 5 && !isExpired && (
         <div className="mb-4 text-white text-center">
-          <BookingTimer 
-            initialMinutes={15} 
-            timeRemaining={timeLeft} 
-            isExpired={isExpired}
-          />
+          <BookingTimer initialMinutes={15} timeRemaining={timeLeft} isExpired={isExpired} />
         </div>
       )}
 
@@ -157,7 +141,7 @@ export default function BookingFlow() {
       {/* Trin 5: Bekræftelse */}
       {step === 5 && (
         <Confirmation
-          reservationId={bookingData.reservationId} // Viser bekræftelses-ID
+          reservationId={reservationId}
           onReset={() => {
             setStep(1);
             setBookingData({
@@ -168,8 +152,8 @@ export default function BookingFlow() {
               tentSetup: "",
               personalInfo: [],
             });
-            setReservationId(""); // Fjerner reservationens ID
-            setStartTime(null); // Nulstiller timeren
+            setReservationId("");
+            setStartTime(null);
             setTimeLeft(null);
             setIsExpired(false);
           }}

@@ -6,42 +6,35 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export const api = {
   saveBooking: async (bookingData) => {
-    try {
-      const bookings = bookingData.personalInfo.map((person) => ({
-        reservation_id: bookingData.reservationId,
-        name: person.name,
-        email: person.email,
-        ticket_type: bookingData.ticketType,
-        tent_setup: person.tentSetup,
-        camping_area: bookingData.campingArea,
-        green_camping: bookingData.greenCamping,
-      }));
+    // Opret et array af bookinger - én for hver person
+    const bookings = bookingData.personalInfo.map((person) => ({
+      reservation_id: bookingData.reservationId,
+      name: person.name,
+      email: person.email,
+      ticket_type: bookingData.ticketType,
+      tent_setup: person.tentSetup,
+      camping_area: bookingData.campingArea,
+      green_camping: bookingData.greenCamping,
+    }));
 
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/tickets-booking`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify(bookings),
-      });
+    // POST hver booking til Supabase
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/tickets-booking`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Prefer: "return=minimal", // Dette fortæller Supabase at vi ikke forventer data tilbage
+      },
+      body: JSON.stringify(bookings),
+    });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to save bookings: ${errorText}`);
-      }
-
-      // Only try to parse JSON if we expect a response
-      if (response.status !== 204) {
-        return await response.json();
-      }
-
-      return null; // Return null for successful requests with no content
-    } catch (error) {
-      console.error("Save bookings error:", error);
-      throw error;
+    if (!response.ok) {
+      console.log("Error response status:", response.status);
+      return false;
     }
+
+    return true;
   },
 
   // GET metoder
