@@ -7,28 +7,39 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 export const api = {
   saveBooking: async (bookingData) => {
     try {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+      const bookings = bookingData.personalInfo.map((person) => ({
+        reservation_id: bookingData.reservationId,
+        name: person.name,
+        email: person.email,
+        ticket_type: bookingData.ticketType,
+        tent_setup: person.tentSetup,
+        camping_area: bookingData.campingArea,
+        green_camping: bookingData.greenCamping,
+      }));
+
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/tickets-booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           apikey: SUPABASE_ANON_KEY,
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify({
-          reservation_id: bookingData.reservationId,
-          name: bookingData.name,
-          email: bookingData.email,
-          ticket_type: bookingData.ticketType,
-          camping_area: bookingData.campingArea,
-          tent_setup: bookingData.tentSetup,
-          green_camping: bookingData.greenCamping,
-        }),
+        body: JSON.stringify(bookings),
       });
 
-      if (!response.ok) throw new Error("Failed to save booking");
-      return await response.json();
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to save bookings: ${errorText}`);
+      }
+
+      // Only try to parse JSON if we expect a response
+      if (response.status !== 204) {
+        return await response.json();
+      }
+
+      return null; // Return null for successful requests with no content
     } catch (error) {
-      console.error("Save booking error:", error);
+      console.error("Save bookings error:", error);
       throw error;
     }
   },
@@ -98,21 +109,6 @@ export const api = {
       return await response.json();
     } catch (error) {
       console.error("Reservation creation error:", error);
-      throw error;
-    }
-  },
-
-  fulfillReservation: async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/fullfill-reservation`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!response.ok) throw new Error("Failed to fulfill reservation");
-      return await response.json();
-    } catch (error) {
-      console.error("Fulfill reservation error:", error);
       throw error;
     }
   },
