@@ -51,7 +51,7 @@ const About = () => {
         <HeaderText h1="FOO FEST" text="FAQ, story & where to find us!" />
         <div className="flex flex-col lg:flex-row gap-6 mb-[40px] lg:mb-[80px]">
           <article>
-            <h2 className="text-center lg:text-start mb-4 text-black_color">Our Origin</h2>
+            <h2 className="uppercase font-bold text-center lg:text-start mb-4 text-black_color">Our Origin</h2>
             <p>Founded in 2018, Foo Fest emerged from a collective passion for transformative musical experiences. We craft moments that resonate beyond the festival grounds.</p>
             <br />
             <p>Through captivating performances, immersive installations, and a vibrant community, Foo Fest creates an unforgettable atmosphere for music lovers of all ages.</p>
