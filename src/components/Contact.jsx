@@ -65,7 +65,7 @@ const Contact = () => {
                   onChange={handleChange} // Opdater formData
                 />
               </div>
-              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="footer" className="w-full focus:ring-2 focus:ring-black-500">
+              <Button type="submit" size="lg" alt="Button to click to subscribe with chosen email" variant="default" className="w-full focus:ring-2 focus:ring-black-500">
                 Submit
               </Button>
             </form>
