@@ -48,7 +48,7 @@ const About = () => {
       <HeaderBillede billede={ContactHero} />
 
       <section className="mx-mx_default lg:mx-mx_lg py-py_default lg:py-py_lg">
-        <HeaderText h1="FOO FEST" text="FAQ, story & where to find us!" />
+        <HeaderText h1="ABOUT FOO FEST" text="FAQ, story & where to find us!" />
         <div className="flex flex-col lg:flex-row gap-6 mb-[40px] lg:mb-[80px]">
           <article>
             <h2 className="uppercase font-bold text-center lg:text-start mb-4 text-black_color">Our Origin</h2>
