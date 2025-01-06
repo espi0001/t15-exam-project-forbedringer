@@ -5,10 +5,20 @@ export const metadata = {
   description: "Check out the schedule for Foo Fest 2025 and plan your experience.",
 };
 
-export default function Page() {
+// export default function Page() {
+//   return (
+//     <div>
+//       <Schedule />
+//     </div>
+//   );
+// }
+
+const Page = () => {
   return (
     <div>
       <Schedule />
     </div>
   );
-}
+};
+
+export default Page;
