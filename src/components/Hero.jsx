@@ -5,6 +5,8 @@ import IndexHeroImage from "@/images/foo-fest-hero-w-text.png";
 import IndexFansHero from "@/images/fans-for-parallax.png";
 import { gsap } from "gsap";
 import Poster from "@/images/foo-fest-poster.webp"
+import ScrollIndicator from "./Scroll";
+import { Scroll } from "lucide-react";
 
 const Hero = () => {
   useEffect(() => {
@@ -83,7 +85,6 @@ const Hero = () => {
           priority={true} 
           className="z-0" 
         />
-
         {/* White text on hero background */}
         <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 space-y-1 z-40">
           <div className="hero-text overflow-hidden leading-none">
@@ -97,6 +98,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+<div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+  <ScrollIndicator />
+</div>
     </div>
   );
 };
