@@ -37,6 +37,20 @@ h3 {
   font-weight: 900;
 }
 
+.label-styling {
+  font-weight: bold;
+  border-radius: 10px;
+  width: 250px;
+  height: 350px;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  @apply text-step_h4;
+}
+
 @layer base {
   * {
     margin: 0;
