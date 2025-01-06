@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Logo from "@/images/foo-fest-isometric-white-logo.svg";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null); // Create a ref for the menu div
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
@@ -27,6 +28,20 @@ const Nav = () => {
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
   ];
+
+  // Close menu if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target) && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav className="absolute flex justify-between items-center py-py_default px-[20px] lg:px-[64px] w-full z-50 bg-transparent">
@@ -49,7 +64,14 @@ const Nav = () => {
       </div>
       <AnimatePresence mode="wait">
         {isMenuOpen && (
-          <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white_color p-16 text-black_color z-60">
+          <motion.div
+            ref={menuRef} // Attach ref to the menu div
+            variants={menuSlide}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white_color p-16 text-black_color z-60"
+          >
             <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center">
               <IoCloseOutline className="w-12 h-12 text-black_color hover:text-red_color transition-base" />
             </button>
