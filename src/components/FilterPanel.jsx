@@ -1,9 +1,26 @@
 import { IoCloseOutline } from "react-icons/io5";
 import { Button } from "./ui/button";
+import { useEffect, useRef } from "react";
 
 const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilter }) => {
+  const panelRef = useRef(null); // Create a ref for the filter panel
+
+  // Close filter panel if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (panelRef.current && !panelRef.current.contains(event.target)) {
+        closeFilter();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeFilter]);
+
   return (
-    <div className="">
+    <div ref={panelRef} className="">
       <div className="flex flex-col justify-between items-center mb-[24px]">
         <button onClick={closeFilter} className="self-end text-lg hover:text-red_color transition-base">
           <IoCloseOutline className="w-12 h-12 " />
