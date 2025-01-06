@@ -7,6 +7,8 @@ import WhiteLogo from "@/images/foo-fest-isometric-white-logo.svg";
 import FooterNavigationLink from "./FooterNavigationLinks";
 import { Button } from "./ui/button";
 import { Fullscreen } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -63,25 +65,35 @@ const Footer = () => {
         <hr className={`w-full border-t ${isIndexPage ? "border-light_grey_color" : "border-grey_color"}`} />
         <section id="Footer" className="flex flex-col sm:flex-row justify-between items-center w-full gap-4 text-center sm:text-left">
           <p className="text-sm sm:text-base">© 2024 Foo Fest</p>
-          <ul className="flex flex-wrap justify-center sm:justify-start gap-4">
-            {[
-              { href: "/tickets", text: "Tickets" },
-              { href: "/lineup", text: "Lineup" },
-              { href: "/about", text: "About" },
-              { href: "/contact", text: "Contact" },
-            ].map(({ href, text }) => (
-              <li key={href}>
-                <FooterNavigationLink
-                  href={href}
-                  text={text}
-                  className={`
-                    ${isIndexPage ? "text-less_black_color hover:text-grey_color" : "text-white_color hover:text-less_black_color"}
+          <div className="flex gap-12">
+            <ul className="flex flex-wrap justify-center sm:justify-start gap-4">
+              {[
+                { href: "/tickets", text: "Tickets" },
+                { href: "/lineup", text: "Lineup" },
+                { href: "/about", text: "About" },
+                { href: "/contact", text: "Contact" },
+              ].map(({ href, text }) => (
+                <li key={href}>
+                  <FooterNavigationLink
+                    href={href}
+                    text={text}
+                    className={`
+                    ${isIndexPage ? "text-less_black_color" : "text-white_color"}
                     transition-colors duration-300
                   `}
-                />
-              </li>
-            ))}
-          </ul>
+                  />
+                </li>
+              ))}
+            </ul>
+            <div className="flex gap-4 items-center">
+              <a href="https://www.instagram.com/">
+                <FaInstagram className="size-5" />
+              </a>
+              <a href="https://www.facebook.com/">
+                <FaFacebook className="size-5" />
+              </a>
+            </div>
+          </div>
         </section>
       </footer>
     </>
