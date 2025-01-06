@@ -63,7 +63,7 @@ ${isButton1InView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           className={`text-3xl md:text-6xl font-bold leading-tight transition-all duration-1000
 ${isText2InView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          Be the first to know about music, events and a lot more at Foo Fest 2025.
+          Learn about music, events and a lot more at Foo Fest 2025.
         </p>
         <Link
           href="/about"
