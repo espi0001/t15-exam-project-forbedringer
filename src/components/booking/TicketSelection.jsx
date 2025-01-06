@@ -39,21 +39,43 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           className="flex justify-center items-center grid-cols-2 gap-10 mb-4"
         >
           {/* Regular Ticket valg */}
-          <Label htmlFor="regular" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "regular" ? "border-red_color bg-light_grey_color" : "border-grey_color"}`}>
-            Regular
-            <span>
-              <p className="font-thin text-step_text_tiny mt-[40px]">799,- + FEE</p>
-            </span>
+          <Label htmlFor="regular" className={`label-styling border shadow-md ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>
+            <div className="row-start-2 row-end-4">REGULAR</div>
+
+            <div className="flex flex-col gap-[10px] row-start-4 row-end-4">
+              <span className="font-normal text-step-text_regular">
+                <p>799 DKK</p>
+              </span>
+              <span>
+                <p className="font-thin text-step_text_tiny">+ FEE</p>
+              </span>
+            </div>
+            <ul className="row-start-6 row-end-8 text-start font-normal text-step_text_tiny list-disc space-y-1">
+              <li>Access to all stages</li>
+              <li>Access to all camping areas</li>
+            </ul>
           </Label>
 
           <RadioGroupItem value="regular" id="regular" className="hidden" variant="secondary" />
 
           {/* VIP Ticket valg */}
-          <Label htmlFor="VIP" className={`font-bold text-step_text_large px-[40px] lg:px-[60px] py-[50px] lg:py-[100px] border border-red_color rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer ${bookingData.ticketType === "VIP" ? "border-red_color bg-light_grey_color" : "border-grey_color"}`}>
-            VIP
-            <span>
-              <p className="font-thin text-step_text_tiny mt-[40px]">1299,- + FEE</p>
-            </span>
+          <Label htmlFor="VIP" className={`label-styling border shadow-md ${bookingData.ticketType === "VIP" ? "border-red_color border-[2px]" : "border-grey_color"}`}>
+            <div className="row-start-2 row-end-4">VIP</div>
+
+            <div className="flex flex-col gap-[10px] row-start-4 row-end-5">
+              <span className="font-normal text-step-text_regular">
+                <p>1299 DKK</p>
+              </span>
+              <span>
+                <p className="font-thin text-step_text_tiny">+ FEE</p>
+              </span>
+            </div>
+            <ul className="row-start-6 row-end-8 text-start font-normal text-step_text_tiny list-disc space-y-1">
+              <li>Access to all stages</li>
+              <li>Access to all camping areas</li>
+              <li>Early access</li>
+              <li>Meet & Greet </li>
+            </ul>
           </Label>
 
           <RadioGroupItem value="VIP" id="VIP" className="hidden" />
