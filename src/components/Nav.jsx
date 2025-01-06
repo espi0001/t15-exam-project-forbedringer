@@ -36,12 +36,17 @@ const Nav = () => {
         </Link>
         <DateHover />
       </div>
+      <div className="flex gap-[3.5rem]">
+        <Link href="/tickets" className="text-2xl font-bold text-white_color relative group">
+          TICKETS
+          <span className="absolute left-0 bottom-0 w-0 h-px bg-white_color transition-base group-hover:w-full" />
+        </Link>
 
-      <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-bold text-white_color relative group">
-        MENU
-        <span className="absolute left-0 bottom-0 w-0 h-px bg-white_color transition-base group-hover:w-full" />
-      </button>
-
+        <button onClick={() => setIsMenuOpen(true)} className="text-2xl font-bold text-white_color relative group">
+          MENU
+          <span className="absolute left-0 bottom-0 w-0 h-px bg-white_color transition-base group-hover:w-full" />
+        </button>
+      </div>
       <AnimatePresence mode="wait">
         {isMenuOpen && (
           <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-white_color p-16 text-black_color z-60">
