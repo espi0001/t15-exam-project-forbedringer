@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import Poster from "@/images/foo-fest-poster.webp";
+import Poster from "@/images/foo-fest-poster-minimized.webp";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
