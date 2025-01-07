@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
           <main>{children}</main>
         </AnimatePresence>
         <div className="w-full h-20">
-          <Banner items={bannerItems} speed="medium" />
+          <Banner items={bannerItems} speed="slow" />
         </div>
         <Footer />
       </body>

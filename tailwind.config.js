@@ -44,7 +44,7 @@ module.exports = {
       animation: {
         "slide-up": "slideUp 2.5s ease-out forwards",
         "fade-in": "fadeIn 1s ease-out forwards",
-        "infinite-scroll": "infinite-scroll 15s linear infinite",
+        "infinite-scroll": "infinite-scroll 45s linear infinite",
       },
       animationDelay: {
         200: "200ms",
