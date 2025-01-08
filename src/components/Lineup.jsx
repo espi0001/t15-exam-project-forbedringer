@@ -19,8 +19,9 @@ const Lineup = () => {
     enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
     exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
   }; // Filterpanel animation
-  const [bands, setBands] = useState([]); // State for bands fetched fra API
-  const [schedule, setSchedule] = useState({}); // State for schedule fetched fra API
+
+  const [bands, setBands] = useState([]); // State for bands hentet fra API
+  const [schedule, setSchedule] = useState({}); // State for schedule hentet fra API
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
   const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
   const [filters, setFilters] = useState({
@@ -42,7 +43,7 @@ const Lineup = () => {
     Sunday: "sun",
   };
 
-  // Fetch data from the APIs when the component mounts
+  // Fetch data fra API'erne når komponenten bliver renderet
   useEffect(() => {
     const fetchData = async () => {
       try {
