@@ -30,7 +30,7 @@ const Footer = () => {
             <Image src={isIndexPage ? Logo : WhiteLogo} width={65} alt="logo" />
             <p
               className={`
-                text-[2rem] sm:text-[3rem] lg:text-[5rem] font-bold text-center lg:text-left
+                text-[2rem] sm:text-[3rem] lg:text-[5rem] font-bold text-center lg:text-left customFont
                 ${isIndexPage ? "text-black_color" : "text-white_color"}
               `}
             >
