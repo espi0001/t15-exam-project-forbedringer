@@ -11,6 +11,7 @@ import FilterPanel from "@/components/FilterPanel";
 import ContactHero from "@/images/danny-howe-unsplash.avif";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Lineup = () => {
   const panelSlide = {
@@ -23,10 +24,10 @@ const Lineup = () => {
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
   const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
   const [filters, setFilters] = useState({
-    genre: "",
-    day: "",
-    stage: "",
-  }); // Filters for genre, day og stage
+    genre: [],
+    day: [],
+    stage: [],
+  }); // Sørger for at filterne er arrays
   const [isFiltersOpen, setIsFiltersOpen] = useState(false); // Om filteret er åbent
   const [visibleCount, setVisibleCount] = useState(12); // Start med at vise 12 kunstnere
 
@@ -147,6 +148,49 @@ const Lineup = () => {
             </section>
           </div>
 
+          <div className="flex justify-between items-center mb-4">
+            {/* Viser aktive filtre som tags */}
+            <section className="flex flex-wrap gap-[8px]">
+              {/* Looper igennem valgt dage i filters.day og viser dem som tags */}
+              {filters.day.map((day) => (
+                <div key={day} className="">
+                  {/* Tilføjer fjern-knap */}
+                  <button onClick={() => setFilters({ ...filters, day: filters.day.filter((d) => d !== day) })} className="filterknap filterknap:hover transition-base">
+                    {/* Finder dagen og og viser fulde navn for dagen ud fra daysMap */}
+                    <span>{Object.keys(daysMap).find((key) => daysMap[key] === day)}</span>
+                    <IoCloseOutline />
+                  </button>
+                </div>
+              ))}
+              {/* Looper igennem valgt stages i filters.stage og viser dem som tags */}
+              {filters.stage.map((stage) => (
+                <div key={stage} className="">
+                  {/* Tilføjer fjern-knap */}
+                  <button onClick={() => setFilters({ ...filters, stage: filters.stage.filter((s) => s !== stage) })} className="filterknap filterknap:hover transition-base">
+                    {/* Viser navn på stage */}
+                    <span>{stage}</span>
+                    <IoCloseOutline />
+                  </button>
+                </div>
+              ))}
+              {filters.genre.map((genre) => (
+                <div key={genre} className="">
+                  {/* Tilføjer fjern-knap */}
+                  <button onClick={() => setFilters({ ...filters, genre: filters.genre.filter((g) => g !== genre) })} className="filterknap filterknap:hover transition-bases">
+                    {/* Viser navn på Genre */}
+                    <span>{genre}</span>
+                    <IoCloseOutline />
+                  </button>
+                </div>
+              ))}
+            </section>
+
+            {/* Visning af antal bands */}
+            <section>
+              <p className="text-step_text_tiny text-gray-600">{filteredBands.length} bands</p>
+            </section>
+          </div>
+
           {/* Main Band Grid */}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
             {filteredBands.slice(0, visibleCount).map((band) => (
@@ -160,20 +204,32 @@ const Lineup = () => {
               </article>
             ))}
           </section>
+          {/* Load more section */}
           {visibleCount < filteredBands.length && (
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-less_black_color text-step_p">
-                {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
-              </span>
+            <section className="mt-[30px] flex flex-col items-center space-y-4">
+              {/* Button to load more bands */}
               <Button
                 variant="default"
                 className="text-white_color"
                 size="lg"
-                onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
+                onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 12 flere kunstnere ad gangen
               >
                 Load more
               </Button>
-            </div>
+              {/* Progress bar */}
+              <div className="relative w-64 h-1 bg-gray-300 rounded">
+                <div
+                  className="absolute h-1 bg-black_color rounded"
+                  style={{
+                    width: `${(visibleCount / filteredBands.length) * 100}%`, // Dynamisk bredde baseret på visningsforhold
+                  }}
+                ></div>
+              </div>
+              {/* Tekst med antal bands */}
+              <span className="text-less_black_color text-step_p">
+                {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
+              </span>
+            </section>
           )}
         </Card>
       </section>

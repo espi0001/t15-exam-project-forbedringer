@@ -25,7 +25,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
         <button onClick={closeFilter} className="self-end text-lg hover:text-red_color transition-base">
           <IoCloseOutline className="w-12 h-12 " />
         </button>
-        <h4 className="self-start ">Filters</h4>
+        <h2 className="self-start text-step_h4">Filters</h2>
       </div>
       <hr />
 
@@ -33,24 +33,30 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Days</p>
+          {/* Clear button */}
           <button onClick={() => setFilters({ ...filters, day: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
         </div>
         <form className="space-y-2">
+          {/* Looper igennem daysMap og viser checkboxer for hver dag */}
           {Object.keys(daysMap).map((fullDayName) => (
             <label key={fullDayName} className="flex items-center space-x-2 text-sm cursor-pointer">
+              {/* Checkbox for hver dag */}
               <input
                 type="checkbox"
-                value={daysMap[fullDayName]}
+                value={daysMap[fullDayName]} // dagens korte navn fra daysMap
                 checked={filters.day.includes(daysMap[fullDayName])}
                 onChange={(e) => {
-                  const selectedDay = e.target.value;
-                  const updatedDays = e.target.checked ? [...filters.day, selectedDay] : filters.day.filter((day) => day !== selectedDay);
-                  setFilters({ ...filters, day: updatedDays });
+                  const selectedDay = e.target.value; // Henter den dag der er valgt
+                  const updatedDays = e.target.checked
+                    ? [...filters.day, selectedDay] // Hvis checkboxen er checked, tilføjer vi den dag til filters.day
+                    : filters.day.filter((day) => day !== selectedDay); // Hvis checkboxen er unchecked, fjerner vi den dag fra filters.day
+                  setFilters({ ...filters, day: updatedDays }); // Opdaterer filters.day med de nye dage
                 }}
                 className="form-checkbox text-black_color border-less_black_color rounded"
               />
+              {/* Viser fulde navn for dagen */}
               <span className="text-step_text_regular">{fullDayName}</span>
             </label>
           ))}
@@ -63,6 +69,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Stages</p>
+          {/* Clear button */}
           <button onClick={() => setFilters({ ...filters, stage: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
@@ -93,6 +100,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
       <article className="py-[16px]">
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Genre</p>
+          {/* Clear button */}
           <button onClick={() => setFilters({ ...filters, genre: [] })} className="text-xs text-less_black_color underline">
             Clear
           </button>
