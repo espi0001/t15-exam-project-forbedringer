@@ -39,7 +39,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           className="flex justify-center items-center grid-cols-2 gap-10 mb-4"
         >
           {/* Regular Ticket valg */}
-          <Label htmlFor="regular" className={`label-styling border shadow-md ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>
+          <Label htmlFor="regular" className={`label-styling border shadow-md hover:border-red_color hover:border-[2px] ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>
             <div className="row-start-2 row-end-4">REGULAR</div>
 
             <div className="flex flex-col gap-[10px] row-start-4 row-end-4">
@@ -59,7 +59,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           <RadioGroupItem value="regular" id="regular" className="hidden" variant="secondary" />
 
           {/* VIP Ticket valg */}
-          <Label htmlFor="VIP" className={`label-styling border shadow-md ${bookingData.ticketType === "VIP" ? "border-red_color border-[2px]" : "border-grey_color"}`}>
+          <Label htmlFor="VIP" className={`label-styling border shadow-md hover:border-red_color hover:border-[2px] ${bookingData.ticketType === "VIP" ? "border-red_color border-[2px]" : "border-grey_color"}`}>
             <div className="row-start-2 row-end-4">VIP</div>
 
             <div className="flex flex-col gap-[10px] row-start-4 row-end-5">

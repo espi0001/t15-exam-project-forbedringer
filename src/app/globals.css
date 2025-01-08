@@ -1,4 +1,8 @@
 @import url("https://use.typekit.net/isf7gkh.css");
+@font-face {
+  font-family: PP Pangaia;
+  src: url("/PPPangaia-Bold.otf");
+}
 
 @tailwind base;
 @tailwind components;
@@ -33,8 +37,12 @@ body {
 }
 h1,
 h3 {
-  text-transform: uppercase;
   font-weight: 900;
+}
+h1,
+h2,
+h3 {
+  font-family: "PP Pangaia", sans-serif;
 }
 
 .label-styling {
