@@ -9,17 +9,20 @@ export const metadata = {
   description: "Learn more about the band, members and schedule time.",
 };
 
-// singleview for a band
 const Page = async ({ params }) => {
-  const slug = await params.slug; // henter slug fra URL'en
+  const slug = await params.slug;
 
-  // fetch band data
+  // Fetch band data
   const bandResponse = await fetch(`https://lively-scrawny-secretary.glitch.me/bands/${slug}`);
   const band = await bandResponse.json();
 
   // Fetch schedule data for the band
   const scheduleResponse = await fetch(`https://lively-scrawny-secretary.glitch.me/schedule`);
   const scheduleData = await scheduleResponse.json();
+
+  // Fetch related artists based on genre
+  const relatedArtistsResponse = await fetch(`https://lively-scrawny-secretary.glitch.me/bands?genre=${encodeURIComponent(band.genre)}`);
+  const relatedArtists = await relatedArtistsResponse.json();
 
   // Find the band's schedule
   const bandSchedules = [];
@@ -51,12 +54,12 @@ const Page = async ({ params }) => {
         />
         <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white_color lg:text-4xl font-bold z-10">{band.name}</h1>
       </div>
-      <section className="mx-[20px] lg:mx-[64px] py-[48px] lg:py-[80px] lg:flex gap-[80px] justify-between">
+      <section className="mx-[20px] lg:mx-[64px] pt-[48px] pb-[24px] lg:pt-[48px] lg:flex gap-[80px] justify-between">
         <article className="lg:w-3/5 grid gap-4">
           <AboutSection bio={band.bio} />
 
-          <div>
-            <h2 className="">Members</h2>
+          <div className="mb-0"> {/* Removed margin */}
+            <h2 className="text-xl font-bold">Members</h2>
             {band.members.length > 0 ? (
               <div>
                 {band.members.map((bandmembers, index) => (
@@ -70,8 +73,8 @@ const Page = async ({ params }) => {
             )}
           </div>
           <div>
-            <h2 className="text-step_h5">Genre</h2>
-            <p className="text-lg font-light text-step_p">{band.genre}</p>
+            <h2 className="text-xl font-bold">Genre</h2>
+            <p className="text-lg font-medium text-step_p">{band.genre}</p>
           </div>
         </article>
         <div className="lg:w-2/5">
@@ -95,6 +98,27 @@ const Page = async ({ params }) => {
             </Button>
           </Link>
         </div>
+      </section>
+      {/* Related Artists Section */}
+      <section className="mx-[20px] lg:mx-[64px] pb-[24px]">
+        <h2 className="font-medium">Related Artists</h2>
+        {relatedArtists.length > 0 ? (
+          <div className="grid gap-4">
+            {relatedArtists
+              .filter((artist) => artist.genre === band.genre && artist.name !== band.name) // Only artists with the same genre, excluding the current band
+              .slice(0, 3) // Limit to 3 artists
+              .map((artist, index) => (
+                <div key={index} className="group p-4 border rounded shadow-sm transition-all">
+                  <Link href={`/band/${artist.slug}`} className="block">
+                    <h3 className="font-medium text-black_color group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.name}</h3>
+                    <p className="text-sm text-gray-600 group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.genre}</p>
+                  </Link>
+                </div>
+              ))}
+          </div>
+        ) : (
+          <p className="text-lg">No related artists found.</p>
+        )}
       </section>
     </div>
   );

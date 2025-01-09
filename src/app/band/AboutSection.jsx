@@ -27,7 +27,7 @@ export default function AboutSection({ bio }) {
 
   return (
     <div>
-      <h2 className="">About the Band</h2>
+      <h2 className="">About the band</h2>
       <div 
         ref={containerRef}
         className={`relative ${!isExpanded ? "line-clamp-6" : ""}`}
