@@ -40,26 +40,40 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
         </div>
         <form className="space-y-2">
           {/* Looper igennem daysMap og viser checkboxer for hver dag */}
-          {Object.keys(daysMap).map((fullDayName) => (
-            <label key={fullDayName} className="flex items-center space-x-2 text-sm cursor-pointer">
-              {/* Checkbox for hver dag */}
-              <input
-                type="checkbox"
-                value={daysMap[fullDayName]} // dagens korte navn fra daysMap
-                checked={filters.day.includes(daysMap[fullDayName])}
-                onChange={(e) => {
-                  const selectedDay = e.target.value; // Henter den dag der er valgt
-                  const updatedDays = e.target.checked
-                    ? [...filters.day, selectedDay] // Hvis checkboxen er checked, tilføjer vi den dag til filters.day
-                    : filters.day.filter((day) => day !== selectedDay); // Hvis checkboxen er unchecked, fjerner vi den dag fra filters.day
-                  setFilters({ ...filters, day: updatedDays }); // Opdaterer filters.day med de nye dage
-                }}
-                className="form-checkbox text-black_color border-less_black_color rounded"
-              />
-              {/* Viser fulde navn for dagen */}
-              <span className="text-step_text_regular">{fullDayName}</span>
-            </label>
-          ))}
+          {Object.keys(daysMap).map((fullDayName) => {
+            // Beregn antallet af bands for denne dag
+            const count = bands
+              .filter((band) => band.schedules.some((schedule) => schedule.day === daysMap[fullDayName]))
+              .filter((band) => {
+                // Tjek, om bandet opfylder andre aktive filtre
+                const matchesGenre = filters.genre.length === 0 || filters.genre.includes(band.genre);
+                const matchesStage = filters.stage.length === 0 || band.schedules.some((schedule) => filters.stage.includes(schedule.stage));
+                return matchesGenre && matchesStage;
+              }).length;
+
+            return (
+              <label key={fullDayName} className="flex items-center space-x-2 text-sm cursor-pointer">
+                {/* Checkbox for hver dag */}
+                <input
+                  type="checkbox"
+                  value={daysMap[fullDayName]} // dagens korte navn fra daysMap
+                  checked={filters.day.includes(daysMap[fullDayName])}
+                  onChange={(e) => {
+                    const selectedDay = e.target.value; // Henter den dag der er valgt
+                    const updatedDays = e.target.checked
+                      ? [...filters.day, selectedDay] // Hvis checkboxen er checked, tilføjer vi den dag til filters.day
+                      : filters.day.filter((day) => day !== selectedDay); // Hvis checkboxen er unchecked, fjerner vi den dag fra filters.day
+                    setFilters({ ...filters, day: updatedDays }); // Opdaterer filters.day med de nye dage
+                  }}
+                  className="form-checkbox text-black_color border-less_black_color rounded"
+                />
+                {/* Viser fulde navn for dagen */}
+                <span className="text-step_text_regular">{fullDayName}</span>
+                {/* Viser antallet af bands for dagen */}
+                <span className="text-xs text-gray-500 ml-2">({count})</span>
+              </label>
+            );
+          })}
         </form>
       </article>
 
@@ -75,22 +89,35 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
           </button>
         </div>
         <form className="space-y-2">
-          {Object.keys(schedule).map((stage) => (
-            <label key={stage} className="flex items-center space-x-2 text-sm cursor-pointer">
-              <input
-                type="checkbox"
-                value={stage}
-                checked={filters.stage.includes(stage)}
-                onChange={(e) => {
-                  const selectedStage = e.target.value;
-                  const updatedStages = e.target.checked ? [...filters.stage, selectedStage] : filters.stage.filter((stage) => stage !== selectedStage);
-                  setFilters({ ...filters, stage: updatedStages });
-                }}
-                className="form-checkbox text-black_color border-less_black_color rounded"
-              />
-              <span className="text-step_text_regular">{stage}</span>
-            </label>
-          ))}
+          {Object.keys(schedule).map((stage) => {
+            // Beregn antallet af bands for denne scene
+            const count = bands
+              .filter((band) => band.schedules.some((schedule) => schedule.stage === stage))
+              .filter((band) => {
+                // Tjek, om bandet opfylder andre aktive filtre
+                const matchesGenre = filters.genre.length === 0 || filters.genre.includes(band.genre);
+                const matchesDay = filters.day.length === 0 || band.schedules.some((schedule) => filters.day.includes(schedule.day));
+                return matchesGenre && matchesDay;
+              }).length;
+
+            return (
+              <label key={stage} className="flex items-center space-x-2 text-sm cursor-pointer">
+                <input
+                  type="checkbox"
+                  value={stage}
+                  checked={filters.stage.includes(stage)}
+                  onChange={(e) => {
+                    const selectedStage = e.target.value;
+                    const updatedStages = e.target.checked ? [...filters.stage, selectedStage] : filters.stage.filter((s) => s !== selectedStage);
+                    setFilters({ ...filters, stage: updatedStages });
+                  }}
+                  className="form-checkbox text-black_color border-less_black_color rounded"
+                />
+                <span className="text-step_text_regular">{stage}</span>
+                <span className="text-xs text-gray-500 ml-2">({count})</span>
+              </label>
+            );
+          })}
         </form>
       </article>
 
@@ -106,22 +133,40 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
           </button>
         </div>
         <form className="space-y-2">
-          {Array.from(new Set(bands.map((band) => band.genre))).map((genre) => (
-            <label key={genre} className="flex items-center space-x-2 text-sm cursor-pointer">
-              <input
-                type="checkbox"
-                value={genre}
-                checked={filters.genre.includes(genre)}
-                onChange={(e) => {
-                  const selectedGenre = e.target.value;
-                  const updatedGenreFilters = e.target.checked ? [...filters.genre, selectedGenre] : filters.genre.filter((g) => g !== selectedGenre);
-                  setFilters({ ...filters, genre: updatedGenreFilters });
-                }}
-                className="form-checkbox text-black_color border-less_black_color rounded"
-              />
-              <span className="text-step_text_regular">{genre}</span>
-            </label>
-          ))}
+          {Array.from(new Set(bands.map((band) => band.genre))).map((genre) => {
+            // Beregn antallet af bands for denne genre
+            const count = bands
+              .filter((band) => band.genre === genre)
+              .filter((band) => {
+                // Tjek, om bandet opfylder andre aktive filtre
+                const matchesDay = filters.day.length === 0 || band.schedules.some((schedule) => filters.day.includes(schedule.day));
+                const matchesStage = filters.stage.length === 0 || band.schedules.some((schedule) => filters.stage.includes(schedule.stage));
+                return matchesDay && matchesStage;
+              }).length;
+
+            return (
+              <label key={genre} className="flex items-center space-x-2 text-sm cursor-pointer">
+                {/* Checkbox for hver genre */}
+                <input
+                  type="checkbox"
+                  value={genre}
+                  checked={filters.genre.includes(genre)}
+                  onChange={(e) => {
+                    const selectedGenre = e.target.value; // Henter genren
+                    const updatedGenreFilters = e.target.checked
+                      ? [...filters.genre, selectedGenre] // Tilføjer genre, hvis checkboxen er checked
+                      : filters.genre.filter((g) => g !== selectedGenre); // Fjerner genre, hvis checkboxen er unchecked
+                    setFilters({ ...filters, genre: updatedGenreFilters }); // Opdaterer filters.genre
+                  }}
+                  className="form-checkbox text-black_color border-less_black_color rounded"
+                />
+                {/* Vis navnet på genren */}
+                <span className="text-step_text_regular">{genre}</span>
+                {/* Vis antal bands for genren */}
+                <span className="text-xs text-gray-500 ml-2">({count})</span>
+              </label>
+            );
+          })}
         </form>
       </article>
 

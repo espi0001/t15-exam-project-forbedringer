@@ -151,40 +151,57 @@ const Lineup = () => {
 
           <div className="flex justify-between items-center mb-4">
             {/* Viser aktive filtre som tags */}
-            <section className="flex flex-wrap gap-[8px]">
-              {/* Looper igennem valgt dage i filters.day og viser dem som tags */}
-              {filters.day.map((day) => (
-                <div key={day} className="">
-                  {/* Tilføjer fjern-knap */}
-                  <button onClick={() => setFilters({ ...filters, day: filters.day.filter((d) => d !== day) })} className="filterknap filterknap:hover transition-base">
-                    {/* Finder dagen og og viser fulde navn for dagen ud fra daysMap */}
-                    <span>{Object.keys(daysMap).find((key) => daysMap[key] === day)}</span>
-                    <IoCloseOutline />
-                  </button>
-                </div>
-              ))}
-              {/* Looper igennem valgt stages i filters.stage og viser dem som tags */}
-              {filters.stage.map((stage) => (
-                <div key={stage} className="">
-                  {/* Tilføjer fjern-knap */}
-                  <button onClick={() => setFilters({ ...filters, stage: filters.stage.filter((s) => s !== stage) })} className="filterknap filterknap:hover transition-base">
-                    {/* Viser navn på stage */}
-                    <span>{stage}</span>
-                    <IoCloseOutline />
-                  </button>
-                </div>
-              ))}
-              {filters.genre.map((genre) => (
-                <div key={genre} className="">
-                  {/* Tilføjer fjern-knap */}
-                  <button onClick={() => setFilters({ ...filters, genre: filters.genre.filter((g) => g !== genre) })} className="filterknap filterknap:hover transition-bases">
-                    {/* Viser navn på Genre */}
-                    <span>{genre}</span>
-                    <IoCloseOutline />
-                  </button>
-                </div>
-              ))}
-            </section>
+            <div className="flex justify-between flex-wrap items-center gap-[8px]">
+              <section className="flex flex-wrap gap-[8px]">
+                {/* Looper igennem valgt dage i filters.day og viser dem som tags */}
+                {filters.day.map((day) => (
+                  <div key={day} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, day: filters.day.filter((d) => d !== day) })} className="filterknap filterknap:hover transition-base">
+                      {/* Finder dagen og og viser fulde navn for dagen ud fra daysMap */}
+                      <span>{Object.keys(daysMap).find((key) => daysMap[key] === day)}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+                {/* Looper igennem valgt stages i filters.stage og viser dem som tags */}
+                {filters.stage.map((stage) => (
+                  <div key={stage} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, stage: filters.stage.filter((s) => s !== stage) })} className="filterknap filterknap:hover transition-base">
+                      {/* Viser navn på stage */}
+                      <span>{stage}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+                {filters.genre.map((genre) => (
+                  <div key={genre} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, genre: filters.genre.filter((g) => g !== genre) })} className="filterknap filterknap:hover transition-bases">
+                      {/* Viser navn på Genre */}
+                      <span>{genre}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+              </section>
+              {/* Kun vis "Clear all"-knap, hvis der er mindst ét filter valgt */}
+              {(filters.day.length > 0 || filters.stage.length > 0 || filters.genre.length > 0) && (
+                <button
+                  onClick={() =>
+                    setFilters({
+                      genre: [],
+                      day: [],
+                      stage: [],
+                    })
+                  }
+                  className="text-step_text_tiny text-gray-600 underline hover:text-red_color "
+                >
+                  Clear all
+                </button>
+              )}
+            </div>
 
             {/* Visning af antal bands */}
             <section>
