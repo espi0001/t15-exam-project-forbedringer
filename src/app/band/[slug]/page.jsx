@@ -100,26 +100,38 @@ const Page = async ({ params }) => {
         </div>
       </section>
       {/* Related Artists Section */}
-      <section className="mx-[20px] lg:mx-[64px] pb-[24px]">
-        <h2 className="font-medium">Related Artists</h2>
-        {relatedArtists.length > 0 ? (
-          <div className="grid gap-4">
-            {relatedArtists
-              .filter((artist) => artist.genre === band.genre && artist.name !== band.name) // Only artists with the same genre, excluding the current band
-              .slice(0, 3) // Limit to 3 artists
-              .map((artist, index) => (
-                <div key={index} className="group p-4 border rounded shadow-sm transition-all">
-                  <Link href={`/band/${artist.slug}`} className="block">
-                    <h3 className="font-medium text-black_color group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.name}</h3>
-                    <p className="text-sm text-gray-600 group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.genre}</p>
-                  </Link>
-                </div>
-              ))}
-          </div>
-        ) : (
-          <p className="text-lg">No related artists found.</p>
-        )}
-      </section>
+<section className="mx-[20px] lg:mx-[64px] pb-[24px]">
+  <h2 className="font-medium">Related Artists</h2>
+  {relatedArtists.length > 0 ? (
+    <div className="grid gap-4">
+      {(() => {
+        // First try to get artists with the same genre
+        const sameGenreArtists = relatedArtists
+          .filter((artist) => artist.genre === band.genre && artist.name !== band.name);
+
+        // If no same genre artists found, get all artists except current band
+        const artistsToShow = sameGenreArtists.length > 0 
+          ? sameGenreArtists 
+          : relatedArtists.filter((artist) => artist.name !== band.name);
+
+        // Shuffle the array
+        return [...artistsToShow]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3) // Take first 3 after shuffling
+          .map((artist, index) => (
+            <div key={index} className="group p-4 border rounded shadow-sm transition-all">
+              <Link href={`/band/${artist.slug}`} className="block">
+                <h3 className="font-medium text-black_color group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.name}</h3>
+                <p className="text-sm text-gray-600 group-hover:text-white group-hover:bg-red_color p-4 transition-all">{artist.genre}</p>
+              </Link>
+            </div>
+          ));
+      })()}
+    </div>
+  ) : (
+    <p className="text-lg">No related artists found.</p>
+  )}
+</section>
     </div>
   );
 };
