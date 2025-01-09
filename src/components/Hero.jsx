@@ -77,7 +77,7 @@ const Hero = () => {
           }}
         >
           {/* Black text on white background */}
-          <div className="text-layer-1 absolute bottom-10 w-full text-black_color flex flex-col items-start p-4 space-y-1">
+          <div className="text-layer-1 absolute bottom-10 w-full text-black_color flex flex-col items-start p-4 space-y-1 font-customFont">
             <div className="hero-text overflow-hidden leading-none">
               <h1 className="ml-14 fluid-title font-bold">FOO FEST</h1>
             </div>
@@ -95,7 +95,7 @@ const Hero = () => {
       <div className="relative h-full">
         <Image src={IndexHeroImage} alt="Hero background for index" layout="fill" objectFit="cover" priority={true} className="z-0" />
         {/* White text on hero background */}
-        <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 space-y-1 z-40">
+        <div className="text-layer-2 absolute bottom-10 w-full text-white_color flex flex-col items-start p-4 space-y-1 z-40 font-customFont">
           <div className="hero-text overflow-hidden leading-none">
             <h1 className="ml-14 fluid-title font-bold">FOO FEST</h1>
           </div>
