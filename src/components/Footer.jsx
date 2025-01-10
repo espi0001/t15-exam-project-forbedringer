@@ -1,12 +1,10 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Logo from "@/images/foo-fest-isometric-black-logo.svg";
 import WhiteLogo from "@/images/foo-fest-isometric-white-logo.svg";
 import FooterNavigationLink from "./FooterNavigationLinks";
 import { Button } from "./ui/button";
-import { Fullscreen } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 

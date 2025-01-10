@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { CheckCircle2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-komponenter
+import { Button } from "../ui/button"; // Knapkomponent
+import { CheckCircle2 } from "lucide-react"; // Ikon
 
 export default function Confirmation({ reservationId, onReset }) {
   return (
@@ -15,11 +15,11 @@ export default function Confirmation({ reservationId, onReset }) {
         <div className="text-center space-y-4">
           <p>Your order has been confirmed.</p>
           <p>
-            Reservation ID: <span className="font-bold">{reservationId}</span>
+            Reservation ID: <span className="font-bold">{reservationId}</span> {/* Viser reservations-ID */}
           </p>
           <p>We've sent the confirmation details to your email.</p>
           <Button className="text-white" onClick={onReset}>
-            Book more tickets
+            Book more tickets {/* Starter ny booking */}
           </Button>
         </div>
       </CardContent>

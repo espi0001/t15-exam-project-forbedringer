@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-komponenter til opbygning af kortlayout
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup"; // UI-komponenter til valg af radio-knapper
 import { Label } from "../ui/label"; // UI-komponent til tekstlabels
@@ -12,12 +10,12 @@ import { IoTicketOutline } from "react-icons/io5";
 export default function TicketSelection({ bookingData, setBookingData, onNext }) {
   // Håndterer ændringer i valgt billettype
   const handleTicketTypeChange = (value) => {
-    setBookingData({ ...bookingData, ticketType: value }); // Opdaterer bookingData med valgt billettype
+    setBookingData({ ...bookingData, ticketType: value }); // Opdaterer valg af ticketType i bookingData
   };
 
   // Håndterer ændringer i antal billetter
   const handleCountChange = (value) => {
-    setBookingData({ ...bookingData, ticketCount: parseInt(value) || 1 }); // Opdaterer bookingData med antal billetter
+    setBookingData({ ...bookingData, ticketCount: parseInt(value) || 1 }); // Opdaterer `ticketCount` i bookingData
   };
 
   return (
@@ -36,7 +34,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
         <RadioGroup
           value={bookingData.ticketType} // Forvalgt værdi baseret på bookingData
           onValueChange={handleTicketTypeChange} // Håndterer ændringer i valgt værdi
-          className="flex justify-center items-center grid-cols-2 gap-10 mb-4"
+          className="flex flex-col lg:flex-row justify-center items-center grid-cols-2 gap-10 mb-4"
         >
           {/* Regular Ticket valg */}
           <Label htmlFor="regular" className={`label-styling border shadow-md hover:border-red_color hover:border-[2px] ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>

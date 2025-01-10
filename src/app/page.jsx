@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "@/components/Hero";
-import FestivalApp from "@/components/FestivalApp";
 import ParallaxAboutComponent from "@/components/ParallaxAboutComponent";
 import FooFestPosterComp from "@/components/FooFestPosterComp";
 

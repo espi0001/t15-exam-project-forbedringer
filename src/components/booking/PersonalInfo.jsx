@@ -1,27 +1,25 @@
 "use client";
-import { useState } from "react";
-
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { User } from "lucide-react";
-import { MdArrowLeft } from "react-icons/md";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"; // UI-komponenter
+import { Label } from "../ui/label"; // Label-komponent
+import { Input } from "../ui/input"; // Input-komponent
+import { Button } from "../ui/button"; // Knapkomponent
+import { User } from "lucide-react"; // Ikon for bruger
+import { MdArrowLeft } from "react-icons/md"; // Ikon til tilbage-knappen
 
 export default function PersonalInfo({ bookingData, setBookingData, onNext, onBack }) {
-  // Funktion til at opdatere personlige oplysninger for hver billet
+  // Opdaterer personlige oplysninger for en specifik billet
   const handleInfoChange = (index, field, value) => {
-    const newInfo = [...bookingData.personalInfo];
+    const newInfo = [...bookingData.personalInfo]; // Kopierer personlige oplysninger
     if (!newInfo[index]) newInfo[index] = {}; // Initialiser objektet, hvis det ikke findes
     newInfo[index][field] = value; // Opdater teltopsætning for specifik billet
-    setBookingData({ ...bookingData, personalInfo: newInfo });
+    setBookingData({ ...bookingData, personalInfo: newInfo }); // Gemmer opdaterede oplysninger
   };
 
   // Validerer, om alle krævede oplysninger er udfyldt
   const isValid = () => {
     return (
-      bookingData.personalInfo.length === bookingData.ticketCount && // Sikrer, at der er udfyldt oplysninger for hver billet
-      bookingData.personalInfo.every((info) => info.name && info.email) // Tjekker, at både navn og e-mail er udfyldt
+      bookingData.personalInfo.length === bookingData.ticketCount && // Tjekker, at der er indtastet data for alle billetter
+      bookingData.personalInfo.every((info) => info.name && info.email) // Tjekker, at navn og email er udfyldt
     );
   };
 
@@ -42,12 +40,27 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
               {/* Input for fulde navn */}
               <div>
                 <Label htmlFor={`name-${index}`}>Full name</Label> {/* Label for navn */}
-                <Input id={`name-${index}`} name={`name-${index}`} value={bookingData.personalInfo[index]?.name || ""} placeholder="Jane Foo" onChange={(e) => handleInfoChange(index, "name", e.target.value)} className="mt-1 placeholder:text-grey_color" />
+                <Input
+                  id={`name-${index}`}
+                  name={`name-${index}`}
+                  value={bookingData.personalInfo[index]?.name || ""} // Forvalgt værdi
+                  placeholder="Jane Foo"
+                  onChange={(e) => handleInfoChange(index, "name", e.target.value)} // Opdaterer navn
+                  className="mt-1 placeholder:text-grey_color"
+                />
               </div>
               {/* Input for e-mail */}
               <div>
                 <Label htmlFor={`email-${index}`}>Email</Label> {/* Label for e-mail */}
-                <Input id={`email-${index}`} name={`email-${index}`} type="email" value={bookingData.personalInfo[index]?.email || ""} placeholder="janefoo@email.com" onChange={(e) => handleInfoChange(index, "email", e.target.value)} className="mt-1 placeholder:text-grey_color" />
+                <Input
+                  id={`email-${index}`}
+                  name={`email-${index}`}
+                  type="email"
+                  value={bookingData.personalInfo[index]?.email || ""} // Forvalgt værdi
+                  placeholder="janefoo@email.com"
+                  onChange={(e) => handleInfoChange(index, "email", e.target.value)} // Opdaterer email
+                  className="mt-1 placeholder:text-grey_color"
+                />
               </div>
               {/* Vælg opsætning af telt */}
               <div className="pt-4">
@@ -66,14 +79,18 @@ export default function PersonalInfo({ bookingData, setBookingData, onNext, onBa
           </div>
         ))}
 
-        {/* Navigationsknapper */}
+        {/* Tilbage og Fortsæt */}
         <div className="flex justify-between mt-4">
           <Button variant="outline" onClick={onBack}>
-            {/* Knappen for at gå tilbage */}
             <MdArrowLeft size={20} />
             Back {/* Gå tilbage til forrige trin */}
           </Button>
-          <Button className="text-white" type="submit" variant="tertiary" disabled={!isValid()}>
+          <Button
+            className="text-white"
+            type="submit"
+            variant="tertiary"
+            disabled={!isValid()} // Deaktiveret uden gyldige data
+          >
             {/* Knappen for at gå videre, kun aktiv hvis validering er ok */}
             Continue to payment
           </Button>

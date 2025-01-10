@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import { api } from "@/lib/api";
-// import { useReservationTimer } from "@/hooks/useReservationTimer";
+// Trin komponenter for bookingprocessen + timer
 import TicketSelection from "./booking/TicketSelection"; // Trin 1
 import CampingOptions from "./booking/CampingOptions"; // Trin 2
 import PersonalInfo from "./booking/PersonalInfo"; // Trin 3
@@ -11,25 +10,27 @@ import Confirmation from "./booking/Confirmation"; // Trin 5
 import BookingTimer from "./BookingTimer";
 
 export default function BookingFlow() {
-  const [step, setStep] = useState(1); // Hvilket trin er aktuelt
+  const [step, setStep] = useState(1); // Hvilket trin brugeren er op (starter på 1)
+
   // State til at gemme data fra de forskellige trin i bookingprocessen
   const [bookingData, setBookingData] = useState({
     ticketType: "", // Type billet
     ticketCount: 1, // Antal billetter
     campingArea: "", // Valgt campingområde
-    greenCamping: false, // Indikerer om grøn camping er valgt
+    greenCamping: false, // Om grøn camping er valgt
     tentSetup: "", // Valg af teltopsætning
     personalInfo: [], // Liste med personlige oplysninger
   });
 
-  const [startTime, setStartTime] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(null);
-  const [isExpired, setIsExpired] = useState(false);
+  // Timer-relateret state
+  const [startTime, setStartTime] = useState(null); // Starttidspunkt for timeren
+  const [timeLeft, setTimeLeft] = useState(null); // Tid tilbage
+  const [isExpired, setIsExpired] = useState(false); // Om tiden er udløbet
 
-  // Timer logic
+  // Håndterer timerlogik
   useEffect(() => {
     let intervalId;
-    const RESERVATION_TIME = 5 * 60; // 15 minutes in seconds
+    const RESERVATION_TIME = 5 * 60; // 5 min reservationstid
 
     if (startTime && step > 1 && step < 5) {
       intervalId = setInterval(() => {
@@ -37,20 +38,21 @@ export default function BookingFlow() {
         const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
         const remaining = RESERVATION_TIME - elapsedSeconds;
 
+        // Hvis tiden er udløbet, markerer vi det og stopper timeren
         if (remaining <= 0) {
           setTimeLeft(0);
           setIsExpired(true);
           clearInterval(intervalId);
         } else {
-          setTimeLeft(remaining);
+          setTimeLeft(remaining); // Opdaterer tid tilbage
         }
       }, 1000);
     }
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); // Ryd op i komponentet når det fjernes
   }, [startTime, step]);
 
-  // State til at holde reservationens ID, hvis det genereres
+  // State til at gemme reservationens ID, hvis det genereres
   const [reservationId, setReservationId] = useState("");
 
   // Håndtering af trinændring
@@ -58,16 +60,15 @@ export default function BookingFlow() {
     setStep(newStep);
   };
 
-  // Custom setter for booking data that starts the timer when tickets are chosen
+  // Opdaterer bookingData og starter timer, hvis det er nødvendigt
   const setBookingDataWithTimer = (newData) => {
-    // If ticket type and count are set, start the timer
     if (newData.ticketType && newData.ticketCount > 0 && !startTime) {
-      setStartTime(Date.now());
+      setStartTime(Date.now()); // Starter timer når billetter vælges
     }
     setBookingData(newData);
   };
 
-  // Håndtering af formularens indsendelse
+  // Håndtering af formularens indsendelse og validering
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,25 +78,30 @@ export default function BookingFlow() {
     }
 
     if (step === 3) {
-      // Validering forbliver den samme
+      // Validering af personlige oplysninger
       if (bookingData.personalInfo.length !== bookingData.ticketCount || !bookingData.personalInfo.every((info) => info.name && info.email)) {
         alert("Please complete all personal information before proceeding.");
         return;
       }
-      handleStepChange(4);
+      handleStepChange(4); // Går viedre til trin 4, Checkout.jsx
     } else if (step === 4) {
-      handleStepChange(5); // Lad Checkout.jsx håndtere reservationen
+      handleStepChange(5); // Går videre til trin 5, Checkout.jsx (håndtere reservationen)
     } else {
-      handleStepChange(step + 1);
+      handleStepChange(step + 1); // Går til næste trin
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
-      {/* Tid tilbage til reservationen vises, hvis en timer blev brugt */}
+      {/* Viser timeren hvis den tæller ned */}
       {timeLeft !== null && step > 1 && step < 5 && !isExpired && (
         <div className="mb-4 text-white text-center">
-          <BookingTimer initialMinutes={5} timeRemaining={timeLeft} isExpired={isExpired} />
+          {/* Timeren som man kan se på en side */}
+          <BookingTimer
+            initialMinutes={5} // Timerens varighed
+            timeRemaining={timeLeft} // Tid tilbage
+            isExpired={isExpired} // Om tiden er udløbet
+          />
         </div>
       )}
 
@@ -132,7 +138,7 @@ export default function BookingFlow() {
       {step === 4 && (
         <Checkout
           bookingData={bookingData}
-          setReservationId={setReservationId}
+          setReservationId={setReservationId} // Gemmer reservations-ID
           onNext={() => handleStepChange(5)} // Går videre til trin 5
           onBack={() => handleStepChange(3)} // Går tilbage til trin 3
         />
@@ -143,6 +149,7 @@ export default function BookingFlow() {
         <Confirmation
           reservationId={reservationId}
           onReset={() => {
+            // Nulstiller bookingflowet og starter forfra
             setStep(1);
             setBookingData({
               ticketType: "",
