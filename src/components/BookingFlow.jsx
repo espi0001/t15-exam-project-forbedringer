@@ -35,22 +35,22 @@ export default function BookingFlow() {
     if (startTime && step > 1 && step < 5) {
       intervalId = setInterval(() => {
         const currentTime = Date.now();
-        const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
-        const remaining = RESERVATION_TIME - elapsedSeconds;
+        const elapsedSeconds = Math.floor((currentTime - startTime) / 1000); // Beregner forløbne sek
+        const remaining = RESERVATION_TIME - elapsedSeconds; // Beregner tid tilbage
 
         // Hvis tiden er udløbet, markerer vi det og stopper timeren
         if (remaining <= 0) {
-          setTimeLeft(0);
-          setIsExpired(true);
-          clearInterval(intervalId);
+          setTimeLeft(0); // Sætter tiden til 0, når tiden løber ud
+          setIsExpired(true); // Marker, at tiden er udløbet
+          clearInterval(intervalId); // Stopper timeren
         } else {
           setTimeLeft(remaining); // Opdaterer tid tilbage
         }
-      }, 1000);
+      }, 1000); // Opdateres hvert sekund
     }
 
     return () => clearInterval(intervalId); // Ryd op i komponentet når det fjernes
-  }, [startTime, step]);
+  }, [startTime, step]); // Afhængig af starttid og trin
 
   // State til at gemme reservationens ID, hvis det genereres
   const [reservationId, setReservationId] = useState("");
