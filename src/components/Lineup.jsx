@@ -212,6 +212,7 @@ const Lineup = () => {
           {/* Main Band Grid */}
           {/* Hvis filteret er åbent bliver opacitetet på 50%, elelrs 100%*/}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
+            {/* Betingelse hvis filteredBands = 0 vises der en tekst */}
             {filteredBands.length > 0 ? (
               filteredBands.slice(0, visibleCount).map((band) => (
                 <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
@@ -225,7 +226,7 @@ const Lineup = () => {
               ))
             ) : (
               // Viser en besked, hvis der ikke er nogen bands tilgængelige
-              <div className="col-span-full text-center text-gray-500 text-step_text_large mt-4">
+              <div className="col-span-full text-center text-less_black_color text-step_text_large mt-4">
                 <p>No results found</p>
               </div>
             )}
