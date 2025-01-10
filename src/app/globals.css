@@ -83,6 +83,13 @@ h3 {
   background-color: #e5e7eb;
 }
 
+.filter-label-styling {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* @apply text-step_text_regular; */
+}
+
 @layer base {
   * {
     margin: 0;

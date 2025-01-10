@@ -1,29 +1,32 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion"; // animation
-import { useState, useEffect } from "react";
-import { IoFilter } from "react-icons/io5"; // icon
+import { motion, AnimatePresence } from "framer-motion"; // Animation library til UI transitions
+import { useState, useEffect } from "react"; // React hooks for state and side-effects
+import { IoFilter, IoCloseOutline } from "react-icons/io5"; // ikoner
 import { api } from "@/lib/api"; // Importer api her
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+// komponenter
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import FilterPanel from "@/components/FilterPanel";
 import ContactHero from "@/images/danny-howe-unsplash.avif";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
-import { IoCloseOutline } from "react-icons/io5";
+import ClearButton from "@/components/ClearButton";
 
 const Lineup = () => {
+  // Filterpanel animation
   const panelSlide = {
-    initial: { x: "-100%" },
+    initial: { x: "-100%" }, // starter fra venstre
     enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
     exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-  }; // Filterpanel animation
+  };
 
+  // State variabler
   const [bands, setBands] = useState([]); // State for bands hentet fra API
   const [schedule, setSchedule] = useState({}); // State for schedule hentet fra API
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
-  const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
+  const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering (a-z)
   const [filters, setFilters] = useState({
     genre: [],
     day: [],
@@ -48,7 +51,7 @@ const Lineup = () => {
     const fetchData = async () => {
       try {
         const [bandsData, scheduleData] = await Promise.all([api.getBands(), api.getSchedule()]);
-        // kombinerer bandsData og scheduleData
+        // kombinerer bandsData med deres schedule information fra scheduleData
         const updatedBands = bandsData.map((band) => {
           // finder scheduleData for hvert band
           const bandSchedules = [];
@@ -56,28 +59,28 @@ const Lineup = () => {
             for (const day in scheduleData[stage]) {
               scheduleData[stage][day].forEach((slot) => {
                 if (slot.act === band.name) {
-                  bandSchedules.push({ stage, day, start: slot.start, end: slot.end });
+                  bandSchedules.push({ stage, day, start: slot.start, end: slot.end }); // Tilføjer schedule information til hvert band
                 }
               });
             }
           }
           // tilføjer logo til bandet
-          const bandLogo = !band.logo ? "/images/default-logo.jpg" : band.logo;
+          const bandLogo = !band.logo ? "/images/default-logo.jpg" : band.logo; // Fallback logo hvis der ikke er et logo
           return { ...band, schedules: bandSchedules, logo: bandLogo };
         });
 
-        setBands(updatedBands);
-        setFilteredBands(updatedBands);
-        setSchedule(scheduleData);
+        setBands(updatedBands); // opdaterer state med de opdaterede bands
+        setFilteredBands(updatedBands); // Filtered bands er alle bands
+        setSchedule(scheduleData); // opdaterer state med scheduleData
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error); // log error under fetching data
       }
     };
 
-    fetchData();
+    fetchData(); // kalder fetchData funktionen
   }, []);
 
-  // Filter bands whenever filters or the bands list change
+  // Opdaterer filtereret bands whenever filters state ændres
   useEffect(() => {
     let updatedBands = [...bands];
 
@@ -96,10 +99,10 @@ const Lineup = () => {
       updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.day.includes(schedule.day)));
     }
 
-    // Update the state with the filtered bands
-    setFilteredBands(updatedBands);
+    setFilteredBands(updatedBands); // opdaterer state med det filtrerede bands
   }, [filters, bands]);
 
+  // Toggle sortering med original rækkefølge og a-z
   const toggleSort = () => {
     if (isSorted) {
       setFilteredBands([...bands]); // Nulstil til original rækkefølge
@@ -107,7 +110,7 @@ const Lineup = () => {
       const sortedBands = [...filteredBands].sort((a, b) => a.name.localeCompare(b.name));
       setFilteredBands(sortedBands);
     }
-    setIsSorted(!isSorted); // Skift sorteringsstatus
+    setIsSorted(!isSorted); // opdaterer sorteringsstatus state
   };
 
   return (
@@ -129,7 +132,7 @@ const Lineup = () => {
               <AnimatePresence mode="wait">
                 {isFiltersOpen && (
                   <motion.div
-                    variants={panelSlide} // Use the animation variants
+                    variants={panelSlide} // Aminations setting
                     initial="initial"
                     animate="enter"
                     exit="exit"
@@ -152,6 +155,7 @@ const Lineup = () => {
           <div className="flex justify-between items-center mb-4">
             {/* Viser aktive filtre som tags */}
             <div className="flex justify-between flex-wrap items-center gap-[8px]">
+              {/* ************* DAGE ************* */}
               <section className="flex flex-wrap gap-[8px]">
                 {/* Looper igennem valgt dage i filters.day og viser dem som tags */}
                 {filters.day.map((day) => (
@@ -164,6 +168,8 @@ const Lineup = () => {
                     </button>
                   </div>
                 ))}
+
+                {/* ************* SCENER ************* */}
                 {/* Looper igennem valgt stages i filters.stage og viser dem som tags */}
                 {filters.stage.map((stage) => (
                   <div key={stage} className="">
@@ -175,6 +181,8 @@ const Lineup = () => {
                     </button>
                   </div>
                 ))}
+
+                {/* ************* GENRE ************* */}
                 {filters.genre.map((genre) => (
                   <div key={genre} className="">
                     {/* Tilføjer fjern-knap */}
@@ -188,18 +196,8 @@ const Lineup = () => {
               </section>
               {/* Kun vis "Clear all"-knap, hvis der er mindst ét filter valgt */}
               {(filters.day.length > 0 || filters.stage.length > 0 || filters.genre.length > 0) && (
-                <button
-                  onClick={() =>
-                    setFilters({
-                      genre: [],
-                      day: [],
-                      stage: [],
-                    })
-                  }
-                  className="text-step_text_tiny text-gray-600 underline hover:text-red_color "
-                >
-                  Clear all
-                </button>
+                // Komponent til at fjerne alle filtre
+                <ClearButton onClick={() => setFilters({ ...filters, day: [], stage: [], genre: [] })} label="Clear all" />
               )}
             </div>
 
@@ -212,7 +210,7 @@ const Lineup = () => {
           {/* Main Band Grid */}
           {/* Hvis filteret er åbent bliver opacitetet på 50%, elelrs 100%*/}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
-            {/* Betingelse hvis filteredBands = 0 vises der en tekst */}
+            {/* Betingelse hvis filteredBands er større end 0 vises der en tekst ellers viser den grid*/}
             {filteredBands.length > 0 ? (
               filteredBands.slice(0, visibleCount).map((band) => (
                 <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
