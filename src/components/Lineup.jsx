@@ -210,18 +210,27 @@ const Lineup = () => {
           </div>
 
           {/* Main Band Grid */}
+          {/* Hvis filteret er åbent bliver opacitetet på 50%, elelrs 100%*/}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
-            {filteredBands.slice(0, visibleCount).map((band) => (
-              <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
-                <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
-                <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
-                  <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
-                    {band.name}
-                  </Link>
-                </div>
-              </article>
-            ))}
+            {filteredBands.length > 0 ? (
+              filteredBands.slice(0, visibleCount).map((band) => (
+                <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
+                  <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
+                  <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
+                    <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
+                      {band.name}
+                    </Link>
+                  </div>
+                </article>
+              ))
+            ) : (
+              // Viser en besked, hvis der ikke er nogen bands tilgængelige
+              <div className="col-span-full text-center text-gray-500 text-step_text_large mt-4">
+                <p>No results found</p>
+              </div>
+            )}
           </section>
+
           {/* Load more section */}
           {visibleCount < filteredBands.length && (
             <section className="mt-[30px] flex flex-col items-center space-y-4">
