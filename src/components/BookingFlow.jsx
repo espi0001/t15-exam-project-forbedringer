@@ -57,7 +57,7 @@ export default function BookingFlow() {
 
   // Håndtering af trinændring
   const handleStepChange = (newStep) => {
-    setStep(newStep);
+    setStep(newStep); // Opdaterer hvilket trin brugeren er på
   };
 
   // Opdaterer bookingData og starter timer, hvis det er nødvendigt

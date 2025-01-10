@@ -39,7 +39,6 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           {/* Regular Ticket valg */}
           <Label htmlFor="regular" className={`label-styling border shadow-md hover:border-red_color hover:border-[2px] ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>
             <div className="row-start-2 row-end-4">REGULAR</div>
-
             <div className="flex flex-col gap-[10px] row-start-4 row-end-4">
               <span className="font-normal text-step-text_regular">
                 <p>799 DKK</p>
@@ -53,7 +52,6 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
               <li>Access to all camping areas</li>
             </ul>
           </Label>
-
           <RadioGroupItem value="regular" id="regular" className="hidden" variant="secondary" />
 
           {/* VIP Ticket valg */}
