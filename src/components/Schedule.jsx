@@ -19,11 +19,7 @@ export default function Schedule() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [schedule, bands, eventData] = await Promise.all([
-          api.getSchedule(), // Henter skemaet
-          api.getBands(), // Hent bands
-          api.getEvents(), // Hent events
-        ]);
+        const [schedule, bands, eventData] = await Promise.all([api.getSchedule(), api.getBands(), api.getEvents()]);
         setScheduleData(schedule);
         setLineupData(bands);
         setEvents(eventData);
@@ -36,10 +32,6 @@ export default function Schedule() {
 
     fetchData();
   }, []);
-
-  if (loading) return <p className="text-white_color text-center">Loading schedule...</p>;
-  if (error) return <p className="text-red_color text-center">{error}</p>;
-  if (!scheduleData || !lineupData.length) return null;
 
   // Lookup for band slugs
   const bandSlugLookup = lineupData.reduce((acc, band) => {
@@ -64,12 +56,13 @@ export default function Schedule() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {Object.keys(scheduleData).map(
-                (
-                  stage,
-                  stageIdx // Tilføj en key for hver stage
-                ) => (
+            {loading ? (
+              <p className="text-white_color text-center">Loading schedule...</p>
+            ) : error ? (
+              <p className="text-red_color text-center">{error}</p>
+            ) : !scheduleData || !lineupData.length ? null : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {Object.keys(scheduleData).map((stage, stageIdx) => (
                   <div key={stageIdx} className="border rounded p-4">
                     <h2 className="text-step_h4 font-bold mb-4">{stage}</h2>
                     <div className="space-y-2">
@@ -78,11 +71,7 @@ export default function Schedule() {
                         .map((event, idx) => {
                           const slug = bandSlugLookup[event.act];
                           return slug ? (
-                            <Link
-                              key={`${stage}-${idx}`} // Unik key for hvert event med stage og index
-                              href={`/band/${slug}`}
-                              className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-light_black_color"}`}
-                            >
+                            <Link key={`${stage}-${idx}`} href={`/band/${slug}`} className={`block hover:scale-105 transition-transform duration-300 p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-light_black_color"}`}>
                               <p className="font-medium text-step_p">{event.act}</p>
                               <p className="text-step_text_tiny">
                                 {event.start} - {event.end}
@@ -90,10 +79,7 @@ export default function Schedule() {
                               {events.some((e) => e.act === event.act && e.cancelled) && <p className="text-red_color text-step_text_tiny">CANCELLED</p>}
                             </Link>
                           ) : (
-                            <div
-                              key={`${stage}-${idx}`} // Unik key også her
-                              className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-less_black_color"}`}
-                            >
+                            <div key={`${stage}-${idx}`} className={`p-2 rounded ${events.some((e) => e.act === event.act && e.cancelled) ? "bg-red_color" : "bg-less_black_color"}`}>
                               <p className="font-medium text-step_p">{event.act}</p>
                               <p className="text-step_text_tiny">
                                 {event.start} - {event.end}
@@ -104,9 +90,9 @@ export default function Schedule() {
                         })}
                     </div>
                   </div>
-                )
-              )}
-            </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       </section>

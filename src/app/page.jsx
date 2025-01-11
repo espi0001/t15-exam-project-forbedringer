@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import FestivalApp from "@/components/FestivalApp";
 import ParallaxAboutComponent from "@/components/ParallaxAboutComponent";
 import FooFestPosterComp from "@/components/FooFestPosterComp";
+import ParallaxGallery from "@/components/ParallaxGallery";
 
 export const metadata = {
   title: "Foo Fest | Home",
@@ -14,6 +15,7 @@ export default function Home() {
     <div className="">
       <Hero alt="Photo by Samu Lopez, from Unsplash FREE" />
       <ParallaxAboutComponent />
+      <ParallaxGallery />
       <FooFestPosterComp />
     </div>
   );
