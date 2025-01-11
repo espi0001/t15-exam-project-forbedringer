@@ -217,7 +217,7 @@ const Lineup = () => {
                   <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
                   <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
                     <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
-                      {band.name}
+                      <h2 className="text-step_text_large">{band.name}</h2>
                     </Link>
                   </div>
                 </article>

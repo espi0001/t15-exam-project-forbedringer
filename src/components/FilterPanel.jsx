@@ -27,7 +27,7 @@ const FilterPanel = ({ filters, setFilters, schedule, daysMap, bands, closeFilte
         <button onClick={closeFilter} className="self-end text-lg hover:text-red_color transition-base">
           <IoCloseOutline className="w-12 h-12 " />
         </button>
-        <h2 className="self-start text-step_h4">Filters</h2>
+        <p className="self-start text-step_h4">Filters</p>
       </div>
       <hr />
 
