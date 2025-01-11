@@ -1,32 +1,37 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion"; // animation
-import { useState, useEffect } from "react";
-import { IoFilter } from "react-icons/io5"; // icon
+import { motion, AnimatePresence } from "framer-motion"; // Animation library til UI transitions
+import { useState, useEffect } from "react"; // React hooks for state and side-effects
+import { IoFilter, IoCloseOutline } from "react-icons/io5"; // ikoner
 import { api } from "@/lib/api"; // Importer api her
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+// komponenter
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import FilterPanel from "@/components/FilterPanel";
 import ContactHero from "@/images/danny-howe-unsplash.avif";
 import HeaderBillede from "@/components/HeaderBillede";
 import HeaderText from "@/components/HeaderText";
+import ClearButton from "@/components/ClearButton";
 
 const Lineup = () => {
+  // Filterpanel animation
   const panelSlide = {
-    initial: { x: "-100%" },
+    initial: { x: "-100%" }, // starter fra venstre
     enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
     exit: { x: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-  }; // Filterpanel animation
-  const [bands, setBands] = useState([]); // State for bands fetched fra API
-  const [schedule, setSchedule] = useState({}); // State for schedule fetched fra API
+  };
+
+  // State variabler
+  const [bands, setBands] = useState([]); // State for bands hentet fra API
+  const [schedule, setSchedule] = useState({}); // State for schedule hentet fra API
   const [filteredBands, setFilteredBands] = useState([]); // State for filtrering af bands
-  const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering
+  const [isSorted, setIsSorted] = useState(false); // State for at tracke sortering (a-z)
   const [filters, setFilters] = useState({
-    genre: "",
-    day: "",
-    stage: "",
-  }); // Filters for genre, day og stage
+    genre: [],
+    day: [],
+    stage: [],
+  }); // Sørger for at filterne er arrays
   const [isFiltersOpen, setIsFiltersOpen] = useState(false); // Om filteret er åbent
   const [visibleCount, setVisibleCount] = useState(12); // Start med at vise 12 kunstnere
 
@@ -41,12 +46,12 @@ const Lineup = () => {
     Sunday: "sun",
   };
 
-  // Fetch data from the APIs when the component mounts
+  // Fetch data fra API'erne når komponenten bliver renderet
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [bandsData, scheduleData] = await Promise.all([api.getBands(), api.getSchedule()]);
-        // kombinerer bandsData og scheduleData
+        // kombinerer bandsData med deres schedule information fra scheduleData
         const updatedBands = bandsData.map((band) => {
           // finder scheduleData for hvert band
           const bandSchedules = [];
@@ -54,28 +59,28 @@ const Lineup = () => {
             for (const day in scheduleData[stage]) {
               scheduleData[stage][day].forEach((slot) => {
                 if (slot.act === band.name) {
-                  bandSchedules.push({ stage, day, start: slot.start, end: slot.end });
+                  bandSchedules.push({ stage, day, start: slot.start, end: slot.end }); // Tilføjer schedule information til hvert band
                 }
               });
             }
           }
           // tilføjer logo til bandet
-          const bandLogo = !band.logo ? "/images/default-logo.jpg" : band.logo;
+          const bandLogo = !band.logo ? "/images/default-logo.jpg" : band.logo; // Fallback logo hvis der ikke er et logo
           return { ...band, schedules: bandSchedules, logo: bandLogo };
         });
 
-        setBands(updatedBands);
-        setFilteredBands(updatedBands);
-        setSchedule(scheduleData);
+        setBands(updatedBands); // opdaterer state med de opdaterede bands
+        setFilteredBands(updatedBands); // Filtered bands er alle bands
+        setSchedule(scheduleData); // opdaterer state med scheduleData
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error); // log error under fetching data
       }
     };
 
-    fetchData();
+    fetchData(); // kalder fetchData funktionen
   }, []);
 
-  // Filter bands whenever filters or the bands list change
+  // Opdaterer filtereret bands whenever filters state ændres
   useEffect(() => {
     let updatedBands = [...bands];
 
@@ -94,10 +99,10 @@ const Lineup = () => {
       updatedBands = updatedBands.filter((band) => band.schedules.some((schedule) => filters.day.includes(schedule.day)));
     }
 
-    // Update the state with the filtered bands
-    setFilteredBands(updatedBands);
+    setFilteredBands(updatedBands); // opdaterer state med det filtrerede bands
   }, [filters, bands]);
 
+  // Toggle sortering med original rækkefølge og a-z
   const toggleSort = () => {
     if (isSorted) {
       setFilteredBands([...bands]); // Nulstil til original rækkefølge
@@ -105,7 +110,7 @@ const Lineup = () => {
       const sortedBands = [...filteredBands].sort((a, b) => a.name.localeCompare(b.name));
       setFilteredBands(sortedBands);
     }
-    setIsSorted(!isSorted); // Skift sorteringsstatus
+    setIsSorted(!isSorted); // opdaterer sorteringsstatus state
   };
 
   return (
@@ -127,7 +132,7 @@ const Lineup = () => {
               <AnimatePresence mode="wait">
                 {isFiltersOpen && (
                   <motion.div
-                    variants={panelSlide} // Use the animation variants
+                    variants={panelSlide} // Aminations setting
                     initial="initial"
                     animate="enter"
                     exit="exit"
@@ -147,33 +152,110 @@ const Lineup = () => {
             </section>
           </div>
 
+          <div className="flex justify-between items-center mb-4">
+            {/* Viser aktive filtre som tags */}
+            <div className="flex justify-between flex-wrap items-center gap-[8px]">
+              {/* ************* DAGE ************* */}
+              <section className="flex flex-wrap gap-[8px]">
+                {/* Looper igennem valgt dage i filters.day og viser dem som tags */}
+                {filters.day.map((day) => (
+                  <div key={day} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, day: filters.day.filter((d) => d !== day) })} className="filterknap filterknap:hover transition-base">
+                      {/* Finder dagen og og viser fulde navn for dagen ud fra daysMap */}
+                      <span>{Object.keys(daysMap).find((key) => daysMap[key] === day)}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+
+                {/* ************* SCENER ************* */}
+                {/* Looper igennem valgt stages i filters.stage og viser dem som tags */}
+                {filters.stage.map((stage) => (
+                  <div key={stage} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, stage: filters.stage.filter((s) => s !== stage) })} className="filterknap filterknap:hover transition-base">
+                      {/* Viser navn på stage */}
+                      <span>{stage}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+
+                {/* ************* GENRE ************* */}
+                {filters.genre.map((genre) => (
+                  <div key={genre} className="">
+                    {/* Tilføjer fjern-knap */}
+                    <button onClick={() => setFilters({ ...filters, genre: filters.genre.filter((g) => g !== genre) })} className="filterknap filterknap:hover transition-bases">
+                      {/* Viser navn på Genre */}
+                      <span>{genre}</span>
+                      <IoCloseOutline />
+                    </button>
+                  </div>
+                ))}
+              </section>
+              {/* Kun vis "Clear all"-knap, hvis der er mindst ét filter valgt */}
+              {(filters.day.length > 0 || filters.stage.length > 0 || filters.genre.length > 0) && (
+                // Komponent til at fjerne alle filtre
+                <ClearButton onClick={() => setFilters({ ...filters, day: [], stage: [], genre: [] })} label="Clear all" />
+              )}
+            </div>
+
+            {/* Visning af antal bands */}
+            <section>
+              <p className="text-step_text_tiny text-gray-600">{filteredBands.length} bands</p>
+            </section>
+          </div>
+
           {/* Main Band Grid */}
+          {/* Hvis filteret er åbent bliver opacitetet på 50%, elelrs 100%*/}
           <section className={`transition-transform duration-300 ${isFiltersOpen ? "opacity-50" : "opacity-100"} grid grid-cols-2 lg:grid-cols-4 gap-4`}>
-            {filteredBands.slice(0, visibleCount).map((band) => (
-              <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
-                <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
-                <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
-                  <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
-                    {band.name}
-                  </Link>
-                </div>
-              </article>
-            ))}
+            {/* Betingelse hvis filteredBands er større end 0 vises der en tekst ellers viser den grid*/}
+            {filteredBands.length > 0 ? (
+              filteredBands.slice(0, visibleCount).map((band) => (
+                <article key={band.slug} className="relative w-full h-[300px] bg-less_black_color rounded overflow-hidden transition-transform hover:scale-105 group">
+                  <Image src={band.logo.startsWith("http") ? band.logo : `/logos/${band.logo}`} width={100} height={100} className="relative w-full h-[300px] brightness-50" alt={band.name} />
+                  <div className="absolute inset-0 bg-black_color bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-0">
+                    <Link href={`/band/${band.slug}`} className="absolute text-white_color text-step_text_large font-bold inset-0 flex justify-center items-end p-5">
+                      <h2 className="text-step_text_large">{band.name}</h2>
+                    </Link>
+                  </div>
+                </article>
+              ))
+            ) : (
+              // Viser en besked, hvis der ikke er nogen bands tilgængelige
+              <div className="col-span-full text-center text-less_black_color text-step_text_large mt-4">
+                <p>No results found</p>
+              </div>
+            )}
           </section>
+
+          {/* Load more section */}
           {visibleCount < filteredBands.length && (
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-less_black_color text-step_p">
-                {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
-              </span>
+            <section className="mt-[30px] flex flex-col items-center space-y-4">
+              {/* Button to load more bands */}
               <Button
                 variant="default"
                 className="text-white_color"
                 size="lg"
-                onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 30 flere kunstnere ad gangen
+                onClick={() => setVisibleCount((prevCount) => prevCount + 12)} // Vis 12 flere kunstnere ad gangen
               >
                 Load more
               </Button>
-            </div>
+              {/* Progress bar */}
+              <div className="relative w-64 h-1 bg-gray-300 rounded">
+                <div
+                  className="absolute h-1 bg-black_color rounded"
+                  style={{
+                    width: `${(visibleCount / filteredBands.length) * 100}%`, // Dynamisk bredde baseret på visningsforhold
+                  }}
+                ></div>
+              </div>
+              {/* Tekst med antal bands */}
+              <span className="text-less_black_color text-step_p">
+                {Math.min(visibleCount, filteredBands.length)} out of {filteredBands.length} bands
+              </span>
+            </section>
           )}
         </Card>
       </section>

@@ -28,15 +28,19 @@ body {
   color: var(--foreground);
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* default weight for svagtseende */
+  font-weight: 400;
+  /* default weight for svagtseende */
   line-height: 1.5;
 }
+
 .fluid-title {
   font-size: clamp(2rem, 6vw + 1rem, 6rem);
 }
+
 .fluid-text {
   font-size: clamp(1rem, 4vw + 0.5rem, 4rem);
 }
+
 h1,
 h3 {
   font-weight: 900;
@@ -59,6 +63,31 @@ h3 {
   text-align: center;
   cursor: pointer;
   @apply text-step_h4;
+}
+
+.filterknap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 1px 8px;
+  border: solid 1px;
+  border-radius: 0.25rem;
+  @apply text-black_color;
+  @apply border-black_color;
+  @apply text-step_text_tiny;
+}
+
+.filterknap:hover {
+  background-color: #e5e7eb;
+}
+
+.filter-label-styling {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* @apply text-step_text_regular; */
 }
 
 @layer base {
@@ -125,7 +154,7 @@ h3 {
   --accent-foreground: 0 0% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
+  --border: #262626;
   --input: #121212;
   --ring: 0 0% 83.1%;
   --chart-1: 220 70% 50%;
