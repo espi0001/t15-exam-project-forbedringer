@@ -37,7 +37,7 @@ const buttonVariants = cva(
 );
 
 // Knap-komponenten, der accepterer forskellige props for at tilpasse knappen
-const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
+const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => { // varianter, størrelser mv. er props, som når valgt, bygger knappen i comp forneden //
   // Bestemmer, om knappen skal være et 'button' eller en Slot (brugerdefineret komponent)
   const Comp = asChild ? Slot : "button";
 
