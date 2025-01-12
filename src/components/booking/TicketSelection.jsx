@@ -55,7 +55,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
           <RadioGroupItem value="regular" id="regular" className="hidden" variant="secondary" />
 
           {/* VIP Ticket valg */}
-          <Label htmlFor="VIP" className={`label-styling border-[2px] shadow-md hover:border-red_color hover:border-[2px] ${bookingData.ticketType === "VIP" ? "border-red_color border-[2px]" : "border-grey_color"}`}>
+          <Label htmlFor="VIP" className={`label-styling border-[2px] shadow-md hover:border-red_color hover:border-[3px] ${bookingData.ticketType === "VIP" ? "border-red_color border-[2px]" : "border-grey_color"}`}>
             <div className="row-start-2 row-end-4">VIP</div>
 
             <div className="flex flex-col gap-[10px] row-start-4 row-end-5">
