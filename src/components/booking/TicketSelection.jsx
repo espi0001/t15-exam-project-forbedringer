@@ -34,7 +34,7 @@ export default function TicketSelection({ bookingData, setBookingData, onNext })
         <RadioGroup
           value={bookingData.ticketType} // Forvalgt værdi baseret på bookingData
           onValueChange={handleTicketTypeChange} // Håndterer ændringer i valgt værdi
-          className="flex justify-center items-center grid-cols-2 gap-10 mb-4"
+          className="flex flex-col lg:flex-row justify-center items-center gap-10 mb-4"
         >
           {/* Regular Ticket valg */}
           <Label htmlFor="regular" className={`label-styling border-[2px] shadow-md hover:border-red_color hover:border-[3px] ${bookingData.ticketType === "regular" ? "border-red_color border-[2px] bg-light_grey_color" : "border-grey_color"}`}>
